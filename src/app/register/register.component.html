@@ -1,0 +1,15 @@
+<h1>Register</h1>
+
+<input type="email" placeholder="email" [value]="email" (input)="email = $event.target.value"><br>
+<input type="text" placeholder="name" [value]="name" (input)="name = $event.target.value"><br>
+<input type="password" placeholder="password" [value]="password" (input)="password = $event.target.value"><br>
+
+<br>
+<br>
+
+<button (click)="register()">Register</button>
+
+<br>
+<br>
+
+<a routerLink="/">Back</a>
