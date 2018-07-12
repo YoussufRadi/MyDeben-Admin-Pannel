@@ -16,4 +16,8 @@ export class ApiManagerService {
   reset(data) {
     return this.http.post("/api/auth/reset", data).toPromise();
   }
+
+  forget(data) {
+    return this.http.post("/api/auth/forget/store", data).toPromise();
+  }
 }
