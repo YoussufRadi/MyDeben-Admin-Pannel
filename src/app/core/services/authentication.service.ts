@@ -1,23 +1,17 @@
 import { Injectable } from "@angular/core";
 import { Router } from "@angular/router";
+import { Subject, Observable } from "rxjs";
 
 @Injectable()
 export class AuthenticationService {
-  token = {
-    refresh_token: "refreshtokencode",
-    exp: new Date(new Date().getDate() + 1),
-    access_token: {
-      username: "user",
-      roles: ["Admin", "RegisteredUser", "Super User"]
-    }
-  };
-
+  token = "ewrewfewf";
   tokenKey: string = "a5smm_utoken";
+  private dropdownValue: Subject<string> = new Subject();
 
   constructor(private router: Router) {}
 
-  login(username, password) {
-    this.setToken(this.token);
+  login(token) {
+    this.setToken(token);
     this.router.navigate(["pannel", "dashboard"]);
   }
 
@@ -27,20 +21,15 @@ export class AuthenticationService {
   }
 
   getToken() {
-    return JSON.parse(localStorage.getItem(this.tokenKey));
+    return localStorage.getItem(this.tokenKey);
   }
 
   setToken(token) {
-    localStorage.setItem(this.tokenKey, JSON.stringify(token));
-  }
-
-  getAccessToken() {
-    return JSON.parse(localStorage.getItem(this.tokenKey))["access_token"];
+    localStorage.setItem(this.tokenKey, token);
   }
 
   isAuthenticated() {
-    let token = localStorage.getItem(this.tokenKey);
-
+    const token = this.getToken();
     if (token) {
       return true;
     } else {
@@ -48,12 +37,15 @@ export class AuthenticationService {
     }
   }
 
-  refreshToken() {
-    this.token.exp = new Date(new Date().getDate() + 1);
-    this.setToken(this.token);
-  }
-
   removeToken() {
     localStorage.removeItem(this.tokenKey);
+  }
+
+  public getDropdownValue(): Observable<string> {
+    return this.dropdownValue.asObservable();
+  }
+
+  public setDropdownValue(value: string): void {
+    this.dropdownValue.next(value);
   }
 }

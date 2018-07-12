@@ -1,28 +1,16 @@
 import { Injectable } from "@angular/core";
 import { AuthenticationService } from "./authentication.service";
-import { Router } from "@angular/router";
+import { Router, CanActivate } from "@angular/router";
 
 @Injectable()
-export class AuthGuardService {
+export class AuthGuardService implements CanActivate {
   constructor(
     private authentication: AuthenticationService,
     private router: Router
   ) {}
 
   canActivate(): boolean | Promise<boolean> {
-    let token = this.authentication.getToken();
-    let accessToken = this.authentication.getAccessToken();
-
-    if (!token) {
-      console.error("User is not authenticated.");
-      this.redirectToLoginPage();
-      return false;
-    } else if (this.authentication.isAuthenticated()) {
-      return true;
-    } else {
-      this.authentication.refreshToken();
-      return true;
-    }
+    return this.authentication.isAuthenticated();
   }
 
   redirectToLoginPage() {

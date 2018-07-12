@@ -8,12 +8,18 @@ import { AuthenticationService } from "../services/authentication.service";
 })
 export class SidebarComponent implements OnInit {
   switch: boolean = false;
-  constructor(private authentication: AuthenticationService) {}
+  account: string = "Sign in/ Sign up";
+  constructor(private authentication: AuthenticationService) {
+    this.authentication.getDropdownValue().subscribe(newValue => {
+      this.account = newValue;
+    });
+  }
   ngOnInit() {}
 
-  logout() {
-    this.authentication.logout();
+  isLoggedIn() {
+    return this.authentication.isAuthenticated();
   }
+
   toggle(event) {
     this.switch = !this.switch;
     console.log(this.switch);
