@@ -1,0 +1,45 @@
+<!-- Sidebar  -->
+<nav id="sidebar" [ngClass]="{'active': switch}">
+    <div class="sidebar-header">
+        <h1 style="margin-bottom: 0rem;">
+            <u>Deben</u>
+        </h1>
+        <p>Hotel Services</p>
+    </div>
+
+    <ul class="list-unstyled components">
+        <li class="active">
+            <a routerLink="/pannel">
+                <i class=""></i>
+                Orders
+            </a>
+        </li>
+        <li>
+            <a routerLink="/login">
+                <i class=""></i>
+                Services
+            </a>
+            <a routerLink="/login">
+                <i class=""></i>
+                Checkout
+            </a>
+        </li>
+        <li>
+            <a routerLink="/login">
+                <i class=""></i>
+                Reports
+            </a>
+        </li>
+        <li>
+            <a routerLink="/login">
+                <i class=""></i>
+                My Account
+            </a>
+        </li>
+        <li>
+            <div class="arrow" (click)="toggle($event)">
+                <i [ngClass]="{'arrow-head-right': switch, 'arrow-head-left': !switch}"></i>
+            </div>
+        </li>
+    </ul>
+</nav>
