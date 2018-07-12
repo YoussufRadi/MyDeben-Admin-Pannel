@@ -6,8 +6,6 @@ export class ApiManagerService {
   constructor(private http: HttpClient) {}
 
   register(data) {
-    console.log("service called");
-    console.log(data);
     return this.http.post("/api/auth/store/signup", data).toPromise();
   }
 

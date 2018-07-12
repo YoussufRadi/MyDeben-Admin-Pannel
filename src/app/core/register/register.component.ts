@@ -8,6 +8,7 @@ import {
   Validators
 } from "@angular/forms";
 import { ApiManagerService } from "../services/api-manager.service";
+import { AuthenticationService } from "../services/authentication.service";
 
 @Component({
   selector: "app-register",
@@ -19,7 +20,11 @@ export class RegisterComponent implements OnInit {
   private user: User;
   signupForm: FormGroup;
 
-  constructor(private fb: FormBuilder, private api: ApiManagerService) {}
+  constructor(
+    private authentication: AuthenticationService,
+    private fb: FormBuilder,
+    private api: ApiManagerService
+  ) {}
 
   ngOnInit() {
     this.signupForm = this.fb.group({
@@ -62,14 +67,14 @@ export class RegisterComponent implements OnInit {
   public onFormSubmit() {
     if (this.signupForm.valid) {
       this.user = this.signupForm.value;
-      console.log(this.user);
-      this.api.register({
-        email: this.user.email,
-        name: this.user.name,
-        password: this.user.password.pwd
-      })
-        .then(data => {
-          console.log(data);
+      this.api
+        .register({
+          email: this.user.email,
+          name: this.user.name,
+          password: this.user.password.pwd
+        })
+        .then((data: any) => {
+          this.authentication.login(data.token);
         })
         .catch(err => {
           console.log(err);
