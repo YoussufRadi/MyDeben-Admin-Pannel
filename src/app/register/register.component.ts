@@ -33,9 +33,8 @@ export class RegisterComponent implements OnInit {
         Validators.minLength(8)]],
         confirmPwd: ['', [Validators.required,
         Validators.minLength(8)]]
-      })
+      }, {validator : this.passwordConfirming})
     })
-
   }
 
   get email() { 
@@ -51,7 +50,7 @@ export class RegisterComponent implements OnInit {
   }
 
   passwordConfirming(c: AbstractControl): { invalid: boolean } {
-    if (c.get('password').value !== c.get('confirm_password').value) {
+    if (c.get('pwd').value !== c.get('confirmPwd').value) {
       return { invalid: true };
     }
   }
