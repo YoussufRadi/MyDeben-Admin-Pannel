@@ -12,6 +12,7 @@ import { Observable } from "rxjs";
 import { environment } from "../../../environments/environment";
 import { AuthenticationService } from "./authentication.service";
 import { tap } from "rxjs/operators";
+
 @Injectable()
 export class ApiInterceptorService {
   constructor(public auth: AuthenticationService) {}
@@ -22,10 +23,10 @@ export class ApiInterceptorService {
     //TODO Check Interceptor
     const requestNew = request.clone({
       setHeaders: {
-        Authorization: this.auth.getToken()
+        "x-access-token": this.auth.getToken()
       }
     });
-    return next.handle(request).pipe(
+    return next.handle(requestNew).pipe(
       tap(
         (event: HttpEvent<any>) => {
           if (event instanceof HttpResponse) {

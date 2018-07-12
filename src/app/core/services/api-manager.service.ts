@@ -12,4 +12,8 @@ export class ApiManagerService {
   login(data) {
     return this.http.post("/api/auth/store/signin", data).toPromise();
   }
+
+  reset(data) {
+    return this.http.post("/api/auth/reset", data).toPromise();
+  }
 }

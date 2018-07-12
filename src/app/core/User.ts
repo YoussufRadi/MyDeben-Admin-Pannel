@@ -1,6 +1,7 @@
 export class User {
   id: number;
   name: string;
+  token: string;
   email: string;
   password: {
     pwd: string;
@@ -11,4 +12,3 @@ export class User {
     Object.assign(this, values);
   }
 }
-
