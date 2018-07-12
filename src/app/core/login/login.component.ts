@@ -17,6 +17,6 @@ export class LoginComponent implements OnInit {
 
   login(username, password) {
     this.authentication.login("asdasdas");
-    this.authentication.setDropdownValue("My account");
+    this.authentication.setAccountText("My account");
   }
 }

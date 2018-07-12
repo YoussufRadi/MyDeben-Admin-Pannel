@@ -6,7 +6,7 @@ import { Subject, Observable } from "rxjs";
 export class AuthenticationService {
   token = "ewrewfewf";
   tokenKey: string = "a5smm_utoken";
-  private dropdownValue: Subject<string> = new Subject();
+  private accountValue: Subject<string> = new Subject();
 
   constructor(private router: Router) {}
 
@@ -41,11 +41,11 @@ export class AuthenticationService {
     localStorage.removeItem(this.tokenKey);
   }
 
-  public getDropdownValue(): Observable<string> {
-    return this.dropdownValue.asObservable();
+  public getAccountText(): Observable<string> {
+    return this.accountValue.asObservable();
   }
 
-  public setDropdownValue(value: string): void {
-    this.dropdownValue.next(value);
+  public setAccountText(value: string): void {
+    this.accountValue.next(value);
   }
 }

@@ -19,11 +19,12 @@ export class ApiInterceptorService {
     request: HttpRequest<any>,
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
-    request = request.clone({
-      setHeaders: {
-        Authorization: this.auth.getToken()
-      }
-    });
+    //TODO Check Interceptor
+    // const requestNew = request.clone({
+    //   setHeaders: {
+    //     Authorization: this.auth.getToken()
+    //   }
+    // });
     return next.handle(request).pipe(
       tap(
         (event: HttpEvent<any>) => {

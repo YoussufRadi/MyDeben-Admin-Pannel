@@ -10,11 +10,13 @@ export class SidebarComponent implements OnInit {
   switch: boolean = false;
   account: string = "Sign in/ Sign up";
   constructor(private authentication: AuthenticationService) {
-    this.authentication.getDropdownValue().subscribe(newValue => {
+    this.authentication.getAccountText().subscribe(newValue => {
       this.account = newValue;
     });
   }
-  ngOnInit() {}
+  ngOnInit() {
+    if (this.authentication.isAuthenticated()) this.account = "My account";
+  }
 
   isLoggedIn() {
     return this.authentication.isAuthenticated();
@@ -22,6 +24,5 @@ export class SidebarComponent implements OnInit {
 
   toggle(event) {
     this.switch = !this.switch;
-    console.log(this.switch);
   }
 }

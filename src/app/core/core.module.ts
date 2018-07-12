@@ -1,7 +1,7 @@
-import { NgModule } from "@angular/core";
+import { NgModule, NO_ERRORS_SCHEMA } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
-import { FormsModule } from "@angular/forms";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 
 import { CoreRoutingModule } from "./core-routing.module";
 import { LoginComponent } from "./login/login.component";
@@ -20,6 +20,7 @@ import { ApiManagerService } from "./services/api-manager.service";
 @NgModule({
   imports: [
     FormsModule,
+    ReactiveFormsModule,
     CommonModule,
     CoreRoutingModule,
     HttpClientModule,
@@ -34,6 +35,7 @@ import { ApiManagerService } from "./services/api-manager.service";
     NotFoundComponent
   ],
   exports: [RouterModule, SidebarComponent],
+  schemas: [NO_ERRORS_SCHEMA],
   providers: [
     AuthenticationService,
     AuthGuardService,
