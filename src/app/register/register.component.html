@@ -12,4 +12,88 @@
 <br>
 <br>
 
+
+<div class="row">
+  <div class="col-sm-7  custom-row jumbotron">
+
+    <form class="form-horizontal" [formGroup]="signupForm" (ngSubmit)="onFormSubmit()">
+
+      <fieldset>
+        <legend>SignUp</legend>
+
+        <!--- Email Block -->
+        <div class="form-group">
+          <label for="inputEmail" class="col-lg-2
+              control-label">Email</label>
+
+          <div class="col-lg-7">
+            <input type="text" class="form-control" id="inputEmail" formControlName="email" placeholder="Email">
+          </div>
+
+          <!-- Email error block -->
+          <div *ngIf="email.invalid && email.touched" class="col-sm-3 text-danger">
+
+            <div *ngIf="email.errors?.required">
+              Email field can't be blank
+            </div>
+
+            <div *ngIf="email.errors?.pattern">
+              The email id doesn't seem right
+            </div>
+
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="inputName">Name</label>
+
+          <div class="col-lg-7">
+            <input type="text" class="form-control" id="inputName" formControlName="name" placeholder="Name">
+          </div>
+
+          <div *ngIf="email.errors?.required">
+            Name field can't be blank
+          </div>
+
+        </div>
+
+        <!--- Password Block -->
+        <div formGroupName="password">
+          <div class="form-group">
+            <label for="inputPassword" class="col-lg-2 control-label">Password</label>
+            <div class="col-lg-7">
+              <input type="password" formControlName="pwd" id="inputPassword" class="form-control" placeholder="Password">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="confirmPassword" class="col-lg-2 control-label">Confirm Password</label>
+            <div class="col-lg-7">
+              <input type="password" formControlName="confirmPwd" id="confirmPassword" class="form-control" placeholder="Password">
+            </div>
+
+            <!-- Password error block -->
+            <div *ngIf="(password.invalid && password.touched)" class="col-sm-3 text-danger">
+
+              Password needs to be more than 8 characters
+            </div>
+          </div>
+
+        </div>
+
+        <!--- Buttons Block -->
+        <div class="form-group">
+          <div class="col-lg-10 col-lg-offset-2">
+            <button type="reset" class="btn btn-default">Cancel</button>
+            <button type="submit" [disabled]="!signupForm.valid" class="btn btn-primary">Submit</button>
+          </div>
+        </div>
+      </fieldset>
+    </form>
+    <!--- Log the FormGroup values to see if the binding is working -->
+
+  </div>
+</div>
+
+
 <a routerLink="/">Back</a>
