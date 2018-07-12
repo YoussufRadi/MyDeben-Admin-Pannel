@@ -34,7 +34,7 @@ import { ApiManagerService } from "./services/api-manager.service";
     SidebarComponent,
     NotFoundComponent
   ],
-  exports: [RouterModule, SidebarComponent],
+  exports: [RouterModule, SidebarComponent, NgHttpLoaderModule],
   schemas: [NO_ERRORS_SCHEMA],
   providers: [
     AuthenticationService,

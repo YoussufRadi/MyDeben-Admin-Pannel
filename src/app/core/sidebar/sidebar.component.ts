@@ -9,6 +9,7 @@ import { AuthenticationService } from "../services/authentication.service";
 export class SidebarComponent implements OnInit {
   switch: boolean = false;
   account: string = "Sign in/ Sign up";
+  selected: number = 5;
   constructor(private authentication: AuthenticationService) {
     this.authentication.getAccountText().subscribe(newValue => {
       this.account = newValue;
@@ -20,6 +21,9 @@ export class SidebarComponent implements OnInit {
 
   isLoggedIn() {
     return this.authentication.isAuthenticated();
+  }
+  setSelected($event, num: number) {
+    this.selected = num;
   }
 
   toggle(event) {

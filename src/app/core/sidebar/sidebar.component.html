@@ -1,45 +1,44 @@
 <!-- Sidebar  -->
 <nav id="sidebar" [ngClass]="{'active': switch}">
+    <div class="arrow" (click)="toggle($event)">
+        <i [hidden]="switch" id="arrow" class="fas fa-angle-left"></i>
+        <i [hidden]="!switch" id="arrow" class="fas fa-angle-right"></i>
+    </div>
+
     <div class="sidebar-header">
-        <h1 style="margin-bottom: 0rem;">
-            <u>Deben</u>
-        </h1>
-        <p>Hotel Services</p>
+        <img src="../../../assets/Artboard Copy.png" alt="HTML5 Icon" class="sidebar-header-photo">
     </div>
 
     <ul class="list-unstyled components">
-        <li class="active">
+        <li [ngClass]="{'active': selected === 1}" (click)="setSelected($event, 1)">
             <a routerLink="/pannel">
-                <i class="fas fa-th-list"></i>
+                <i class="fas fa-list-ul"></i>
                 <div [hidden]="switch">Orders</div>
             </a>
         </li>
-        <li>
+        <li [ngClass]="{'active': selected === 2}" (click)="setSelected($event, 2)">
             <a routerLink="/login">
-                <i class="fas fa-hand-holding-usd"></i>
+                <i class="fas fa-concierge-bell"></i>
                 <div [hidden]="switch">Services</div>
             </a>
+        </li>
+        <li [ngClass]="{'active': selected === 3}" (click)="setSelected($event, 3)">
             <a routerLink="/login">
                 <i class="fas fa-shopping-cart"></i>
                 <div [hidden]="switch">Checkout</div>
             </a>
         </li>
-        <li>
+        <li [ngClass]="{'active': selected === 4}" (click)="setSelected($event, 4)">
             <a routerLink="/login">
                 <i class="fas fa-chart-line"></i>
                 <div [hidden]="switch">Reports</div>
             </a>
         </li>
-        <li>
+        <li [ngClass]="{'active': selected === 5}" (click)="setSelected($event, 5)">
             <a routerLink="/login">
-                <i class="far fa-user"></i>
+                <i class="fas fa-user"></i>
                 <div [hidden]="switch"> {{account}}</div>
             </a>
         </li>
     </ul>
-    <div class="arrow" (click)="toggle($event)">
-        <i [hidden]="switch" class="fas fa-angle-left"></i>
-        <i [hidden]="!switch" class="fas fa-angle-right"></i>
-
-    </div>
 </nav>
