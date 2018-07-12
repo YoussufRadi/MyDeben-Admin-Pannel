@@ -2,7 +2,7 @@
 
 
 <div class="row">
-  <div class="col-sm-7  custom-row jumbotron">
+  <div class="col-sm-7  custom-row">
 
     <form class="form-horizontal" [formGroup]="signupForm" (ngSubmit)="onFormSubmit()">
 
@@ -19,7 +19,7 @@
           </div>
 
           <!-- Email error block -->
-          <div *ngIf="email.invalid && email.touched" class="col-sm-3 text-danger">
+          <div *ngIf="email.invalid && email.touched" class="col-sm-8 text-danger">
 
             <div *ngIf="email.errors?.required">
               Email field can't be blank
@@ -61,7 +61,7 @@
             </div>
 
             <!-- Password error block -->
-            <div *ngIf="(password.invalid && password.touched)" class="col-sm-3 text-danger">
+            <div *ngIf="(password.invalid && password.touched)" class="col-sm-8 text-danger">
 
               Password needs to be more than 8 characters
             </div>

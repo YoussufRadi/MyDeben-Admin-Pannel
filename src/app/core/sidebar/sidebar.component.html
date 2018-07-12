@@ -1,45 +1,45 @@
 <!-- Sidebar  -->
-<div style="display:flex; height:100%">
-    <nav id="sidebar" [ngClass]="{'active': switch}">
-        <div class="sidebar-header">
-            <h1 style="margin-bottom: 0rem;">
-                <u>Deben</u>
-            </h1>
-            <p>Hotel Services</p>
-        </div>
-
-        <ul class="list-unstyled components">
-            <li class="active">
-                <a routerLink="/pannel">
-                    <i class="fas fa-th-list"></i>
-                    <div [hidden]="switch">Orders</div>
-                </a>
-            </li>
-            <li>
-                <a routerLink="/login">
-                    <i class="fas fa-hand-holding-usd"></i>
-                    <div [hidden]="switch">Services</div>
-                </a>
-                <a routerLink="/login">
-                    <i class="fas fa-shopping-cart"></i>
-                    <div [hidden]="switch">Checkout</div>
-                </a>
-            </li>
-            <li>
-                <a routerLink="/login">
-                    <i class="fas fa-chart-line"></i>
-                    <div [hidden]="switch">Reports</div>
-                </a>
-            </li>
-            <li>
-                <a routerLink="/login">
-                    <i class="far fa-user"></i>
-                    <div [hidden]="switch"> {{account}}</div>
-                </a>
-            </li>
-        </ul>
-    </nav>
-    <div class="arrow" (click)="toggle($event)">
-        <i [ngClass]="{'arrow-head-right': switch, 'arrow-head-left': !switch}"></i>
+<nav id="sidebar" [ngClass]="{'active': switch}">
+    <div class="sidebar-header">
+        <h1 style="margin-bottom: 0rem;">
+            <u>Deben</u>
+        </h1>
+        <p>Hotel Services</p>
     </div>
-</div>
+
+    <ul class="list-unstyled components">
+        <li class="active">
+            <a routerLink="/pannel">
+                <i class="fas fa-th-list"></i>
+                <div [hidden]="switch">Orders</div>
+            </a>
+        </li>
+        <li>
+            <a routerLink="/login">
+                <i class="fas fa-hand-holding-usd"></i>
+                <div [hidden]="switch">Services</div>
+            </a>
+            <a routerLink="/login">
+                <i class="fas fa-shopping-cart"></i>
+                <div [hidden]="switch">Checkout</div>
+            </a>
+        </li>
+        <li>
+            <a routerLink="/login">
+                <i class="fas fa-chart-line"></i>
+                <div [hidden]="switch">Reports</div>
+            </a>
+        </li>
+        <li>
+            <a routerLink="/login">
+                <i class="far fa-user"></i>
+                <div [hidden]="switch"> {{account}}</div>
+            </a>
+        </li>
+    </ul>
+    <div class="arrow" (click)="toggle($event)">
+        <i [hidden]="switch" class="fas fa-angle-left"></i>
+        <i [hidden]="!switch" class="fas fa-angle-right"></i>
+
+    </div>
+</nav>
