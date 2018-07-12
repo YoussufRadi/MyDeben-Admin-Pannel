@@ -11,3 +11,4 @@ export class User {
     Object.assign(this, values);
   }
 }
+
