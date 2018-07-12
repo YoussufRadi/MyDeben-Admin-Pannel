@@ -63,12 +63,11 @@ export class RegisterComponent implements OnInit {
     if (this.signupForm.valid) {
       this.user = this.signupForm.value;
       console.log(this.user);
-      this.api
-        .register({
-          email: this.user.email,
-          name: this.user.name,
-          password: this.user.password.pwd
-        })
+      this.api.register({
+        email: this.user.email,
+        name: this.user.name,
+        password: this.user.password.pwd
+      })
         .then(data => {
           console.log(data);
         })
