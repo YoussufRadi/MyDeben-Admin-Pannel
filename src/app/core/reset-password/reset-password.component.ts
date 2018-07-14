@@ -47,9 +47,9 @@ export class ResetPasswordComponent implements OnInit {
     return this.resetForm.get("password");
   }
 
-  passwordConfirming(c: AbstractControl): { invalid: boolean } {
+  passwordConfirming(c: AbstractControl): { erinvalid: boolean } {
     if (c.get("pwd").value !== c.get("confirmPwd").value) {
-      return { invalid: true };
+      return { erinvalid: true };
     }
   }
 

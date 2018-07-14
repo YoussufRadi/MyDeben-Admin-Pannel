@@ -51,6 +51,7 @@ export class LoginComponent implements OnInit {
         })
         .then((data: any) => {
           this.authentication.login(data.token);
+          this.authentication.setAccountText("Log Out");
         })
         .catch(err => {
           console.log(err);
