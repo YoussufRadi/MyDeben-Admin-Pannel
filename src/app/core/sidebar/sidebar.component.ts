@@ -14,6 +14,9 @@ export class SidebarComponent implements OnInit {
     this.authentication.getAccountText().subscribe(newValue => {
       this.account = newValue;
     });
+    this.authentication.getSidebarValue().subscribe(newValue => {
+      this.selected = newValue;
+    });
   }
   ngOnInit() {
     if (this.authentication.isAuthenticated()) this.account = "Logout";

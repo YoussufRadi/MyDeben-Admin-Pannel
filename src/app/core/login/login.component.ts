@@ -1,6 +1,8 @@
 import { Component, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { DialogService } from "node_modules/ng2-bootstrap-modal";
 
+import { TextModalComponent } from "../text-modal/text-modal.component";
 import { AuthenticationService } from "../services/authentication.service";
 import { User } from "./../User";
 import { ApiManagerService } from "../services/api-manager.service";
@@ -17,8 +19,16 @@ export class LoginComponent implements OnInit {
   constructor(
     private authentication: AuthenticationService,
     private fb: FormBuilder,
-    private api: ApiManagerService
+    private api: ApiManagerService,
+    private dialogService: DialogService
   ) {}
+
+  showError(title, message) {
+    let disposable = this.dialogService.addDialog(TextModalComponent, {
+      title: title,
+      message: message
+    });
+  }
 
   ngOnInit() {
     this.loginForm = this.fb.group({
@@ -29,7 +39,7 @@ export class LoginComponent implements OnInit {
           Validators.pattern("[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,3}$")
         ]
       ],
-      password: ["", [Validators.required]]
+      password: ["", [Validators.required, Validators.minLength(8)]]
     });
   }
 
@@ -52,9 +62,11 @@ export class LoginComponent implements OnInit {
         .then((data: any) => {
           this.authentication.login(data.token);
           this.authentication.setAccountText("Log Out");
+          this.authentication.setSidebarValue(0);
         })
         .catch(err => {
           console.log(err);
+          this.showError("Sign In Failed", err.error.detail);
         });
     }
   }

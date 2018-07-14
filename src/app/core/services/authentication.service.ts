@@ -7,6 +7,7 @@ export class AuthenticationService {
   token = "ewrewfewf";
   tokenKey: string = "a5smm_utoken";
   private accountValue: Subject<string> = new Subject();
+  private sidebarValue: Subject<number> = new Subject();
 
   constructor(private router: Router) {}
 
@@ -47,5 +48,13 @@ export class AuthenticationService {
 
   public setAccountText(value: string): void {
     this.accountValue.next(value);
+  }
+
+  public getSidebarValue(): Observable<number> {
+    return this.sidebarValue.asObservable();
+  }
+
+  public setSidebarValue(value: number): void {
+    this.sidebarValue.next(value);
   }
 }
