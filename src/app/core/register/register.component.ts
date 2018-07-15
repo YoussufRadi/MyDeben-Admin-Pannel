@@ -15,7 +15,7 @@ import { AuthenticationService } from "../services/authentication.service";
 @Component({
   selector: "app-register",
   templateUrl: "./register.component.html",
-  styleUrls: ["./register.component.scss"]
+  styleUrls: ["./register.component.scss", "../../stylesheets/forms.scss"]
 })
 export class RegisterComponent implements OnInit {
   //Property for the user

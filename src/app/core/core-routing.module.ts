@@ -30,9 +30,9 @@ const routes: Routes = [
     component: ResetPasswordComponent
   },
   {
-    path: "pannel",
+    path: "panel",
     canActivate: [AuthGuardService],
-    loadChildren: "../pannel/pannel.module#PannelModule"
+    loadChildren: "../panel/panel.module#PanelModule"
   },
   {
     path: "**",
