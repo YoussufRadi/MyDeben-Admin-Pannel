@@ -8,25 +8,35 @@ import { AuthenticationService } from "../services/authentication.service";
 })
 export class SidebarComponent implements OnInit {
   switch: boolean = false;
-  account: string = "Sign in/ Sign up";
+  account: string = "Sign in";
   selected: number = 5;
   constructor(private authentication: AuthenticationService) {
     this.authentication.getAccountText().subscribe(newValue => {
       this.account = newValue;
     });
+    this.authentication.getSidebarValue().subscribe(newValue => {
+      this.selected = newValue;
+    });
   }
   ngOnInit() {
-    if (this.authentication.isAuthenticated()) this.account = "My account";
+    if (this.authentication.isAuthenticated()) this.account = "Logout";
   }
 
   isLoggedIn() {
     return this.authentication.isAuthenticated();
   }
-  setSelected($event, num: number) {
-    this.selected = num;
+
+  setSelected(num: number) {
+    if (this.authentication.isAuthenticated()) {
+      this.selected = num;
+      if (this.selected === 5) {
+        this.authentication.logout();
+        this.authentication.setAccountText("Sign in");
+      }
+    }
   }
 
-  toggle(event) {
+  toggle() {
     this.switch = !this.switch;
   }
 }

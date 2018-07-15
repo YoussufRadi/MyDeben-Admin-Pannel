@@ -5,7 +5,9 @@ import {
   Validators,
   AbstractControl
 } from "@angular/forms";
+import { DialogService } from "node_modules/ng2-bootstrap-modal";
 
+import { TextModalComponent } from "../text-modal/text-modal.component";
 import { AuthenticationService } from "../services/authentication.service";
 import { User } from "./../User";
 import { ApiManagerService } from "../services/api-manager.service";
@@ -23,7 +25,8 @@ export class ResetPasswordComponent implements OnInit {
   constructor(
     private authentication: AuthenticationService,
     private fb: FormBuilder,
-    private api: ApiManagerService
+    private api: ApiManagerService,
+    private dialogService: DialogService
   ) {}
 
   ngOnInit() {
@@ -47,10 +50,17 @@ export class ResetPasswordComponent implements OnInit {
     return this.resetForm.get("password");
   }
 
-  passwordConfirming(c: AbstractControl): { invalid: boolean } {
+  passwordConfirming(c: AbstractControl): { erinvalid: boolean } {
     if (c.get("pwd").value !== c.get("confirmPwd").value) {
-      return { invalid: true };
+      return { erinvalid: true };
     }
+  }
+
+  showError(title, message) {
+    let disposable = this.dialogService.addDialog(TextModalComponent, {
+      title: title,
+      message: message
+    });
   }
 
   public onFormSubmit() {
@@ -66,6 +76,7 @@ export class ResetPasswordComponent implements OnInit {
         })
         .catch(err => {
           console.log(err);
+          this.showError("Reset Password Failed", err.error.detail);
         });
     }
   }

@@ -1,12 +1,14 @@
 import { Component, OnInit } from "@angular/core";
-
-import { User } from "./../User";
 import {
   AbstractControl,
   FormBuilder,
   FormGroup,
   Validators
 } from "@angular/forms";
+import { DialogService } from "node_modules/ng2-bootstrap-modal";
+
+import { TextModalComponent } from "../text-modal/text-modal.component";
+import { User } from "./../User";
 import { ApiManagerService } from "../services/api-manager.service";
 import { AuthenticationService } from "../services/authentication.service";
 
@@ -23,7 +25,8 @@ export class RegisterComponent implements OnInit {
   constructor(
     private authentication: AuthenticationService,
     private fb: FormBuilder,
-    private api: ApiManagerService
+    private api: ApiManagerService,
+    private dialogService: DialogService
   ) {}
 
   ngOnInit() {
@@ -64,6 +67,13 @@ export class RegisterComponent implements OnInit {
     }
   }
 
+  showError(title, message) {
+    let disposable = this.dialogService.addDialog(TextModalComponent, {
+      title: title,
+      message: message
+    });
+  }
+
   public onFormSubmit() {
     if (this.signupForm.valid) {
       this.user = this.signupForm.value;
@@ -78,6 +88,7 @@ export class RegisterComponent implements OnInit {
         })
         .catch(err => {
           console.log(err);
+          this.showError("Sign Up Failed", err.error.detail);
         });
     }
   }

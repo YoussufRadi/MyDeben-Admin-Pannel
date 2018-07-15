@@ -10,7 +10,7 @@ import { RegisterComponent } from "./register/register.component";
 const routes: Routes = [
   {
     path: "",
-    redirectTo: "form",
+    redirectTo: "login",
     pathMatch: "full"
   },
   {
