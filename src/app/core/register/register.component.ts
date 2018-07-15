@@ -85,6 +85,8 @@ export class RegisterComponent implements OnInit {
         })
         .then((data: any) => {
           this.authentication.login(data.token);
+          this.authentication.setAccountText("Log Out");
+          this.authentication.setSidebarValue(0);
         })
         .catch(err => {
           console.log(err);
