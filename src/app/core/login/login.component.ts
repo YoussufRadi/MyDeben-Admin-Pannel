@@ -8,7 +8,7 @@ import { ApiManagerService } from "../services/api-manager.service";
 @Component({
   selector: "app-login",
   templateUrl: "./login.component.html",
-  styleUrls: ["./login.component.scss"]
+  styleUrls: ["./login.component.scss", "../../stylesheets/forms.scss"]
 })
 export class LoginComponent implements OnInit {
   private user: User;

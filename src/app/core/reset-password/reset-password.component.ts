@@ -13,7 +13,7 @@ import { ApiManagerService } from "../services/api-manager.service";
 @Component({
   selector: "app-reset-password",
   templateUrl: "./reset-password.component.html",
-  styleUrls: ["./reset-password.component.scss"]
+  styleUrls: ["./reset-password.component.scss", "../../stylesheets/forms.scss"]
 })
 export class ResetPasswordComponent implements OnInit {
   //Property for the user
