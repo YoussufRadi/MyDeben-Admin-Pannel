@@ -1,17 +1,20 @@
 import { Component, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
-import { DialogService } from "node_modules/ng2-bootstrap-modal";
+import { DialogService } from "ng2-bootstrap-modal";
 
 import { TextModalComponent } from "../text-modal/text-modal.component";
 import { AuthenticationService } from "../services/authentication.service";
-import { User } from "./../User";
+import { User } from "../User";
 import { ApiManagerService } from "../services/api-manager.service";
 
 @Component({
   selector: "app-forget-password",
   templateUrl: "./forget-password.component.html",
-  styleUrls: ["./forget-password.component.scss", "../../stylesheets/forms.scss"]
+  styleUrls: [
+    "./forget-password.component.scss",
+    "../../stylesheets/forms.scss"
+  ]
 })
 export class ForgetPasswordComponent implements OnInit {
   private user: User;

@@ -5,10 +5,10 @@ import {
   FormGroup,
   Validators
 } from "@angular/forms";
-import { DialogService } from "node_modules/ng2-bootstrap-modal";
+import { DialogService } from "ng2-bootstrap-modal";
 
 import { TextModalComponent } from "../text-modal/text-modal.component";
-import { User } from "./../User";
+import { User } from "../User";
 import { ApiManagerService } from "../services/api-manager.service";
 import { AuthenticationService } from "../services/authentication.service";
 
