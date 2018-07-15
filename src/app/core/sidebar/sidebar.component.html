@@ -16,13 +16,13 @@
             </a>
         </li>
         <li [ngClass]="{'active': selected === 1}" (click)="setSelected(1)">
-            <a routerLink="/pannel">
+            <a routerLink="/panel">
                 <i class="fas fa-list-ul"></i>
                 <div [hidden]="switch">Orders</div>
             </a>
         </li>
         <li [ngClass]="{'active': selected === 2}" (click)="setSelected(2)">
-            <a routerLink="/login">
+            <a routerLink="/panel/services">
                 <i class="fas fa-concierge-bell"></i>
                 <div [hidden]="switch">Services</div>
             </a>

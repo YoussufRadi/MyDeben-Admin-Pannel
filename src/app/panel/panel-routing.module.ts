@@ -1,7 +1,8 @@
 import { NgModule } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
-import { PannelComponent } from "./pannel.component";
+import { PanelComponent } from "./panel.component";
 import { DashboardComponent } from "./dashboard/dashboard.component";
+import { ServicesComponent } from "./services/services.component";
 
 const routes: Routes = [
   {
@@ -10,8 +11,12 @@ const routes: Routes = [
     pathMatch: "full"
   },
   {
+    path: "services",
+    component: ServicesComponent
+  },
+  {
     path: "dashboard",
-    component: PannelComponent,
+    component: PanelComponent,
     children: [{ path: "", component: DashboardComponent }]
   }
 ];
@@ -20,4 +25,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class PannelRoutingModule {}
+export class PanelRoutingModule {}
