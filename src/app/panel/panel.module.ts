@@ -7,6 +7,7 @@ import { DashboardComponent } from "./dashboard/dashboard.component";
 import { ServicesComponent } from "./services/services.component";
 import { SharedModule } from "../shared/shared.module";
 import { GenerateComponent } from './generate/generate.component';
+import { AddServiceComponent } from './add-service/add-service.component';
 
 @NgModule({
   imports: [CommonModule, PanelRoutingModule, SharedModule],
@@ -14,7 +15,8 @@ import { GenerateComponent } from './generate/generate.component';
     PanelComponent,
     DashboardComponent,
     ServicesComponent,
-    GenerateComponent
+    GenerateComponent,
+    AddServiceComponent
   ]
 })
 export class PanelModule {}
