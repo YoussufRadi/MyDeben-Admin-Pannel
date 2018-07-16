@@ -35,6 +35,11 @@ const routes: Routes = [
     loadChildren: "../panel/panel.module#PanelModule"
   },
   {
+    path: "order",
+    canActivate: [AuthGuardService],
+    loadChildren: "../order/order.module#OrderModule"
+  },
+  {
     path: "**",
     component: NotFoundComponent
   }

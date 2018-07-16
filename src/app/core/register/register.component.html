@@ -1,7 +1,7 @@
 <form class="form-horizontal" [formGroup]="signupForm" (ngSubmit)="onFormSubmit()">
   <div class="row form-header">
     <div class="col-lg-12">
-      <p>Register</p>
+      <h4>Register</h4>
     </div>
   </div>
   <fieldset>
@@ -40,7 +40,12 @@
 
     <div class="row">
       <div class="col-lg-12">
-        <a routerLink="/login">Already have an account? Click here to<u> Login</u></a>
+        <a>Already have an account?
+          <a routerLink="/login">
+            Click here to
+            <u> Login</u>
+          </a>
+        </a>
       </div>
     </div>
 
