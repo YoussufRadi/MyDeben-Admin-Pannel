@@ -1,3 +1,35 @@
-<p>
-  services works!
-</p>
+<div class="container services-header">
+  <div class="row">
+    <div class="col-lg-3">
+      <p>Services</p>
+    </div>
+    <div class="col-lg-3">
+      <button class="btn add-service-btn">
+        <i class="fas fa-plus"></i>
+        <u>Add Service</u>
+      </button>
+    </div>
+    <div class="col-lg-3">
+      <button class="btn" data-toggle="collapse" data-target="#search">
+        <i class="fas fa-search"></i>
+      </button>
+    </div>
+  </div>
+  <div class="row collapse" id="search">
+    <input type="text" />
+  </div>
+</div>
+
+<div class="container">
+  <div class="row" *ngFor="let s of serviceNames; let i = index;">
+    <button class="service-btn btn col-lg-12" data-toggle="collapse" data-target="#demo" [attr.data-target]="'#serv' + s">{{ s }}</button>
+    <div id="demo" [attr.id]="'serv' + s" class="collapse col-lg-12 row">
+      <div class="col-lg-2">
+        <p>{{ s }} Providers</p>
+      </div>
+      <div class="col-lg-2" *ngFor="let p of serviceList[i]" style.background="url('http://172.104.209.122:3000/api/file/{{ p.picture }}')">
+        <a>{{ p.name }}</a>
+      </div>
+    </div>
+  </div>
+</div>

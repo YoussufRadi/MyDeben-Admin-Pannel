@@ -21,23 +21,18 @@ export class ApiInterceptorService {
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
     //TODO Check Interceptor
-    const requestNew = request.clone({
+    if(this.auth.isAuthenticated())
+       request = request.clone({
       setHeaders: {
         "x-access-token": this.auth.getToken()
       }
     });
-    return next.handle(requestNew).pipe(
-      tap(
-        (event: HttpEvent<any>) => {
+    return next.handle(request).pipe(tap((event: HttpEvent<any>) => {
           if (event instanceof HttpResponse) {
             // do stuff with response if you want
           }
-        },
-        (err: any) => {
-          if (err instanceof HttpErrorResponse && err.status === 401)
-            console.log("this.auth.collectFailedRequest(request);");
-        }
-      )
-    );
+        }, (err: any) => {
+          if (err instanceof HttpErrorResponse && err.status === 401) console.log("this.auth.collectFailedRequest(request);");
+        }));
   }
 }

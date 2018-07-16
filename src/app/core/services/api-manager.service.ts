@@ -24,4 +24,8 @@ export class ApiManagerService {
   getServices(){
     return this.http.get('/api/store/service').toPromise();
   }
+
+  getProvidersByService(){
+    return this.http.get('/api/store/provider/all?group=service_name').toPromise();
+  }
 }
