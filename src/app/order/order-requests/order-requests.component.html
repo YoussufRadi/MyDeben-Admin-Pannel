@@ -1,18 +1,63 @@
-<div id="container" class="row">
+<div id="orderHeader" class="row">
   <div class="col">
     <h5>Requests</h5>
     <div>
       Sort:
     </div>
-    <!-- <div> -->
-    <select class="minimal">
-      <option>CSS SELECT arrow (minimal)</option>
-      <option>No external background image</option>
-      <option>No wrapper</option>
-    </select>
-    <!-- </div> -->
+    <div style="width: 14%;">
+      <select class="minimal">
+        <option value="" selected style="display:none" disabled>Sort</option>
+        <option>Date</option>
+        <option>Category</option>
+      </select>
+    </div>
     <div>
-      <i class="fas fa-search"></i>
+      <a id="hover">
+        <i class="fas fa-search"></i>
+      </a>
+    </div>
+  </div>
+</div>
+
+<div id="currentOrderBody" class="row">
+  <div class="col-s-2 col-md-2 col-lg-2">
+    <a>
+      <p>Service</p>
+    </a>
+    <p>Food</p>
+  </div>
+  <div class=" col-md-6 col-lg-6">
+    <div class="upper">
+      <p> Ahmed Mohamed- Room</p>
+      <a>
+        <p>10:59 AM - Apr 2, 20</p>
+      </a>
+    </div>
+    <div class="choice">
+      <div class="lowerleft">
+        <a>
+          <p>Service Provider</p>
+        </a>
+        <p>Food</p>
+      </div>
+      <div class="lowerright">
+        <a>
+          <p>Item number</p>
+        </a>
+        <p>Food</p>
+      </div>
+      <div class="lowerright">
+        <a>
+          <p>Quantity</p>
+        </a>
+        <p>Food</p>
+      </div>
+    </div>
+  </div>
+  <div class="col-s-4 col-md-4 col-lg-4">
+    <div class="row choice">
+      <i class="fas fa-check-circle" style="color :#74c11d;"></i>
+      <i class="fas fa-times-circle" style="color :#c13712;"></i>
     </div>
   </div>
 </div>
