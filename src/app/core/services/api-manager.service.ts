@@ -20,4 +20,8 @@ export class ApiManagerService {
   forget(data) {
     return this.http.post("/api/auth/forget/store", data).toPromise();
   }
+
+  getServices(){
+    return this.http.get('/api/store/service').toPromise();
+  }
 }
