@@ -1,0 +1,46 @@
+<div id="orderHeader" class="row">
+  <div class="col">
+    <h5>Checkout</h5>
+    <div>
+      Sort:
+    </div>
+    <div style="width: 14%;">
+      <select class="minimal">
+        <option value="" selected style="display:none" disabled>Sort</option>
+        <option>Name</option>
+        <option>Price</option>
+      </select>
+    </div>
+    <div>
+      <a id="hover">
+        <i class="fas fa-search"></i>
+      </a>
+    </div>
+  </div>
+</div>
+
+<div id="checkOutHead">
+  <div class="right">
+    <a>Name</a>
+  </div>
+  <div class="middle">
+    <a>Price</a>
+  </div>
+  <div class="leftUp">
+    <a>Response</a>
+  </div>
+</div>
+
+<div *ngFor="let user of users">
+  <div id="checkOutBody">
+    <div class="right">
+      <a>{{user.name}}</a>
+    </div>
+    <div class="middle">
+      <a>Price</a>
+    </div>
+    <div class="left">
+      <a>View Receipt</a>
+    </div>
+  </div>
+</div>

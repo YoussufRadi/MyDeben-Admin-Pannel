@@ -29,13 +29,13 @@
                 </a>
             </li>
             <li [ngClass]="{'active': selected === 3}" (click)="setSelected(3)">
-                <a routerLink="/login">
+                <a routerLink="/order/checkout">
                     <i class="fas fa-shopping-cart"></i>
                     <div [hidden]="switch">Checkout</div>
                 </a>
             </li>
             <li [ngClass]="{'active': selected === 4}" (click)="setSelected(4)">
-                <a routerLink="/login" [disabled]="true">
+                <a routerLink="/order/reports" [disabled]="true">
                     <i class="fas fa-chart-line"></i>
                     <div [hidden]="switch">Reports</div>
                 </a>

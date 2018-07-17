@@ -8,7 +8,10 @@
       <select class="minimal">
         <option value="" selected style="display:none" disabled>Sort</option>
         <option>Date</option>
-        <option>Category</option>
+        <option>Service</option>
+        <option>Service Provider</option>
+        <option>Item number</option>
+        <option>Quantity</option>
       </select>
     </div>
     <div>
@@ -30,7 +33,7 @@
       <div class="upper">
         <p> {{order.user_name}}- Ref: {{order.checkin_store_ref}}</p>
         <a>
-          <p>{{order.created_at | date}}</p>
+          <p>{{order.created_at | date:'medium'}}</p>
         </a>
       </div>
       <div class="choice">

@@ -1,0 +1,60 @@
+@import "../../stylesheets/order.scss";
+
+#checkOutHead {
+  height: 55px;
+  margin-bottom: 2%;
+  background-color: #f2f2f2;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-left: 5%;
+  padding-right: 5%;
+  flex-direction: row;
+}
+
+#checkOutHead a {
+  font-family: AvenirNext;
+  font-size: 18px;
+}
+
+#checkOutBody {
+  height: 55px;
+  margin-bottom: 2%;
+  background-color: #ffffff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-left: 5%;
+  padding-right: 5%;
+  flex-direction: row;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
+}
+
+#checkOutBody a {
+  font-family: AvenirNext;
+  font-size: 17px;
+}
+
+// .left:hover {
+//   cursor: pointer;
+// }
+
+.left {
+  width: 20%;
+}
+
+.leftmiddle {
+  width: 20%;
+}
+
+.middle {
+  width: 15%;
+}
+
+.rightmidle {
+  width: 15%;
+}
+
+.right {
+  width: 20%;
+}

@@ -1,0 +1,60 @@
+<div id="orderHeader" class="row">
+  <div class="col">
+    <h5>Reports</h5>
+    <div>
+      Sort:
+    </div>
+    <div style="width: 14%;">
+      <select class="minimal">
+        <option value="" selected style="display:none" disabled>Sort</option>
+        <option>Date</option>
+        <option>Price</option>
+        <option>Quantity</option>
+        <option>Total Price</option>
+      </select>
+    </div>
+    <div>
+      <a id="hover">
+        <i class="fas fa-search"></i>
+      </a>
+    </div>
+  </div>
+</div>
+
+<div id="checkOutHead">
+  <div class="left">
+    <a>Name</a>
+  </div>
+  <div class="leftmiddle">
+    <a>Date</a>
+  </div>
+  <div class="middle">
+    <a>Price</a>
+  </div>
+  <div class="rightmiddle">
+    <a>Quantity</a>
+  </div>
+  <div class="right">
+    <a>Total Price</a>
+  </div>
+</div>
+
+<div *ngFor="let order of orders">
+  <div id="checkOutBody">
+    <div class="left">
+      <a>{{order.name}}</a>
+    </div>
+    <div class="leftmiddle">
+      <a>{{order.created_at | date}}</a>
+    </div>
+    <div class="middle">
+      <a>{{order.price}}</a>
+    </div>
+    <div class="rightmiddle">
+      <a>{{order.quantity}}</a>
+    </div>
+    <div class="right">
+      <a>{{order.total_price}}</a>
+    </div>
+  </div>
+</div>
