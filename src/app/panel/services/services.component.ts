@@ -1,8 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { ApiManagerService } from "../../core/services/api-manager.service";
-
 import { DialogService } from "ng2-bootstrap-modal";
-
 import { TextModalComponent } from "../../core/text-modal/text-modal.component";
 
 @Component({
@@ -13,6 +11,7 @@ import { TextModalComponent } from "../../core/text-modal/text-modal.component";
 export class ServicesComponent implements OnInit {
   serviceNames: any[] = [];
   serviceList: any[] = [];
+  addServiceModalTitle = "Add Service";
 
   constructor(
     private api: ApiManagerService,
@@ -45,5 +44,10 @@ export class ServicesComponent implements OnInit {
         this.showError("error", "error");
         console.log(err);
       });
+  }
+
+  recieveNewServiceName($event) {
+    console.log($event);
+    // perform API to add a service
   }
 }

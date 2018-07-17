@@ -18,3 +18,41 @@
 .collapse {
   margin: 20px;
 }
+
+.modal-header {
+  text-align: center;
+}
+
+.modal-header p {
+  color: #74c11d;
+  text-align: center;
+}
+
+.service-provider {
+  background-color: #f2f2f2;
+  margin: 5px;
+  text-align: center;
+  padding: 10px;
+}
+
+.add-service-modal-form {
+  margin-bottom: 50px;
+}
+
+.add-service-modal-form input {
+  width: 100%;
+}
+
+.add-service-modal-form-submit {
+  padding: 10px;
+  text-align: center;
+}
+
+.add-service-modal-form-submit button {
+  width: 100%;
+  border-radius: 0;
+}
+
+.modal-header {
+  background-color: #f2f2f2;
+}
