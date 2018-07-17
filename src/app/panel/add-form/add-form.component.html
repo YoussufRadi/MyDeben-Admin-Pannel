@@ -1,0 +1,52 @@
+<div id="modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <p>{{title}}</p>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <div class="modal-body">
+
+        <div class="row add-form-modal-row">
+          <div class="col-lg-4 col-sm-12">
+            <p>Field Name:</p>
+          </div>
+          <div class="col-lg-6 col-sm-12">
+            <input type="text" [(ngModel)]="fieldName" />
+          </div>
+        </div>
+
+        <div class="row add-form-modal-row" *ngIf="priceExists">
+          <div class="col-lg-4 col-sm-12">
+            <p>Field Price:</p>
+          </div>
+          <div class="col-lg-8 col-sm-12">
+            <input type="text" [(ngModel)]="fieldPrice" />
+          </div>
+        </div>
+
+        <div class="row add-form-modal-row" *ngIf="descriptionExists">
+          <div class="col-lg-12">
+            <p>Field Description:</p>
+          </div>
+          <div class="col-lg-12">
+            <textarea type="text" [(ngModel)]="fieldDescription"></textarea>
+          </div>
+        </div>
+
+        <div class="row add-form-modal-row" *ngIf="imageExists">
+          <div class="col-lg-12">
+            <p>image upload</p>
+          </div>
+        </div>
+
+        <div class="row add-form-modal-submit">
+          <div class="col-lg-12">
+            <button class="btn" (click)="addField()" data-dismiss="modal">Save</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

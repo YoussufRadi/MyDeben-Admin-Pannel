@@ -21,7 +21,17 @@ export class ApiManagerService {
     return this.http.post("/api/auth/forget/store", data).toPromise();
   }
 
-  getServices(){
-    return this.http.get('/api/store/service').toPromise();
+  getServices() {
+    return this.http.get("/api/store/service").toPromise();
+  }
+
+  getProvidersByService() {
+    return this.http
+      .get("/api/store/provider/all?group=service_name")
+      .toPromise();
+  }
+
+  addAService(data) {
+    return this.http.post("/api/store/service", data).toPromise();
   }
 }
