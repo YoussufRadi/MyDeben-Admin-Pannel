@@ -272,13 +272,14 @@ a.article:hover {
   align-items: center;
   display: flex;
   justify-content: center;
-  width: 20px;
+  width: 40px;
   background: #000000;
   border-top-right-radius: 50%;
   border-bottom-right-radius: 50%;
   position: absolute;
-  right: -20px;
-  bottom: 25%;
+  right: -25px;
+  top: 65%;
   height: 40px;
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
+  z-index: 2;
 }

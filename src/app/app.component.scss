@@ -17,6 +17,8 @@
   padding-top: 5%;
   padding-left: 3%;
   padding-right: 5%;
+  overflow: auto;
+  max-height: 100vh;
   min-height: 100vh;
   transition: all 0.3s;
   background: #fcfcfc;

@@ -22,14 +22,44 @@ export class OrderRequestsComponent implements OnInit {
     });
   }
 
-  ngOnInit() {
+  serve(id) {
+    this.api
+      .serve(id)
+      .then(() => {
+        this.showError("Serve Order", "Order Successfully Served");
+        this.fetch();
+      })
+      .catch(err => {
+        this.showError("Serve Order Failed", err);
+        console.log(err);
+      });
+  }
+
+  cancel(id) {
+    this.api
+      .cancel(id)
+      .then(() => {
+        this.showError("Cancel Order", "Order Successfully Cancelled");
+        this.fetch();
+      })
+      .catch(err => {
+        this.showError("Cancel Order Failed", err);
+        console.log(err);
+      });
+  }
+
+  fetch = () => {
     this.api
       .currentOrders()
       .then((data: any) => {
         this.orders = data.orders;
       })
       .catch(err => {
+        this.showError("Cancel Order Failed", err);
         console.log(err);
       });
+  };
+  ngOnInit() {
+    this.fetch();
   }
 }

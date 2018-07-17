@@ -18,46 +18,47 @@
     </div>
   </div>
 </div>
-
-<div id="currentOrderBody" class="row" *ngFor="let order of orders">
-  <div class="col-s-2 col-md-2 col-lg-2">
-    <a>
-      <p>Service</p>
-    </a>
-    <p>Food</p>
-  </div>
-  <div class=" col-md-6 col-lg-6">
-    <div class="upper">
-      <p> Ahmed Mohamed- Room</p>
+<div *ngFor="let order of orders">
+  <div id="currentOrderBody" class="row">
+    <div class="col-s-2 col-md-2 col-lg-2">
       <a>
-        <p>10:59 AM - Apr 2, 20</p>
+        <p>Service</p>
       </a>
+      <p>{{order.service_name}}</p>
     </div>
-    <div class="choice">
-      <div class="lowerleft">
+    <div class=" col-md-6 col-lg-6">
+      <div class="upper">
+        <p> {{order.user_name}}- Ref: {{order.checkin_store_ref}}</p>
         <a>
-          <p>Service Provider</p>
+          <p>{{order.created_at | date}}</p>
         </a>
-        <p>Food</p>
       </div>
-      <div class="lowerright">
-        <a>
-          <p>Item number</p>
-        </a>
-        <p>Food</p>
-      </div>
-      <div class="lowerright">
-        <a>
-          <p>Quantity</p>
-        </a>
-        <p>Food</p>
+      <div class="choice">
+        <div class="lowerleft">
+          <a>
+            <p>Service Provider</p>
+          </a>
+          <p>{{order.provide_name}}</p>
+        </div>
+        <div class="lowerright">
+          <a>
+            <p>Item number</p>
+          </a>
+          <p>{{order.product_id}}</p>
+        </div>
+        <div class="lowerright">
+          <a>
+            <p>Quantity</p>
+          </a>
+          <p>{{order.quantity}}</p>
+        </div>
       </div>
     </div>
-  </div>
-  <div class="col-s-4 col-md-4 col-lg-4">
-    <div class="row choice">
-      <i class="fas fa-check-circle" style="color :#74c11d;"></i>
-      <i class="fas fa-times-circle" style="color :#c13712;"></i>
+    <div class="col-s-4 col-md-4 col-lg-4">
+      <div class="row choice">
+        <i class="fas fa-check-circle" style="color :#74c11d;" (click)="serve(order.id)"></i>
+        <i class="fas fa-times-circle" style="color :#c13712;" (click)="cancel(order.id)"></i>
+      </div>
     </div>
   </div>
 </div>
