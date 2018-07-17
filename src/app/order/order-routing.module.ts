@@ -1,14 +1,14 @@
 import { NgModule } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
 import { OrderRequestsComponent } from "./order-requests/order-requests.component";
-import { OrderComponent } from "./order.component";
 import { CheckoutComponent } from "./checkout/checkout.component";
 import { ReportsComponent } from "./reports/reports.component";
+import { GenerateComponent } from "./generate/generate.component";
 
 const routes: Routes = [
   {
     path: "",
-    redirectTo: "requests",
+    redirectTo: "generate",
     pathMatch: "full"
   },
   {
@@ -22,6 +22,10 @@ const routes: Routes = [
   {
     path: "reports",
     component: ReportsComponent
+  },
+  {
+    path: "generate",
+    component: GenerateComponent
   }
 ];
 

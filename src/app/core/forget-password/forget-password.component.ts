@@ -11,10 +11,7 @@ import { ApiManagerService } from "../services/api-manager.service";
 @Component({
   selector: "app-forget-password",
   templateUrl: "./forget-password.component.html",
-  styleUrls: [
-    "./forget-password.component.scss",
-    "../../stylesheets/forms.scss"
-  ]
+  styleUrls: ["./forget-password.component.scss"]
 })
 export class ForgetPasswordComponent implements OnInit {
   private user: User;

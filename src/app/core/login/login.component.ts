@@ -10,7 +10,7 @@ import { ApiManagerService } from "../services/api-manager.service";
 @Component({
   selector: "app-login",
   templateUrl: "./login.component.html",
-  styleUrls: ["./login.component.scss", "../../stylesheets/forms.scss"]
+  styleUrls: ["./login.component.scss"]
 })
 export class LoginComponent implements OnInit {
   private user: User;
@@ -31,6 +31,8 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit() {
+    if (this.authentication.isAuthenticated())
+      this.authentication.setSidebarValue(0);
     this.loginForm = this.fb.group({
       email: [
         "",

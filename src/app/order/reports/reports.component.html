@@ -42,7 +42,7 @@
 <div *ngFor="let order of orders">
   <div id="checkOutBody">
     <div class="left">
-      <a>{{order.name}}</a>
+      <a>{{order.name | titlecase}}</a>
     </div>
     <div class="leftmiddle">
       <a>{{order.created_at | date}}</a>

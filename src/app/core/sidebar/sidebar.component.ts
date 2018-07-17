@@ -9,7 +9,7 @@ import { AuthenticationService } from "../services/authentication.service";
 export class SidebarComponent implements OnInit {
   switch: boolean = false;
   account: string = "Sign in";
-  selected: number = 5;
+  selected: number = 0;
   constructor(private authentication: AuthenticationService) {
     this.authentication.getAccountText().subscribe(newValue => {
       this.account = newValue;

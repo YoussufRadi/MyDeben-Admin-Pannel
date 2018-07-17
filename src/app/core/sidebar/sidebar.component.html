@@ -11,7 +11,7 @@
     <ul class="list-unstyled components">
         <div *ngIf="authentication.isAuthenticated()">
             <li [ngClass]="{'active': selected === 0}" (click)="setSelected(0)">
-                <a routerLink="/login">
+                <a routerLink="/order/generate">
                     <i class="fas fa-qrcode"></i>
                     <div [hidden]="switch">Generate</div>
                 </a>
