@@ -4,6 +4,7 @@ import { DialogService } from "ng2-bootstrap-modal";
 
 import { OrderApiService } from "../services/order-api.service";
 import { TextModalComponent } from "../../core/text-modal/text-modal.component";
+import { CodegenComponentFactoryResolver } from "../../../../node_modules/@angular/core/src/linker/component_factory_resolver";
 
 @Component({
   selector: "app-generate",
@@ -12,7 +13,9 @@ import { TextModalComponent } from "../../core/text-modal/text-modal.component";
 })
 export class GenerateComponent implements OnInit {
   generateForm: FormGroup;
-
+  minDate = new Date();
+  image;
+  code;
   constructor(
     private fb: FormBuilder,
     private dialogService: DialogService,
@@ -28,39 +31,42 @@ export class GenerateComponent implements OnInit {
 
   ngOnInit() {
     this.generateForm = this.fb.group({
-      email: [
-        "",
-        [
-          Validators.required,
-          Validators.pattern("[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,3}$")
-        ]
-      ],
-      password: ["", [Validators.required, Validators.minLength(3)]]
+      ref: ["", [Validators.required]],
+      date: ["", [Validators.required]]
     });
   }
 
-  get email() {
-    return this.generateForm.get("email");
+  get ref() {
+    return this.generateForm.get("ref");
   }
 
-  get password() {
-    return this.generateForm.get("password");
+  get date() {
+    return this.generateForm.get("date");
   }
 
   public onFormSubmit() {
     if (this.generateForm.valid) {
-      // this.api
-      //   .login({
-      //     email: this.generateForm.value,
-      //     password: this.generateForm.value
-      //   })
-      //   .then((data: any) => {
-      //     console.log(data);
-      //   })
-      //   .catch(err => {
-      //     console.log(err);
-      //     this.showError("Sign In Failed", err.error.detail);
-      //   });
+      const value = this.generateForm.value;
+      this.api
+        .generate("code", value.ref, value.date)
+        .then((data: any) => {
+          console.log(data);
+          this.image = data.code;
+        })
+        .catch(err => {
+          console.log(err);
+          this.showError("QR Failed", err.error.detail);
+        });
+      this.api
+        .generate("token", value.ref, value.date)
+        .then((data: any) => {
+          console.log(data);
+          this.code = data.token;
+        })
+        .catch(err => {
+          console.log(err);
+          this.showError("Token Failed", err.error.detail);
+        });
     }
   }
 }
