@@ -11,9 +11,7 @@ export class AddFormComponent implements OnInit {
   @Input() descriptionExists: boolean;
   @Input() priceExists: boolean;
 
-  @Output() nameEvent = new EventEmitter<string>();
-  @Output() descriptionEvent = new EventEmitter<string>();
-  @Output() priceEvent = new EventEmitter<string>();
+  @Output() formOutput = new EventEmitter<Object>();
 
   fieldName = "";
   fieldDescription = "";
@@ -24,8 +22,10 @@ export class AddFormComponent implements OnInit {
   ngOnInit() {}
 
   addField() {
-    this.nameEvent.emit(this.fieldName);
-    this.descriptionEvent.emit(this.fieldDescription);
-    this.priceEvent.emit(this.fieldPrice);
+    this.formOutput.emit({
+      fieldName: this.fieldName,
+      fieldDescription: this.fieldDescription,
+      fieldPrice: this.fieldPrice
+    });
   }
 }

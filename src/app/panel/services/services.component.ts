@@ -47,7 +47,16 @@ export class ServicesComponent implements OnInit {
   }
 
   recieveNewServiceName($event) {
-    console.log($event);
-    // perform API to add a service
+    console.log($event.fieldName);
+    this.api
+      .addAService({
+        name: $event.fieldName
+      })
+      .then((data: any) => {
+        console.log(data);
+      })
+      .catch(err => {
+        this.showError("error", "error");
+      });
   }
 }

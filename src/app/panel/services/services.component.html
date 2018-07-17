@@ -29,7 +29,10 @@
       <div class="col-lg-2">
         <p>{{ s }} Providers</p>
       </div>
-      <div class="col-lg-2 service-provider" *ngFor="let p of serviceList[i]" style.background="url('http://172.104.209.122:3000/api/file/{{ p.picture }}')">
+      <div class="col-lg-2 service-provider" *ngFor="let p of serviceList[i]">
+        <img src="" [attr.src]="p.picture">
+
+        <div></div>
         <a>{{ p.name }}</a>
       </div>
     </div>
@@ -64,4 +67,4 @@
   </div>
 </div> -->
 
-<app-add-form [title]="addServiceModalTitle" (nameEvent)="recieveNewServiceName($event)"></app-add-form>
+<app-add-form [title]="addServiceModalTitle" (formOutput)="recieveNewServiceName($event)"></app-add-form>
