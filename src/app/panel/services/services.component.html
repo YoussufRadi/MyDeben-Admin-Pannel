@@ -6,7 +6,7 @@
     <div class="col-lg-3">
       <button class="btn add-service-btn" data-toggle="modal" data-target="#modal">
         <i class="fas fa-plus"></i>
-        <u>Add Service</u>
+        <u> Add Service</u>
       </button>
     </div>
     <div class="col-lg-3">
@@ -26,14 +26,17 @@
   <div class="row" *ngFor="let s of serviceNames; let i = index;">
     <button class="service-btn btn col-lg-12" data-toggle="collapse" data-target="#demo" [attr.data-target]="'#serv' + s">{{ s }}</button>
     <div id="demo" [attr.id]="'serv' + s" class="collapse col-lg-12 row">
-      <div class="col-lg-2">
+      <div class="col-lg-2 service-provider-heading">
         <p>{{ s }} Providers</p>
       </div>
       <div class="col-lg-2 service-provider" *ngFor="let p of serviceList[i]">
         <img src="" [attr.src]="p.picture">
-
         <div></div>
         <a>{{ p.name }}</a>
+      </div>
+      <div class="col-lg-2 service-provider">
+        <div style="background-color: rgba(0,0,0,0.7)"></div>
+        <a routerLink="/panel/providers">View All</a>
       </div>
     </div>
   </div>

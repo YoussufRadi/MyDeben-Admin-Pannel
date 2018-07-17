@@ -29,16 +29,12 @@ export class ServicesComponent implements OnInit {
     this.api
       .getProvidersByService()
       .then((data: any) => {
-        console.log(data);
-        // this.services = data;
         Object.keys(data.providers).forEach(key => {
           this.serviceNames.push(key);
         });
         Object.values(data.providers).forEach(val => {
           this.serviceList.push(val);
         });
-        console.log(this.serviceNames);
-        console.log(this.serviceList);
       })
       .catch(err => {
         this.showError("error", "error");
@@ -47,7 +43,6 @@ export class ServicesComponent implements OnInit {
   }
 
   recieveNewServiceName($event) {
-    console.log($event.fieldName);
     this.api
       .addAService({
         name: $event.fieldName

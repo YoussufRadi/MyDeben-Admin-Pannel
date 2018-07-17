@@ -23,6 +23,16 @@
   text-align: center;
 }
 
+.service-provider-heading {
+  position: relative;
+}
+
+.service-provider-heading p {
+  position: absolute;
+  top: 30%;
+  width: 70%;
+}
+
 .modal-header p {
   color: #74c11d;
   text-align: center;

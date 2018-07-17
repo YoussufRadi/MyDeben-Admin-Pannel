@@ -10,6 +10,7 @@ import { ServicesComponent } from "./services/services.component";
 import { SharedModule } from "../shared/shared.module";
 import { GenerateComponent } from "./generate/generate.component";
 import { AddFormComponent } from "./add-form/add-form.component";
+import { ProvidersComponent } from './providers/providers.component';
 
 @NgModule({
   imports: [CommonModule, PanelRoutingModule, SharedModule, FormsModule],
@@ -18,7 +19,8 @@ import { AddFormComponent } from "./add-form/add-form.component";
     DashboardComponent,
     ServicesComponent,
     GenerateComponent,
-    AddFormComponent
+    AddFormComponent,
+    ProvidersComponent
   ],
   exports: [AddFormComponent]
 })
