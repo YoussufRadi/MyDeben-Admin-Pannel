@@ -16,4 +16,6 @@ export class OrderApiService {
   allOrders = () => this.http.get("/api/store/order").toPromise();
   serve = id => this.http.get("/api/store/order/serve/" + id).toPromise();
   cancel = id => this.http.get("/api/store/order/cancel/" + id).toPromise();
+  getUserTotalOrders = userId =>
+    this.http.get("/api/store/users/" + userId).toPromise();
 }

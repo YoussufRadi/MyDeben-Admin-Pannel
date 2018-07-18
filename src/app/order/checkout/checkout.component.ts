@@ -11,6 +11,12 @@ import { TextModalComponent } from "../../core/text-modal/text-modal.component";
 })
 export class CheckoutComponent implements OnInit {
   users: any[];
+  selectedUser: any = {
+    name: ""
+  };
+  selectedUserOrders: any[];
+  selectedUserTotal: number = 0;
+
   constructor(
     private api: OrderApiService,
     private dialogService: DialogService
@@ -36,7 +42,30 @@ export class CheckoutComponent implements OnInit {
         console.log(err);
       });
   };
+
   ngOnInit() {
     this.fetch();
+  }
+
+  getTotal() {
+    let total = 0;
+    if (this.selectedUserOrders.length > 0) {
+      this.selectedUserOrders.forEach(x => (total += x.total_price));
+    }
+    return total;
+  }
+
+  selectUser(user) {
+    this.selectedUser = user;
+    console.log(this.selectedUser);
+    this.api
+      .getUserTotalOrders(this.selectedUser.id)
+      .then((data: any) => {
+        this.selectedUserOrders = data.oredrs; // to be corrected!
+        this.selectedUserTotal = this.getTotal();
+      })
+      .catch(err => {
+        this.showError("error", "error");
+      });
   }
 }
