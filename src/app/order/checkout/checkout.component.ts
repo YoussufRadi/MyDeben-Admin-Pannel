@@ -11,6 +11,8 @@ import { TextModalComponent } from "../../core/text-modal/text-modal.component";
 })
 export class CheckoutComponent implements OnInit {
   users: any[];
+  selectedUserId = -1;
+
   constructor(
     private api: OrderApiService,
     private dialogService: DialogService
@@ -36,7 +38,21 @@ export class CheckoutComponent implements OnInit {
         console.log(err);
       });
   };
+
   ngOnInit() {
     this.fetch();
+  }
+
+  selectUser(id) {
+    this.selectedUserId = id;
+    console.log("selected user id: " + this.selectedUserId);
+    this.api
+      .getUserTotalOrders(this.selectedUserId)
+      .then((data: any) => {
+        console.log(data);
+      })
+      .catch(err => {
+        console.log(err);
+      });
   }
 }
