@@ -12,6 +12,7 @@ import { TextModalComponent } from "../../core/text-modal/text-modal.component";
 export class CheckoutComponent implements OnInit {
   users: any[];
   selectedUser: any;
+  selectedUserOrders: any[];
 
   constructor(
     private api: OrderApiService,
@@ -49,7 +50,8 @@ export class CheckoutComponent implements OnInit {
     this.api
       .getUserTotalOrders(this.selectedUser.id)
       .then((data: any) => {
-        console.log(data);
+        this.selectedUserOrders = data.oredrs; // to be corrected!
+        console.log(this.selectedUserOrders);
       })
       .catch(err => {
         console.log(err);
