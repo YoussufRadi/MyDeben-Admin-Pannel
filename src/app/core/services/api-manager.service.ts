@@ -34,4 +34,8 @@ export class ApiManagerService {
   addAService(data) {
     return this.http.post("/api/store/service", data).toPromise();
   }
+
+  uploadImage(data) {
+    return this.http.post("/api/file", data).toPromise();
+  }
 }

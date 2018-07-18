@@ -21,3 +21,8 @@
 .modal-header {
   background-color: #f2f2f2;
 }
+
+.upload-btn {
+  background-color: #74c11d;
+  color: #fff;
+}

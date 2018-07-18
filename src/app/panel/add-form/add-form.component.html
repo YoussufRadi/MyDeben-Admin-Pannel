@@ -35,8 +35,11 @@
         </div>
 
         <div class="row add-form-modal-row" *ngIf="imageExists">
-          <div class="col-lg-12">
-            <p>image upload</p>
+          <div class="col-lg-8">
+            <input type="file" (change)="onFileSelected($event)" />
+          </div>
+          <div class="col-lg-4">
+            <button class="btn upload-btn" (click)="onUpload()">Upload</button>
           </div>
         </div>
 
