@@ -58,17 +58,18 @@
             <p>Name: </p>
           </div>
           <div class="col-lg-9">
-            <p>[Name]</p>
+            <p>{{selectedUser.name}}</p>
           </div>
         </div>
-        <div class="row">
+
+        <!-- <div class="row">
           <div class="col-lg-3">
             <p>Room: </p>
           </div>
           <div class="col-lg-9">
             <p>[Room Number]</p>
           </div>
-        </div>
+        </div> -->
 
         <div class="row">
           <div class="col-lg-3">
@@ -77,12 +78,12 @@
 
           <div class="col-lg-9">
 
-            <div class="row">
+            <div class="row" *ngFor="let order of selectedUserOrders">
               <div class="col-lg-3">
-                <p>[item]</p>
+                <p>{{order.name}}</p>
               </div>
               <div class="col-lg-3">
-                <p>[price]</p>
+                <p>{{order.price}}</p>
               </div>
             </div>
 
@@ -93,7 +94,7 @@
                 <p>Total</p>
               </div>
               <div class="col-lg-3">
-                <p>[price]</p>
+                <p>{{selectedUserTotal}}</p>
               </div>
             </div>
 
