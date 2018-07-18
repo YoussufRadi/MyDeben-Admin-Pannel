@@ -20,6 +20,7 @@
 .collapse {
   margin: 1%;
 }
+
 .provider {
   justify-content: flex-start;
   text-align: center;
@@ -82,4 +83,14 @@
   float: right;
   align-items: center;
   width: 30%;
+}
+
+.arrow-toggle .fa-angle-up,
+.arrow-toggle.collapsed .fa-angle-down {
+  display: inline-block;
+}
+
+.arrow-toggle.collapsed .fa-angle-up,
+.arrow-toggle .fa-angle-down {
+  display: none;
 }

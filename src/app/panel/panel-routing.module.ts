@@ -1,10 +1,9 @@
 import { NgModule } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
 import { PanelComponent } from "./panel.component";
-import { DashboardComponent } from "./dashboard/dashboard.component";
 import { ServicesComponent } from "./services/services.component";
-import { GenerateComponent } from "./generate/generate.component";
 import { ProvidersComponent } from "./providers/providers.component";
+import { MenuComponent } from "./menu/menu.component";
 
 const routes: Routes = [
   {
@@ -13,21 +12,16 @@ const routes: Routes = [
     pathMatch: "full"
   },
   {
-    path: "generate",
-    component: GenerateComponent
-  },
-  {
     path: "services",
     component: ServicesComponent
   },
   {
-    path: "providers",
+    path: "providers/:id",
     component: ProvidersComponent
   },
   {
-    path: "dashboard",
-    component: PanelComponent,
-    children: [{ path: "", component: DashboardComponent }]
+    path: "category/:id",
+    component: MenuComponent
   }
 ];
 

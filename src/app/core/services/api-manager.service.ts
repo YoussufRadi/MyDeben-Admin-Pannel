@@ -34,4 +34,16 @@ export class ApiManagerService {
   addAService(data) {
     return this.http.post("/api/store/service", data).toPromise();
   }
+
+  getProviders(id) {
+    return this.http.get("/api/store/provider?serviceId=" + id).toPromise();
+  }
+
+  getCategories(id) {
+    return this.http.get("/api/store/category?providerId=" + id).toPromise();
+  }
+
+  getProducts(id) {
+    return this.http.get("/api/store/product?categoryId=" + id).toPromise();
+  }
 }

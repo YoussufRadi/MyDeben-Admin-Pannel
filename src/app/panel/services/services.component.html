@@ -17,13 +17,14 @@
 </div>
 
 <div class="container">
-  <div class="row" *ngFor="let s of serviceNames; let i = index;">
-    <div class="service-btn btn col-lg-12" data-toggle="collapse" data-target="#demo" [attr.data-target]="'#serv' + s">
+  <div class="row" *ngFor="let s of serviceNames; let i = index;" (click)="toggle()">
+    <div class="service-btn btn col-lg-12 arrow-toggle" data-toggle="collapse" data-target="#demo" [attr.data-target]="'#serv' + s">
       <div>
         <a>{{ s | titlecase}}</a>
         <div class="side-buttons">
-          <i class="far fa-edit" style="padding-right: 20%;"></i>
-          <i class="far fa-trash-alt"></i>
+          <i class="far fa-edit" style="margin-right: 20%;" (click)="edit()"></i>
+          <i class="far fa-trash-alt" (click)="delete()" style="color:#c13712"></i>
+          <i class="fas fa-angle-up" style="padding-left: 60%;"></i>
           <i class="fas fa-angle-down" style="padding-left: 60%;"></i>
         </div>
       </div>
