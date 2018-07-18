@@ -5,6 +5,10 @@ import { HttpClient } from "@angular/common/http";
 export class ApiManagerService {
   constructor(private http: HttpClient) {}
 
+  uploadImage(data) {
+    return this.http.post("/api/file", data).toPromise();
+  }
+
   register(data) {
     return this.http.post("/api/auth/store/signup", data).toPromise();
   }
@@ -35,7 +39,15 @@ export class ApiManagerService {
     return this.http.post("/api/store/service", data).toPromise();
   }
 
-  uploadImage(data) {
-    return this.http.post("/api/file", data).toPromise();
+  getProviders(id) {
+    return this.http.get("/api/store/provider?serviceId=" + id).toPromise();
+  }
+
+  getCategories(id) {
+    return this.http.get("/api/store/category?providerId=" + id).toPromise();
+  }
+
+  getProducts(id) {
+    return this.http.get("/api/store/product?categoryId=" + id).toPromise();
   }
 }

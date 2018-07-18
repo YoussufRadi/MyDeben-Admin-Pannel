@@ -24,7 +24,7 @@
     <a>Name</a>
   </div>
   <div class="middle">
-    <a>Price</a>
+    <a>Date</a>
   </div>
   <div class="leftUp">
     <a>Response</a>
@@ -34,10 +34,10 @@
 <div *ngFor="let user of users">
   <div id="checkOutBody">
     <div class="right">
-      <a>{{user.name}}</a>
+      <a>{{user.name | titlecase}}- Ref: {{user.checkin_store_ref | uppercase}}</a>
     </div>
     <div class="middle">
-      <a>Price</a>
+      <a>{{user.checkout_date | date:'mediumDate'}}</a>
     </div>
     <div class="left">
       <a data-toggle="modal" (click)="selectUser(user)" data-target="#recieptModal">View Receipt</a>

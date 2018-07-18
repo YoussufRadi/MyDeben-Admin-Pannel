@@ -54,4 +54,12 @@ export class ServicesComponent implements OnInit {
         this.showError("error", "error");
       });
   }
+
+  edit() {
+    console.log("edit");
+  }
+
+  delete() {
+    console.log("delete");
+  }
 }

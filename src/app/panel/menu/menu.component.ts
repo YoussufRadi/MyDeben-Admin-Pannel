@@ -5,11 +5,11 @@ import { TextModalComponent } from "../../core/text-modal/text-modal.component";
 import { ActivatedRoute } from "../../../../node_modules/@angular/router";
 
 @Component({
-  selector: "app-providers",
-  templateUrl: "./providers.component.html",
-  styleUrls: ["./providers.component.css"]
+  selector: "app-menu",
+  templateUrl: "./menu.component.html",
+  styleUrls: ["./menu.component.scss"]
 })
-export class ProvidersComponent implements OnInit {
+export class MenuComponent implements OnInit {
   services: any[] = [];
   providers: any[] = [];
   constructor(
