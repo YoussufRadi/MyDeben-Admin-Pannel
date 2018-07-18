@@ -1,73 +1,51 @@
-<div class="container services-header">
-  <div class="row">
-    <div class="col-lg-3">
-      <p>Services</p>
+<div id="orderHeader" class="row">
+  <div class="col">
+    <h5>Services</h5>
+    <button class="btn add-service-btn" data-toggle="modal" data-target="#modal">
+      <i class="fas fa-plus" data-toggle="collapse" data-target="#search"></i>
+      <u> Add Service</u>
+    </button>
+    <div>
+      <input class="collapse search" id="search" type="text" />
     </div>
-    <div class="col-lg-3">
-      <button class="btn add-service-btn" data-toggle="modal" data-target="#modal">
-        <i class="fas fa-plus"></i>
-        <u> Add Service</u>
-      </button>
-    </div>
-    <div class="col-lg-3">
-      <button class="btn" data-toggle="collapse" data-target="#search">
+    <div>
+      <a id="hover" data-toggle="collapse" data-target="#search">
         <i class="fas fa-search"></i>
-      </button>
-    </div>
-  </div>
-  <div class="row collapse" id="search">
-    <div class="col-lg-6 offset-lg-6">
-      <input type="text" />
+      </a>
     </div>
   </div>
 </div>
 
 <div class="container">
   <div class="row" *ngFor="let s of serviceNames; let i = index;">
-    <button class="service-btn btn col-lg-12" data-toggle="collapse" data-target="#demo" [attr.data-target]="'#serv' + s">{{ s }}</button>
-    <div id="demo" [attr.id]="'serv' + s" class="collapse col-lg-12 row">
-      <div class="col-lg-2 service-provider-heading">
-        <p>{{ s }} Providers</p>
+    <div class="service-btn btn col-lg-12" data-toggle="collapse" data-target="#demo" [attr.data-target]="'#serv' + s">
+      <div>
+        <a>{{ s | titlecase}}</a>
+        <div class="side-buttons">
+          <i class="far fa-edit" style="padding-right: 20%;"></i>
+          <i class="far fa-trash-alt"></i>
+          <i class="fas fa-angle-down" style="padding-left: 60%;"></i>
+        </div>
+      </div>
+    </div>
+    <div id="demo" [attr.id]="'serv' + s" class="collapse col-lg-12 row providers">
+      <div class="col-s-2 col-md-2 col-lg-2 left">
+        <a>
+          <p>Providers for:</p>
+        </a>
+        <p>{{ s | titlecase }}</p>
       </div>
       <div class="col-lg-2 service-provider" *ngFor="let p of serviceList[i]">
         <img src="" [attr.src]="p.picture">
         <div></div>
-        <a>{{ p.name }}</a>
+        <a>{{ p.name | titlecase }}</a>
       </div>
       <div class="col-lg-2 service-provider">
-        <div style="background-color: rgba(0,0,0,0.7)"></div>
-        <a routerLink="/panel/providers">View All</a>
+        <div style="background-color: rgba(0,0,0,1)"></div>
+        <a routerLink="/panel/providers">View All Providers</a>
       </div>
     </div>
   </div>
 </div>
-
-<!-- <div id="addServiceModal" class="modal fade" role="dialog">
-  <div class="modal-dialog">
-
-    <div class="modal-content">
-      <div class="modal-header">
-        <p>Add a service</p>
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-      </div>
-      <div class="modal-body">
-        <div class="row add-service-modal-form">
-          <div class="col-lg-4 col-sm-12">
-            <p>Field Name:</p>
-          </div>
-          <div class="col-lg-8 col-sm-6">
-            <input type="text" [(ngModel)]="addServiceName" />
-          </div>
-        </div>
-        <div class="row add-service-modal-form-submit">
-          <div class="col-lg-12">
-            <button class="btn add-service-btn" (click)="addService()">Save</button>
-          </div>
-        </div>
-      </div>
-    </div>
-
-  </div>
-</div> -->
 
 <app-add-form [title]="addServiceModalTitle" (formOutput)="recieveNewServiceName($event)"></app-add-form>

@@ -31,7 +31,7 @@
     </div>
     <div class=" col-md-6 col-lg-6">
       <div class="upper">
-        <p> {{order.user_name | titlecase}}- Ref: {{order.checkin_store_ref}}</p>
+        <p> {{order.user_name | titlecase}}- Ref: {{order.checkin_store_ref | uppercase}}</p>
         <a>
           <p>{{order.created_at | date:'medium'}}</p>
         </a>

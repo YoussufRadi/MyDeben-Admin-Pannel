@@ -1,5 +1,11 @@
-.services-header {
-  margin-bottom: 10px;
+@import "../../stylesheets/order.scss";
+
+.service-btn {
+  background-color: #f2f2f2;
+  border-radius: 0;
+  text-align: left;
+  padding: 10px 25px 10px 25px;
+  margin: 5px;
 }
 
 .add-service-btn {
@@ -7,37 +13,34 @@
   color: #fff;
 }
 
-.service-btn {
-  background-color: #f2f2f2;
-  border-radius: 0;
-  text-align: left;
-  padding-left: 20px;
-  margin: 5px;
+.search {
+  padding: 3%;
 }
 
 .collapse {
-  margin: 20px;
+  margin: 1%;
 }
-
-.modal-header {
+.provider {
+  justify-content: flex-start;
   text-align: center;
+  flex-direction: row;
+  vertical-align: middle;
 }
-
 .service-provider-heading {
   position: relative;
 }
 
-.service-provider-heading p {
-  position: absolute;
-  top: 30%;
-  width: 70%;
-}
-
-.modal-header p {
-  color: #74c11d;
+.left {
   text-align: center;
+  margin-top: 3%;
 }
 
+.left a p {
+  margin-bottom: 0rem;
+  font-family: AvenirNext;
+  font-size: 14px;
+  color: #95989a;
+}
 .service-provider {
   height: 90px;
   position: relative;
@@ -45,6 +48,7 @@
   color: white;
   text-align: center;
   margin-right: 2%;
+  margin-bottom: 3%;
   width: 100px;
 }
 
@@ -74,24 +78,8 @@
   left: 50%;
 }
 
-.add-service-modal-form {
-  margin-bottom: 50px;
-}
-
-.add-service-modal-form input {
-  width: 100%;
-}
-
-.add-service-modal-form-submit {
-  padding: 10px;
-  text-align: center;
-}
-
-.add-service-modal-form-submit button {
-  width: 100%;
-  border-radius: 0;
-}
-
-.modal-header {
-  background-color: #f2f2f2;
+.side-buttons {
+  float: right;
+  align-items: center;
+  width: 30%;
 }
