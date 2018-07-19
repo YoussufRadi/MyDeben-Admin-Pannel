@@ -29,12 +29,15 @@ export class ServicesComponent implements OnInit {
     this.api
       .getProvidersByService()
       .then((data: any) => {
+        console.log(data);
         Object.keys(data.providers).forEach(key => {
           this.serviceNames.push(key);
         });
+        console.log(this.serviceNames);
         Object.values(data.providers).forEach(val => {
           this.serviceList.push(val);
         });
+        console.log(this.serviceList);
       })
       .catch(err => {
         this.showError("error", "error");
