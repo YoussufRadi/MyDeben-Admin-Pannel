@@ -31,23 +31,23 @@
         <i class="fas fa-angle-down" style="padding-left: 60%;"></i>
       </div>
     </div>
-    <div id="demo" [attr.id]="'serv' + s.id" class="collapse col-lg-12 row providers">
-      <div class="col-s-2 col-md-2 col-lg-2 left">
+    <div id="demo" [attr.id]="'serv' + s.id" class="provider collapse col-lg-12">
+      <div class="left">
         <a>
           <p>Providers for:</p>
         </a>
         <p>{{ s.name | titlecase }}</p>
       </div>
-      <div class="col-lg-2 service-provider" *ngFor="let p of serviceList[i]; let j = index">
-        <div *ngIf="j < 1">
+      <div *ngFor="let p of serviceList[i]; let j = index">
+        <div *ngIf="j < 3" class="service-provider">
           <img src="" [attr.src]="p.picture">
           <div></div>
           <a>{{ p.name | titlecase }}</a>
         </div>
       </div>
-      <div class="col-lg-2 service-provider">
+      <div class="service-provider">
         <div style="background-color: rgba(0,0,0,1)"></div>
-        <a [routerLink]="['/panel/providers/', s.id]">View All Providers</a>
+        <a [routerLink]="['/panel/provider/', s.id]">View All Providers</a>
         <!-- add the id of the provider in this link to activate a provider in the next page -->
       </div>
     </div>

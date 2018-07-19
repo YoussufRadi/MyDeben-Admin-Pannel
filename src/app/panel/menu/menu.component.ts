@@ -1,8 +1,8 @@
 import { Component, OnInit } from "@angular/core";
+import { ActivatedRoute } from "@angular/router";
 import { ApiManagerService } from "../../core/services/api-manager.service";
 import { DialogService } from "ng2-bootstrap-modal";
 import { TextModalComponent } from "../../core/text-modal/text-modal.component";
-import { ActivatedRoute } from "../../../../node_modules/@angular/router";
 
 @Component({
   selector: "app-menu",
@@ -10,8 +10,10 @@ import { ActivatedRoute } from "../../../../node_modules/@angular/router";
   styleUrls: ["./menu.component.scss"]
 })
 export class MenuComponent implements OnInit {
-  services: any[] = [];
-  providers: any[] = [];
+  categories: any[] = [];
+  products: any[] = [];
+  paramId;
+  catId;
   constructor(
     private api: ApiManagerService,
     private dialogService: DialogService,
@@ -25,24 +27,31 @@ export class MenuComponent implements OnInit {
     });
   }
 
-  fetchServices() {
+  setCatId(id) {
+    this.catId = id;
+    this.fetchProducts();
+  }
+
+  fetchCategories(id) {
     this.api
-      .getServices()
+      .getCategories(id)
       .then((data: any) => {
         console.log(data);
-        this.services = data.services;
+        this.categories = data.categories;
+        this.catId = this.categories[0].id;
+        this.fetchProducts();
       })
       .catch(err => {
         this.showError("Fetch Services Failed", err.error.detail);
       });
   }
 
-  fetchProviders(id) {
+  fetchProducts() {
     this.api
-      .getProviders(id)
+      .getProducts(this.catId)
       .then((data: any) => {
         console.log(data);
-        this.providers = data.providers;
+        this.products = data.products;
       })
       .catch(err => {
         this.showError("Fetch Providers Failed", err.error.detail);
@@ -50,7 +59,18 @@ export class MenuComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.fetchServices();
-    this.fetchProviders(this.activeRouter.snapshot.params.id);
+    // this.fetchServices();
+    this.activeRouter.params.subscribe(() => {
+      this.paramId = this.activeRouter.snapshot.params.id;
+      this.fetchCategories(this.paramId);
+    });
+  }
+
+  edit() {
+    console.log("edit");
+  }
+
+  delete() {
+    console.log("delete");
   }
 }

@@ -16,7 +16,7 @@ const routes: Routes = [
     component: ServicesComponent
   },
   {
-    path: "providers/:id",
+    path: "provider/:id",
     component: ProvidersComponent
   },
   {

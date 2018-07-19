@@ -13,10 +13,6 @@
   color: #fff;
 }
 
-.search {
-  padding: 3%;
-}
-
 .collapse {
   margin: 1%;
 }
@@ -26,7 +22,9 @@
   text-align: center;
   flex-direction: row;
   vertical-align: middle;
+  display: flex;
 }
+
 .service-provider-heading {
   position: relative;
 }
@@ -34,6 +32,7 @@
 .left {
   text-align: center;
   margin-top: 3%;
+  margin-right: 4%;
 }
 
 .left a p {
@@ -48,8 +47,8 @@
   padding: 0px;
   color: white;
   text-align: center;
-  margin-right: 2%;
-  margin-bottom: 3%;
+  margin-right: 10px;
+  margin-bottom: 1%;
   width: 100px;
 }
 
