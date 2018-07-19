@@ -11,8 +11,9 @@ import { TextModalComponent } from "../../core/text-modal/text-modal.component";
 export class ServicesComponent implements OnInit {
   serviceNames: any[] = [];
   serviceList: any[] = [];
-  editedService = {
-    name: ""
+  selectedService = {
+    name: "",
+    id: -1
   };
 
   constructor(
@@ -27,7 +28,9 @@ export class ServicesComponent implements OnInit {
     });
   }
 
-  ngOnInit() {
+  fetchServices() {
+    this.serviceNames = [];
+    this.serviceList = [];
     this.api
       .getProvidersByService()
       .then((data: any) => {
@@ -54,18 +57,23 @@ export class ServicesComponent implements OnInit {
       });
   }
 
+  ngOnInit() {
+    this.fetchServices();
+  }
+
   recieveNewServiceName($event) {
     console.log($event);
-    // this.api
-    //   .addAService({
-    //     name: $event.fieldName
-    //   })
-    //   .then((data: any) => {
-    //     console.log(data);
-    //   })
-    //   .catch(err => {
-    //     this.showError("error", "error");
-    //   });
+    this.api
+      .addAService({
+        name: $event.fieldName
+      })
+      .then((data: any) => {
+        console.log(data);
+        this.fetchServices();
+      })
+      .catch(err => {
+        this.showError("error", "error");
+      });
   }
 
   recieveEditedServiceName($event) {
@@ -73,14 +81,45 @@ export class ServicesComponent implements OnInit {
   }
 
   editService(service) {
-    this.editedService = service;
+    this.selectedService = {
+      name: service.name,
+      id: service.id
+    };
   }
 
   saveEditService() {
-    // api to edit service
+    console.log(this.selectedService.id);
+
+    this.api
+      .editService(this.selectedService.id, {
+        name: this.selectedService.name
+      })
+      .then(data => {
+        console.log(data);
+        this.fetchServices();
+      })
+      .catch(err => {
+        console.log(err);
+      });
   }
 
-  delete(service) {
+  deleteService(service) {
+    this.selectedService = {
+      name: service.name,
+      id: service.id
+    };
     console.log("delete");
+  }
+
+  confirmDeleteService() {
+    this.api
+      .deleteService(this.selectedService.id)
+      .then(data => {
+        console.log(data);
+        this.fetchServices();
+      })
+      .catch(err => {
+        console.log(err);
+      });
   }
 }

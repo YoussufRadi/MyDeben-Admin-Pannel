@@ -50,4 +50,12 @@ export class ApiManagerService {
   getProducts(id) {
     return this.http.get("/api/store/product?categoryId=" + id).toPromise();
   }
+
+  editService(id, data) {
+    return this.http.patch("/api/store/service/" + id, data).toPromise();
+  }
+
+  deleteService(id) {
+    return this.http.delete("/api/store/service/" + id).toPromise();
+  }
 }

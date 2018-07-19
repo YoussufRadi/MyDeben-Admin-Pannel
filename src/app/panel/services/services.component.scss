@@ -17,7 +17,7 @@
   margin: 1%;
 }
 
-.provider {
+.providers {
   justify-content: flex-start;
   text-align: center;
   flex-direction: row;
@@ -70,6 +70,7 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  color: #fff;
 }
 
 .service-provider a {
@@ -92,4 +93,35 @@
 .arrow-toggle.collapsed .fa-angle-up,
 .arrow-toggle .fa-angle-down {
   display: none;
+}
+
+// modal styling - to be removed after decoupling all modal dialogs in the component
+
+.add-form-modal-row {
+  margin-bottom: 50px;
+}
+
+.add-form-modal-row input {
+  width: 100%;
+}
+
+.add-form-modal-submit {
+  padding: 10px;
+  text-align: center;
+}
+
+.add-form-modal-submit button {
+  width: 100%;
+  border-radius: 0;
+  background-color: #74c11d;
+  color: #fff;
+}
+
+.modal-header {
+  background-color: #f2f2f2;
+}
+
+.upload-btn {
+  background-color: #74c11d;
+  color: #fff;
 }

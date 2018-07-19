@@ -21,17 +21,17 @@
     <div class="service-btn btn col-lg-12 arrow-toggle" data-toggle="collapse" data-target="#demo" [attr.data-target]="'#serv' + s.id">
       <a>{{ s.name | titlecase}}</a>
       <div class="side-buttons">
-        <div data-toggle="modal" class="btn" data-target="#modal1">
+        <div class="btn" data-toggle="modal" data-target="#modal1">
           <i class="far fa-edit" (click)="editService(s)"></i>
         </div>
-        <div class="btn">
+        <div class="btn" data-toggle="modal" data-target="#modal2">
           <i class="far fa-trash-alt" (click)="deleteService(s)" style="color:#c13712"></i>
         </div>
         <i class="fas fa-angle-up" style="padding-left: 60%;"></i>
         <i class="fas fa-angle-down" style="padding-left: 60%;"></i>
       </div>
     </div>
-    <div id="demo" [attr.id]="'serv' + s.id" class="provider collapse col-lg-12">
+    <div id="demo" [attr.id]="'serv' + s.id" class="providers collapse col-lg-12">
       <div class="left">
         <a>
           <p>Providers for:</p>
@@ -77,13 +77,39 @@
             <p>Field Name:</p>
           </div>
           <div class="col-lg-6 col-sm-12">
-            <input type="text" [(ngModel)]="editedService.name" />
+            <input type="text" [(ngModel)]="selectedService.name" />
           </div>
         </div>
 
         <div class="row add-form-modal-submit">
           <div class="col-lg-12">
             <button class="btn" (click)="saveEditService()" data-dismiss="modal">Save</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div id="modal2" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <p>Delete Service</p>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <div class="modal-body">
+
+        <div class="row add-form-modal-row">
+          <div class="col-lg-12 col-sm-12">
+            <p>Are you sure?</p>
+          </div>
+        </div>
+
+        <div class="row add-form-modal-submit">
+          <div class="col-lg-12">
+            <button class="btn" (click)="confirmDeleteService()" style="background-color:#c13712" data-dismiss="modal">Save</button>
           </div>
         </div>
       </div>
