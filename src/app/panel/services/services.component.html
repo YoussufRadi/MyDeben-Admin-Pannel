@@ -18,9 +18,9 @@
 
 <div class="container">
   <div class="row" *ngFor="let s of serviceNames; let i = index;">
-    <div class="service-btn btn col-lg-12 arrow-toggle" data-toggle="collapse" data-target="#demo" [attr.data-target]="'#serv' + s">
+    <div class="service-btn btn col-lg-12 arrow-toggle" data-toggle="collapse" data-target="#demo" [attr.data-target]="'#serv' + s.id">
       <div>
-        <a>{{ s | titlecase}}</a>
+        <a>{{ s.name | titlecase}}</a>
         <div class="side-buttons">
           <i class="far fa-edit" style="margin-right: 20%;" (click)="edit()"></i>
           <i class="far fa-trash-alt" (click)="delete()" style="color:#c13712"></i>
@@ -29,12 +29,12 @@
         </div>
       </div>
     </div>
-    <div id="demo" [attr.id]="'serv' + s" class="collapse col-lg-12 row providers">
+    <div id="demo" [attr.id]="'serv' + s.id" class="collapse col-lg-12 row providers">
       <div class="col-s-2 col-md-2 col-lg-2 left">
         <a>
           <p>Providers for:</p>
         </a>
-        <p>{{ s | titlecase }}</p>
+        <p>{{ s.name | titlecase }}</p>
       </div>
       <div class="col-lg-2 service-provider" *ngFor="let p of serviceList[i]; let j = index">
         <div *ngIf="j < 1">
@@ -45,7 +45,7 @@
       </div>
       <div class="col-lg-2 service-provider">
         <div style="background-color: rgba(0,0,0,1)"></div>
-        <a [routerLink]="['/panel/providers/', i]">View All Providers</a>
+        <a [routerLink]="['/panel/providers/', s.id]">View All Providers</a>
         <!-- add the id of the provider in this link to activate a provider in the next page -->
       </div>
     </div>
