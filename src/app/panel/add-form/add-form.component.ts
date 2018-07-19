@@ -7,8 +7,9 @@ import { ApiManagerService } from "../../core/services/api-manager.service";
   styleUrls: ["./add-form.component.css"]
 })
 export class AddFormComponent implements OnInit {
+  @Input() modalId: string;
   @Input() title: string;
-  @Input() fieldNameValue: string;
+  @Input() nameValue: string;
   @Input() descriptionExists: boolean;
   @Input() descriptionValue: string;
   @Input() priceExists: boolean;
@@ -25,7 +26,11 @@ export class AddFormComponent implements OnInit {
 
   constructor(private api: ApiManagerService) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.fieldName = this.nameValue;
+    this.fieldDescription = this.descriptionValue;
+    this.fieldPrice = this.priceValue;
+  }
 
   onFileSelected($event) {
     console.log($event);

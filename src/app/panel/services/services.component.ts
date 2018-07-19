@@ -11,7 +11,9 @@ import { TextModalComponent } from "../../core/text-modal/text-modal.component";
 export class ServicesComponent implements OnInit {
   serviceNames: any[] = [];
   serviceList: any[] = [];
-  addServiceModalTitle = "Add Service";
+  editedService = {
+    name: ""
+  };
 
   constructor(
     private api: ApiManagerService,
@@ -66,11 +68,19 @@ export class ServicesComponent implements OnInit {
     //   });
   }
 
-  edit() {
-    console.log("edit");
+  recieveEditedServiceName($event) {
+    console.log($event);
   }
 
-  delete() {
+  editService(service) {
+    this.editedService = service;
+  }
+
+  saveEditService() {
+    // api to edit service
+  }
+
+  delete(service) {
     console.log("delete");
   }
 }

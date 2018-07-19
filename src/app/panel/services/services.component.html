@@ -21,11 +21,11 @@
     <div class="service-btn btn col-lg-12 arrow-toggle" data-toggle="collapse" data-target="#demo" [attr.data-target]="'#serv' + s.id">
       <a>{{ s.name | titlecase}}</a>
       <div class="side-buttons">
-        <div data-toggle="modal" class="btn" data-target="#modal">
-          <i class="far fa-edit" (click)="edit()"></i>
+        <div data-toggle="modal" class="btn" data-target="#modal1">
+          <i class="far fa-edit" (click)="editService(s)"></i>
         </div>
-        <div data-toggle="modal" class="btn" data-target="#modal">
-          <i class="far fa-trash-alt" (click)="delete()" style="color:#c13712"></i>
+        <div class="btn">
+          <i class="far fa-trash-alt" (click)="deleteService(s)" style="color:#c13712"></i>
         </div>
         <i class="fas fa-angle-up" style="padding-left: 60%;"></i>
         <i class="fas fa-angle-down" style="padding-left: 60%;"></i>
@@ -54,4 +54,40 @@
   </div>
 </div>
 
-<app-add-form [title]="addServiceModalTitle" [fieldNameValue]="haha" [descriptionExists]="true" [imageExists]="true" (formOutput)="recieveNewServiceName($event)"></app-add-form>
+<app-add-form modalId="modal" title="Add a Service" (formOutput)="recieveNewServiceName($event)"></app-add-form>
+
+<!-- Calling the modal component to edit -->
+
+<!-- <app-add-form modalId="modal" title="Edit Service" (formOutput)="recieveNewServiceName($event)"></app-add-form> -->
+
+
+<!-- Edit Service Modal Written Here temporarily -->
+
+<div id="modal1" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <p>Edit Service</p>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <div class="modal-body">
+
+        <div class="row add-form-modal-row">
+          <div class="col-lg-4 col-sm-12">
+            <p>Field Name:</p>
+          </div>
+          <div class="col-lg-6 col-sm-12">
+            <input type="text" [(ngModel)]="editedService.name" />
+          </div>
+        </div>
+
+        <div class="row add-form-modal-submit">
+          <div class="col-lg-12">
+            <button class="btn" (click)="saveEditService()" data-dismiss="modal">Save</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
