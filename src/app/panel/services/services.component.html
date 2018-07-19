@@ -18,9 +18,9 @@
 
 <div class="container">
   <div class="row" *ngFor="let s of serviceNames; let i = index;">
-    <div class="service-btn btn col-lg-12 arrow-toggle" data-toggle="collapse" data-target="#demo" [attr.data-target]="'#serv' + s.key">
+    <div class="service-btn btn col-lg-12 arrow-toggle" data-toggle="collapse" data-target="#demo" [attr.data-target]="'#serv' + s.id">
       <div>
-        <a>{{ s.key | titlecase}}</a>
+        <a>{{ s.name | titlecase}}</a>
         <div class="side-buttons">
           <i class="far fa-edit" style="margin-right: 20%;" (click)="edit()"></i>
           <i class="far fa-trash-alt" (click)="delete()" style="color:#c13712"></i>
@@ -29,24 +29,27 @@
         </div>
       </div>
     </div>
-    <div id="demo" [attr.id]="'serv' + s.key" class="collapse col-lg-12 row providers">
-      <div class="col-s-2 col-md-2 col-lg-2 left">
+    <div id="demo" [attr.id]="'serv' + s.id" class="provider collapse col-lg-12">
+      <div class="left">
         <a>
           <p>Providers for:</p>
         </a>
-        <p>{{ s.key | titlecase }}</p>
+        <p>{{ s.name | titlecase }}</p>
       </div>
-      <div class="col-lg-2 service-provider" *ngFor="let p of serviceList[i]">
-        <img src="" [attr.src]="p.picture">
-        <div></div>
-        <a>{{ p.name | titlecase }}</a>
+      <div *ngFor="let p of serviceList[i]; let j = index">
+        <div *ngIf="j < 3" class="service-provider">
+          <img src="" [attr.src]="p.picture">
+          <div></div>
+          <a>{{ p.name | titlecase }}</a>
+        </div>
       </div>
-      <div class="col-lg-2 service-provider">
+      <div class="service-provider">
         <div style="background-color: rgba(0,0,0,1)"></div>
-        <a [routerLink]="'/panel/provider/'+s.id">View All Providers</a>
+        <a [routerLink]="['/panel/provider/', s.id]">View All Providers</a>
+        <!-- add the id of the provider in this link to activate a provider in the next page -->
       </div>
     </div>
   </div>
 </div>
 
-<app-add-form [title]="addServiceModalTitle" (formOutput)="recieveNewServiceName($event)"></app-add-form>
+<app-add-form [title]="addServiceModalTitle" (formOutput)="recieveNewServiceName($event)" [imageExists]="true"></app-add-form>

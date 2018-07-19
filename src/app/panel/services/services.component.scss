@@ -22,7 +22,9 @@
   text-align: center;
   flex-direction: row;
   vertical-align: middle;
+  display: flex;
 }
+
 .service-provider-heading {
   position: relative;
 }
@@ -45,8 +47,8 @@
   padding: 0px;
   color: white;
   text-align: center;
-  margin-right: 2%;
-  margin-bottom: 3%;
+  margin-right: 10px;
+  margin-bottom: 1%;
   width: 100px;
 }
 

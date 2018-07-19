@@ -3,7 +3,7 @@
 .add-service-btn {
   background-color: #74c11d;
   height: 80%;
-  margin-left: 1%;
+  margin-left: 5%;
   color: #fff;
 }
 
@@ -54,12 +54,35 @@
 }
 
 #category-body {
-  height: 60%;
-  padding: 7% 5% 5% 5%;
+  height: 70%;
+  padding: 2% 0% 1% 3%;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.body-text {
+  padding-right: 8%;
+  width: 100%;
+  font-family: AvenirNext;
+  font-size: 18px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.body-description {
+  height: 80%;
+  overflow: scroll;
+}
+
+.body-description p {
+  font-family: AvenirNext;
+  font-size: 15px;
+  color: #95989a;
+  padding: 2% 2% 0% 8%;
 }
 
 #category-body img {
-  width: 30%;
+  width: 25%;
   height: 90%;
 }
 

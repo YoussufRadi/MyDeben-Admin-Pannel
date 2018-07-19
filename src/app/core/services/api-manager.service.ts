@@ -5,6 +5,10 @@ import { HttpClient } from "@angular/common/http";
 export class ApiManagerService {
   constructor(private http: HttpClient) {}
 
+  uploadImage(data) {
+    return this.http.post("/api/file", data).toPromise();
+  }
+
   register(data) {
     return this.http.post("/api/auth/store/signup", data).toPromise();
   }

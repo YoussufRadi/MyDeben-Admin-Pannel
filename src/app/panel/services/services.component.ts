@@ -6,7 +6,7 @@ import { TextModalComponent } from "../../core/text-modal/text-modal.component";
 @Component({
   selector: "app-services",
   templateUrl: "./services.component.html",
-  styleUrls: ["./services.component.css"]
+  styleUrls: ["./services.component.scss"]
 })
 export class ServicesComponent implements OnInit {
   serviceNames: any[] = [];
@@ -29,17 +29,25 @@ export class ServicesComponent implements OnInit {
     this.api
       .getProvidersByService()
       .then((data: any) => {
-        console.log(data);
-
+        console.log(data.providers);
         Object.keys(data.providers).forEach(key => {
-          this.serviceNames.push({
-            key,
-            id: data.providers[key][0].service_id
-          });
+          if (data.providers["" + key].length > 0) {
+            this.serviceNames.push({
+              name: key,
+              id: data.providers["" + key][0].service_id
+            });
+          } else {
+            this.serviceNames.push({
+              name: key,
+              id: -1
+            });
+          }
         });
+        console.log(this.serviceNames);
         Object.values(data.providers).forEach(val => {
           this.serviceList.push(val);
         });
+        console.log(this.serviceList);
       })
       .catch(err => {
         this.showError("error", "error");

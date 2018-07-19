@@ -1,4 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from "@angular/core";
+import { ApiManagerService } from "../../core/services/api-manager.service";
 
 @Component({
   selector: "app-add-form",
@@ -7,25 +8,51 @@ import { Component, OnInit, Input, Output, EventEmitter } from "@angular/core";
 })
 export class AddFormComponent implements OnInit {
   @Input() title: string;
-  @Input() imageExists: boolean;
   @Input() descriptionExists: boolean;
+  @Input() descriptionValue: string;
+
   @Input() priceExists: boolean;
+  @Input() priceValue: string;
+
+  @Input() imageExists: boolean;
 
   @Output() formOutput = new EventEmitter<Object>();
 
   fieldName = "";
   fieldDescription = "";
   fieldPrice = "";
+  fieldImageFile: File = null;
+  fieldImageUrl = "";
 
-  constructor() {}
+  constructor(private api: ApiManagerService) {}
 
   ngOnInit() {}
+
+  onFileSelected($event) {
+    console.log($event);
+    this.fieldImageFile = <File>$event.target.files[0];
+  }
+
+  onUpload() {
+    const fd = new FormData();
+    fd.append("image", this.fieldImageFile, this.fieldImageFile.name);
+    this.api
+      .uploadImage(fd)
+      .then((data: any) => {
+        console.log(data);
+        // supposed to return the url of image that will be added to the form output!
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  }
 
   addField() {
     this.formOutput.emit({
       fieldName: this.fieldName,
       fieldDescription: this.fieldDescription,
-      fieldPrice: this.fieldPrice
+      fieldPrice: this.fieldPrice,
+      fieldImageUrl: this.fieldImageUrl
     });
   }
 }

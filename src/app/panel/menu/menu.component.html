@@ -49,7 +49,15 @@
     </div>
     <div id="category-body">
       <img src="{{product.picture}}">
-      <a>{{product.name | titlecase}}</a>
+      <div>
+        <div class="body-text">
+          <a>{{product.name | titlecase}}</a>
+          <a>{{product.price|currency:'USD'}}</a>
+        </div>
+        <div class="body-description">
+          <p>{{product.description | titlecase}}</p>
+        </div>
+      </div>
     </div>
   </div>
 </div>
