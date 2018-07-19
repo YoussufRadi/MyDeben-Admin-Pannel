@@ -1,7 +1,6 @@
 <div id="orderHeader" class="row">
   <div class="col">
     <h5>Service Providers</h5>
-
     <div>
       <input class="collapse search" id="search" type="text" />
     </div>
@@ -16,7 +15,7 @@
 <nav class="nav">
   <ul class="nav nav-tabs" style="border: 0 !important">
     <li class="nav-item" *ngFor="let service of services">
-      <a class="nav-link" [routerLink]="'/panel/providers/'+service.id" [ngClass]="{'active': service.id == paramId, 'service': service.id == paramId}">
+      <a class="nav-link" [routerLink]="'/panel/provider/'+service.id" [ngClass]="{'active': service.id == paramId, 'service': service.id == paramId}">
         {{service.name | titlecase}}
         <a class="edit" data-toggle="modal" data-target="#modal" *ngIf="service.id == paramId">
           <u>Edit Service</u>

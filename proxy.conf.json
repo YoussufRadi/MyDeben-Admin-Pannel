@@ -2,10 +2,5 @@
   "/api/*": {
     "target": "http://localhost:3000",
     "secure": false
-  },
-  "http://172.104.209.122:3000/api/file/d6de8e84-f81a-4d8c-ac10-a0063a531f71.jpeg": {
-    "target":
-      "http://mxtrianz.me/wp-content/uploads/2017/05/small-photos-17-the-data-lab.jpg",
-    "secure": false
   }
 }

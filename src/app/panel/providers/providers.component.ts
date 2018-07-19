@@ -7,7 +7,7 @@ import { ActivatedRoute } from "../../../../node_modules/@angular/router";
 @Component({
   selector: "app-providers",
   templateUrl: "./providers.component.html",
-  styleUrls: ["./providers.component.css"]
+  styleUrls: ["./providers.component.scss"]
 })
 export class ProvidersComponent implements OnInit {
   services: any[] = [];
