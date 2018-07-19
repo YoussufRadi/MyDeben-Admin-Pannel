@@ -8,12 +8,11 @@ import { ApiManagerService } from "../../core/services/api-manager.service";
 })
 export class AddFormComponent implements OnInit {
   @Input() title: string;
+  @Input() fieldNameValue: string;
   @Input() descriptionExists: boolean;
   @Input() descriptionValue: string;
-
   @Input() priceExists: boolean;
   @Input() priceValue: string;
-
   @Input() imageExists: boolean;
 
   @Output() formOutput = new EventEmitter<Object>();
