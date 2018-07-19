@@ -2,6 +2,8 @@
 
 .add-service-btn {
   background-color: #74c11d;
+  height: 80%;
+  margin-left: 1%;
   color: #fff;
 }
 
@@ -9,7 +11,7 @@
   background: #f2f2f2;
   width: 100%;
   position: absolute;
-  height: 100%;
+  height: -webkit-fill-available;
   margin-left: -4%;
   padding: 3% 5% 1% 5%;
 }
@@ -23,9 +25,26 @@
   margin: 1%;
 }
 
+.add {
+  text-align: center;
+  line-height: 160px;
+  font-family: AvenirNext;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.add:hover {
+  cursor: pointer;
+}
+
 #category-header {
   background: #fbfbfb;
   padding: 3%;
+}
+
+#category-header i:hover {
+  cursor: pointer;
+  color: #74c11d;
 }
 
 #category-header .side-buttons {
@@ -41,6 +60,20 @@
 
 #category-body img {
   width: 30%;
+  height: 90%;
+}
+
+.edit {
+  display: block;
+  font-family: AvenirNext;
+  font-size: 8px;
+  font-weight: bold;
+  padding-left: 0;
+  color: #c13712 !important;
+}
+
+.edit:hover {
+  cursor: pointer;
 }
 
 a {
@@ -60,4 +93,14 @@ a {
   color: goldenrod;
   float: left;
   padding-left: 17%;
+}
+
+.service {
+  background-color: #f1f1f1 !important;
+  border-bottom-color: #f1f1f1 !important;
+  text-align: center;
+}
+
+.service:hover {
+  cursor: default;
 }

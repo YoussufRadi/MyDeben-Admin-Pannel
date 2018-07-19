@@ -48,9 +48,20 @@ export class ProvidersComponent implements OnInit {
         this.showError("Fetch Providers Failed", err.error.detail);
       });
   }
-
+  paramId;
   ngOnInit() {
     this.fetchServices();
-    this.fetchProviders(this.activeRouter.snapshot.params.id);
+    this.activeRouter.params.subscribe(id => {
+      this.paramId = this.activeRouter.snapshot.params.id;
+      this.fetchProviders(this.paramId);
+    });
+  }
+
+  edit() {
+    console.log("edit");
+  }
+
+  delete() {
+    console.log("delete");
   }
 }

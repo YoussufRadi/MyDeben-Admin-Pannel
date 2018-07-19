@@ -29,8 +29,13 @@ export class ServicesComponent implements OnInit {
     this.api
       .getProvidersByService()
       .then((data: any) => {
+        console.log(data);
+
         Object.keys(data.providers).forEach(key => {
-          this.serviceNames.push(key);
+          this.serviceNames.push({
+            key,
+            id: data.providers[key][0].service_id
+          });
         });
         Object.values(data.providers).forEach(val => {
           this.serviceList.push(val);

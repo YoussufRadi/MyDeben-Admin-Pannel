@@ -1,10 +1,7 @@
 <div id="orderHeader" class="row">
   <div class="col">
     <h5>Service Providers</h5>
-    <button class="btn add-service-btn" data-toggle="modal" data-target="#modal">
-      <i class="fas fa-plus" data-toggle="collapse" data-target="#search"></i>
-      <u> Add Provider</u>
-    </button>
+
     <div>
       <input class="collapse search" id="search" type="text" />
     </div>
@@ -17,27 +14,32 @@
 </div>
 
 <nav class="nav">
-  <ul class="nav nav-tabs">
-    <li class="nav-item">
-      <a class="nav-link active" data-toggle="tab" href="#home">Active</a>
-    </li>
+  <ul class="nav nav-tabs" style="border: 0 !important">
     <li class="nav-item" *ngFor="let service of services">
-      <a class="nav-link" data-toggle="tab" href="#menu1">{{service.name | titlecase}}</a>
+      <a class="nav-link" [routerLink]="'/panel/providers/'+service.id" [ngClass]="{'active': service.id == paramId, 'service': service.id == paramId}">
+        {{service.name | titlecase}}
+        <a class="edit" data-toggle="modal" data-target="#modal" *ngIf="service.id == paramId">
+          <u>Edit Service</u>
+        </a>
+      </a>
+    </li>
+    <li class="nav-item">
+      <button class="btn add-service-btn" data-toggle="modal" data-target="#modal">
+        <i class="fas fa-plus" data-toggle="collapse" data-target="#search"></i>
+        <u> Add Service</u>
+      </button>
     </li>
   </ul>
 </nav>
-<div class="tab-content">
-  <div id="home" class="tab-pane fade in active">
-    <h3>HOME</h3>
-    <p>Some content.</p>
-  </div>
-  <div id="menu1" class="tab-pane fade">
-    <h3>Menu 1</h3>
-    <p>Some content in menu 1.</p>
-  </div>
-</div>
 
 <div id="container">
+  <div id="category" class="add">
+    <a data-toggle="modal" data-target="#modal">
+      <u>
+        <i class="fas fa-plus"></i> Add Service Provider</u>
+    </a>
+  </div>
+
   <div id="category" *ngFor="let provider of providers; let i = index;">
     <div id="category-header">
       <a>Provider {{i+1}}</a>
