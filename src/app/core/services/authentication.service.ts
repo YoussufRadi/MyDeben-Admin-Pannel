@@ -13,7 +13,7 @@ export class AuthenticationService {
 
   login(token) {
     this.setToken(token);
-    this.router.navigate(["panel", "dashboard"]);
+    this.router.navigate(["order", "generate"]);
   }
 
   logout() {

@@ -15,8 +15,8 @@
 <nav class="nav">
   <ul class="nav nav-tabs" style="border: 0 !important">
     <li class="nav-item" *ngFor="let category of categories">
-      <a class="nav-link" [ngClass]="{'active': category.id == catId, 'service': category.id == catId}" style="height: 100%;" (click)="setCatId(category.id)">
-        {{category.name | titlecase}}
+      <a class="nav-link" [ngClass]="{'active': category.id == catId, 'service': category.id == catId}" style="height: 100%; padding-bottom: 0; padding-top: 2%;"
+        (click)="setCatId(category.id)"> {{category.name | titlecase}}
         <a class="edit" data-toggle="modal" data-target="#modal" *ngIf="category.id == catId">
           <u>Edit Category</u>
         </a>

@@ -10,10 +10,12 @@ export class AuthGuardService implements CanActivate {
   ) {}
 
   canActivate(): boolean | Promise<boolean> {
-    return this.authentication.isAuthenticated();
-  }
+    let token = this.authentication.isAuthenticated();
 
-  redirectToLoginPage() {
-    this.router.navigate(["/login"]);
+    if (!token) {
+      console.error("User is not authenticated.");
+      this.router.navigate(["/login"]);
+      return false;
+    } else return true;
   }
 }

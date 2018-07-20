@@ -16,7 +16,7 @@
   <ul class="nav nav-tabs" style="border: 0 !important">
     <li class="nav-item" *ngFor="let service of services">
       <a class="nav-link" [routerLink]="'/panel/provider/'+service.id" [ngClass]="{'active': service.id == paramId, 'service': service.id == paramId}"
-        style="height: 100%;">
+        style="height: 100%; padding-bottom: 0; padding-top: 2%;">
         {{service.name | titlecase}}
         <a class="edit" data-toggle="modal" data-target="#modal" *ngIf="service.id == paramId">
           <u>Edit Service</u>

@@ -94,34 +94,3 @@
 .arrow-toggle .fa-angle-down {
   display: none;
 }
-
-// modal styling - to be removed after decoupling all modal dialogs in the component
-
-.add-form-modal-row {
-  margin-bottom: 50px;
-}
-
-.add-form-modal-row input {
-  width: 100%;
-}
-
-.add-form-modal-submit {
-  padding: 10px;
-  text-align: center;
-}
-
-.add-form-modal-submit button {
-  width: 100%;
-  border-radius: 0;
-  background-color: #74c11d;
-  color: #fff;
-}
-
-.modal-header {
-  background-color: #f2f2f2;
-}
-
-.upload-btn {
-  background-color: #74c11d;
-  color: #fff;
-}

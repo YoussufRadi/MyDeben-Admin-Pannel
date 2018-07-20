@@ -34,11 +34,11 @@ export class ServicesComponent implements OnInit {
     this.api
       .getProvidersByService()
       .then((data: any) => {
-        Object.keys(data.providers).forEach(key => {
-          if (data.providers["" + key].length > 0) {
+        Object.keys(data.providers).forEach((key: string) => {
+          if (data.providers[key].length > 0) {
             this.serviceNames.push({
               name: key,
-              id: data.providers["" + key][0].service_id
+              id: data.providers[key][0].service_id
             });
           } else {
             this.serviceNames.push({
@@ -52,7 +52,7 @@ export class ServicesComponent implements OnInit {
         });
       })
       .catch(err => {
-        this.showError("error", "error");
+        this.showError("Fetch Services Failed", err.error.detail);
         console.log(err);
       });
   }
@@ -72,7 +72,7 @@ export class ServicesComponent implements OnInit {
         this.fetchServices();
       })
       .catch(err => {
-        this.showError("error", "error");
+        this.showError("Adding Service Failed", err.error.detail);
       });
   }
 
