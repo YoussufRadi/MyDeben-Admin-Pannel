@@ -11,7 +11,8 @@
   background: #f2f2f2;
   width: 100%;
   position: absolute;
-  height: -webkit-fill-available;
+  height: auto;
+  min-height: -webkit-fill-available;
   margin-left: -4%;
   padding: 3% 5% 1% 5%;
 }

@@ -17,13 +17,13 @@
     <li class="nav-item" *ngFor="let category of categories">
       <a class="nav-link" [ngClass]="{'active': category.id == catId, 'service': category.id == catId}" style="height: 100%; padding-bottom: 0; padding-top: 2%;"
         (click)="setCatId(category.id)"> {{category.name | titlecase}}
-        <a class="edit" data-toggle="modal" data-target="#modal" *ngIf="category.id == catId">
+        <a class="edit" data-toggle="modal" data-target="#modal" *ngIf="category.id == catId" (click)="setValue(category)">
           <u>Edit Category</u>
         </a>
       </a>
     </li>
     <li class="nav-item">
-      <button class="btn add-service-btn" data-toggle="modal" data-target="#modal">
+      <button class="btn add-service-btn" data-toggle="modal" data-target="#modal" (click)="clearSelectedCat()">
         <i class="fas fa-plus" data-toggle="collapse" data-target="#search"></i>
         <u> Add Category</u>
       </button>
@@ -33,17 +33,16 @@
 
 <div id="container">
   <div id="category" class="add">
-    <a data-toggle="modal" data-target="#modal">
+    <a data-toggle="modal" data-target="#modal" (click)="clearSelectedItem()">
       <u>
         <i class="fas fa-plus"></i> Add Item</u>
     </a>
   </div>
-
   <div id="category" *ngFor="let product of products; let i = index;">
     <div id="category-header">
       <a>Item {{i+1}}</a>
       <div class="side-buttons">
-        <i class="far fa-edit" style="margin-right: 40%;" (click)="edit()"></i>
+        <i class="far fa-edit" style="margin-right: 40%;" (click)="setValue(product)" data-toggle="modal" data-target="#modal"></i>
         <i class="far fa-trash-alt" (click)="delete()" style="color:#c13712"></i>
       </div>
     </div>
@@ -62,5 +61,4 @@
   </div>
 </div>
 
-
-<app-add-form [title]="addServiceModalTitle" (formOutput)="recieveNewServiceName($event)"></app-add-form>
+<app-add-form [values]="selectedService" (formOutput)="recieveFormData($event)"></app-add-form>

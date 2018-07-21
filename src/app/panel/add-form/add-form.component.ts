@@ -5,7 +5,6 @@ import {
   Validators,
   AbstractControl
 } from "@angular/forms";
-
 import { ApiManagerService } from "../../core/services/api-manager.service";
 
 @Component({
@@ -20,37 +19,35 @@ export class AddFormComponent implements OnInit {
   @Output() formOutput = new EventEmitter<Object>();
   fieldImageFile: File = null;
 
-  constructor(private fb: FormBuilder, private api: ApiManagerService) {
-    console.log("constructor");
-  }
+  constructor(private fb: FormBuilder, private api: ApiManagerService) {}
 
   setForm() {
     if (this.editForm)
       this.editForm.setValue({
         name: this.values.name,
         description: this.values.description || "",
-        price: this.values.price || 0
+        price: this.values.price || null
       });
   }
+
   ngOnChanges() {
     this.setForm();
   }
 
   ngOnInit() {
-    console.log(this.values);
     this.editForm = this.fb.group(
       {
         name: ["", [Validators.required]],
         description: [""],
         price: [""]
-      }
-      // { validator: this.priceExists }
+      },
+      { validator: this.priceExists }
     );
     this.setForm();
   }
 
   priceExists(c: AbstractControl): { invalid: boolean } {
-    if (this.values.price && c.get("price").value) {
+    if (c.get("price").value !== null && c.get("price").value < 1) {
       return { invalid: true };
     }
   }
@@ -71,13 +68,21 @@ export class AddFormComponent implements OnInit {
     return this.editForm.get("price");
   }
 
-  public onFormSubmit() {
-    this.formOutput.emit(this.values);
+  submit() {
+    const data = { ...this.editForm.value, picture: this.values.picture };
+    console.log(data);
+    this.formOutput.emit(data);
   }
 
+  upload = "";
+
   onFileSelected($event) {
-    console.log($event);
-    this.fieldImageFile = <File>$event.target.files[0];
+    const file = <File>$event.target.files[0];
+    if (file.type === "image/png" || file.type === "image/jpeg") {
+      this.fieldImageFile = <File>$event.target.files[0];
+      this.values.picture = " ";
+      this.upload = "Click to Uplaod";
+    } else alert("Please Select JPEG or PNG Images Only");
   }
 
   onUpload() {
@@ -86,14 +91,12 @@ export class AddFormComponent implements OnInit {
     this.api
       .uploadImage(fd)
       .then((data: any) => {
-        console.log(data);
-        // supposed to return the url of image that will be added to the form output!
+        this.values.picture = data.url;
+        this.upload = "";
       })
       .catch(err => {
         console.log(err);
+        alert(err.error.detail);
       });
   }
-
-  // addField() {
-  // }
 }

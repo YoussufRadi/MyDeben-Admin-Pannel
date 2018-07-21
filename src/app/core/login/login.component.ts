@@ -27,6 +27,7 @@ export class LoginComponent implements OnInit {
     let disposable = this.dialogService.addDialog(TextModalComponent, {
       title: title,
       message: message
+      // confirm: true
     });
   }
 

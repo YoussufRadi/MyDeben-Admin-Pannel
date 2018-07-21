@@ -1,7 +1,6 @@
 <div id="modal" id="modal" class="modal fade" role="dialog">
   <div class="modal-dialog">
     <div class="modal-content">
-
       <div class="modal-header">
         <a class="modal-title" style="margin-left: 40%;">{{values.title || 'Confirm'}}</a>
         <button type="button" class="close chover" data-dismiss="modal">&times;</button>
@@ -13,29 +12,24 @@
               <label for="inputName" class="control-label">Name</label>
               <input type="text" class="form-control" id="inputName" formControlName="name">
             </div>
-            <div class="form-group col-lg-8" *ngIf="values.description">
-              <label for="inputDescription" class="control-label">Description</label>
-              <input type="text" formControlName="description" id="inputDescription" class="form-control">
+            <div class="service-provider" *ngIf="values.picture !== undefined">
+              <img src="" [attr.src]="values.picture" name="pic" accept="image/x-png,image/jpeg">
+              <div>{{upload}}</div>
+              <input class="choose-file" type="file" (change)="onFileSelected($event)" />
+              <button class="btn upload-btn confirm" [disabled]="upload == ''" (click)="onUpload()">Upload</button>
             </div>
-            <div class="form-group col-lg-8" *ngIf="values.price">
+            <div class="form-group col-lg-8" *ngIf="values.price !== undefined">
               <label for="inputPrice" class="control-label">Price</label>
               <input type="number" formControlName="price" id="inputPrice" class="form-control">
             </div>
-            <div class="row add-form-modal-row" *ngIf="values.image">
-              <div class="col-lg-8">
-                <input type="file" (change)="onFileSelected($event)" />
-              </div>
-              <div class="col-lg-4">
-                <button class="btn upload-btn" (click)="onUpload()">Upload</button>
-              </div>
+            <div class="form-group col-lg-8" *ngIf="values.description !== undefined">
+              <label for="inputDescription" class="control-label">Description</label>
+              <textarea name="Text1" cols="50" rows="3" formControlName="description" id="inputDescription" class="form-control"></textarea>
             </div>
-            <div class="service-provider">
-              <img src="" [attr.src]="p.picture">
-              <div></div>
-              <a>{{ p.name | titlecase }}</a>
-            </div>
+
             <div class="form-group col-lg-8 submit-register">
-              <button type="submit" [disabled]="!editForm.valid" class="form-submit-button btn btn-primary confirm">Edit</button>
+              <button type="submit" [disabled]="!editForm.valid || upload != ''" class="form-submit-button btn btn-primary confirm" (click)="submit()"
+                data-dismiss="modal">Save</button>
             </div>
           </fieldset>
         </form>

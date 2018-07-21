@@ -14,6 +14,14 @@ export class MenuComponent implements OnInit {
   products: any[] = [];
   paramId;
   catId;
+  selectedService = {
+    title: "Add a new Item",
+    name: "",
+    description: "",
+    price: undefined,
+    picture: " "
+  };
+
   constructor(
     private api: ApiManagerService,
     private dialogService: DialogService,
@@ -28,8 +36,10 @@ export class MenuComponent implements OnInit {
   }
 
   setCatId(id) {
-    this.catId = id;
-    this.fetchProducts();
+    if (this.catId !== id) {
+      this.catId = id;
+      this.fetchProducts();
+    }
   }
 
   fetchCategories(id) {
@@ -59,7 +69,6 @@ export class MenuComponent implements OnInit {
   }
 
   ngOnInit() {
-    // this.fetchServices();
     this.activeRouter.params.subscribe(() => {
       this.paramId = this.activeRouter.snapshot.params.id;
       this.fetchCategories(this.paramId);
@@ -72,5 +81,61 @@ export class MenuComponent implements OnInit {
 
   delete() {
     console.log("delete");
+  }
+
+  clearSelectedItem() {
+    const values = {
+      title: "Add a new Item",
+      name: "",
+      description: "",
+      price: 0,
+      picture: " "
+    };
+    this.selectedService = values;
+  }
+
+  clearSelectedCat() {
+    const values = {
+      title: "Add a new Item",
+      name: "",
+      description: "",
+      price: undefined,
+      picture: " "
+    };
+    this.selectedService = values;
+  }
+
+  recieveFormData($event) {
+    console.log($event);
+  }
+
+  setValue(value) {
+    // value.description = "";
+    this.selectedService = value;
+    console.log(this.selectedService);
+  }
+
+  editService(id, value) {
+    this.api
+      .editService(id, value)
+      .then(data => {
+        console.log(data);
+        // this.fetchServices();
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  }
+
+  deleteService(id) {
+    this.api
+      .deleteService(id)
+      .then(data => {
+        console.log(data);
+        // this.fetchServices();
+      })
+      .catch(err => {
+        console.log(err);
+      });
   }
 }

@@ -4,6 +4,7 @@ import { DialogComponent, DialogService } from "ng2-bootstrap-modal";
 export interface ErrorModel {
   title: string;
   message: string;
+  confirm: boolean;
 }
 
 @Component({
@@ -15,6 +16,7 @@ export class TextModalComponent extends DialogComponent<ErrorModel, boolean>
   implements OnInit, ErrorModel {
   title: string;
   message: string;
+  confirm: boolean;
   constructor(dialogService: DialogService) {
     super(dialogService);
   }
