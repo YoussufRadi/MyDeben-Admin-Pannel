@@ -21,4 +21,11 @@ export class TextModalComponent extends DialogComponent<ErrorModel, boolean>
     super(dialogService);
   }
   ngOnInit() {}
+
+  okay() {
+    // we set dialog result as true on click on confirm button,
+    // then we can get dialog result from caller code
+    this.result = true;
+    this.close();
+  }
 }

@@ -25,30 +25,18 @@ export class ApiManagerService {
     return this.http.post("/api/auth/forget/store", data).toPromise();
   }
 
-  getServices() {
-    return this.http.get("/api/store/service").toPromise();
-  }
-
   getProvidersByService() {
     return this.http
       .get("/api/store/provider/all?group=service_name")
       .toPromise();
   }
 
+  getService() {
+    return this.http.get("/api/store/service").toPromise();
+  }
+
   addAService(data) {
     return this.http.post("/api/store/service", data).toPromise();
-  }
-
-  getProviders(id) {
-    return this.http.get("/api/store/provider?serviceId=" + id).toPromise();
-  }
-
-  getCategories(id) {
-    return this.http.get("/api/store/category?providerId=" + id).toPromise();
-  }
-
-  getProducts(id) {
-    return this.http.get("/api/store/product?categoryId=" + id).toPromise();
   }
 
   editService(id, data) {
@@ -57,5 +45,41 @@ export class ApiManagerService {
 
   deleteService(id) {
     return this.http.delete("/api/store/service/" + id).toPromise();
+  }
+
+  getProvider(id) {
+    return this.http.get("/api/store/provider?serviceId=" + id).toPromise();
+  }
+
+  getCategory(id) {
+    return this.http.get("/api/store/category?providerId=" + id).toPromise();
+  }
+
+  addCategory(data) {
+    return this.http.post("/api/store/category", data).toPromise();
+  }
+
+  editCategory(id, data) {
+    return this.http.patch("/api/store/category/" + id, data).toPromise();
+  }
+
+  deleteCategory(id) {
+    return this.http.delete("/api/store/category/" + id).toPromise();
+  }
+
+  getProduct(id) {
+    return this.http.get("/api/store/product?categoryId=" + id).toPromise();
+  }
+
+  addProduct(data) {
+    return this.http.post("/api/store/product", data).toPromise();
+  }
+
+  editProduct(id, data) {
+    return this.http.patch("/api/store/product/" + id, data).toPromise();
+  }
+
+  deleteProduct(id) {
+    return this.http.delete("/api/store/product/" + id).toPromise();
   }
 }

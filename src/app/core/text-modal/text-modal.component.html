@@ -6,10 +6,13 @@
     </div>
     <div class="modal-body">
       <p>{{message || 'Are you sure?'}}</p>
-      {{confirm}}asds
     </div>
     <div class="modal-footer">
-      <button type="button" class="btn btn-default" (click)="close()">OK</button>
+      <div *ngIf="confirm" style="width: 50%">
+        <button type="button" class="btn btn-outline-danger danger click" (click)="okay()">Yes</button>
+        <button type="button" class="btn btn-outline-secondary click" (click)="close()">Cancel</button>
+      </div>
+      <button type="button" *ngIf="!confirm" class="btn btn-outline-dark" (click)="close()">Close</button>
     </div>
   </div>
 </div>

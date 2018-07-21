@@ -29,7 +29,6 @@ export class AddFormComponent implements OnInit {
         description: this.values.description || "",
         price: this.values.price || 0
       });
-    // this.editForm.va
   }
 
   ngOnChanges() {
@@ -79,7 +78,6 @@ export class AddFormComponent implements OnInit {
       picture: this.values.picture,
       id: this.values.id
     };
-    console.log(data);
     this.formOutput.emit(data);
   }
 

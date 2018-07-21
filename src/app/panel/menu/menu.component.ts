@@ -13,7 +13,7 @@ export class MenuComponent implements OnInit {
   categories: any[] = [];
   products: any[] = [];
   paramId;
-  catId;
+  catId = -1;
   selectedService = {
     id: -1,
     title: "Add a new Item",
@@ -30,9 +30,17 @@ export class MenuComponent implements OnInit {
   ) {}
 
   showError(title, message) {
-    let disposable = this.dialogService.addDialog(TextModalComponent, {
+    return this.dialogService.addDialog(TextModalComponent, {
       title: title,
       message: message
+    });
+  }
+
+  showConfirm() {
+    return this.dialogService.addDialog(TextModalComponent, {
+      title: "Are you sure?",
+      message: "Press YES if you want to delete selected",
+      confirm: true
     });
   }
 
@@ -43,45 +51,37 @@ export class MenuComponent implements OnInit {
     }
   }
 
-  fetchCategories(id) {
+  fetchCategories(id, f) {
     this.api
-      .getCategories(id)
+      .getCategory(id)
       .then((data: any) => {
-        console.log(data);
         this.categories = data.categories;
-        this.catId = this.categories[0].id;
-        this.fetchProducts();
+        if (this.categories.length > 0 && f) {
+          this.catId = this.categories[0].id;
+          this.fetchProducts();
+        }
       })
       .catch(err => {
-        this.showError("Fetch Services Failed", err.error.detail);
+        this.showError("Fetch Categories Failed", err.error);
       });
   }
 
   fetchProducts() {
     this.api
-      .getProducts(this.catId)
+      .getProduct(this.catId)
       .then((data: any) => {
-        console.log(data);
         this.products = data.products;
       })
       .catch(err => {
-        this.showError("Fetch Providers Failed", err.error.detail);
+        this.showError("Fetch Providers Failed", err.error);
       });
   }
 
   ngOnInit() {
     this.activeRouter.params.subscribe(() => {
       this.paramId = this.activeRouter.snapshot.params.id;
-      this.fetchCategories(this.paramId);
+      this.fetchCategories(this.paramId, true);
     });
-  }
-
-  edit() {
-    console.log("edit");
-  }
-
-  delete() {
-    console.log("delete");
   }
 
   clearSelectedItem() {
@@ -109,36 +109,106 @@ export class MenuComponent implements OnInit {
   }
 
   recieveFormData($event) {
-    console.log($event);
+    if ($event.id == -1) {
+      delete $event.id;
+      if ($event.price) this.addProduct({ ...$event, category_id: this.catId });
+      else this.addCategory($event);
+    } else {
+      if ($event.price) this.editProduct($event);
+      else this.editCategory($event);
+    }
   }
 
   setValue(value) {
-    // value.description = "";
     this.selectedService = value;
-    console.log(this.selectedService);
   }
 
-  editService(id, value) {
+  addProduct(value) {
     this.api
-      .editService(id, value)
+      .addProduct(value)
       .then(data => {
-        console.log(data);
-        // this.fetchServices();
+        this.showError("Added Successfully", "New Product was added");
+        this.fetchProducts();
       })
       .catch(err => {
         console.log(err);
+        this.showError("Adding Failed", err.error);
       });
   }
 
-  deleteService(id) {
+  editProduct(value) {
     this.api
-      .deleteService(id)
+      .editProduct(value.id, value)
       .then(data => {
-        console.log(data);
-        // this.fetchServices();
+        this.showError("Edited Successfully", "Product was edited");
+        this.fetchProducts();
       })
       .catch(err => {
         console.log(err);
+        this.showError("Editing Failed", err.error);
       });
+  }
+
+  deleteProduct(id) {
+    this.showConfirm().subscribe(res => {
+      if (res) {
+        this.api
+          .deleteProduct(id)
+          .then(data => {
+            this.showError("Deleted Successfully", "Product was deleted");
+            this.fetchProducts();
+          })
+          .catch(err => {
+            console.log(err);
+            this.showError("Deleting Failed", err.error);
+          });
+      }
+    });
+  }
+
+  addCategory(value) {
+    const provider_id = this.activeRouter.snapshot.params.id;
+    this.api
+      .addCategory({ ...value, provider_id })
+      .then(data => {
+        this.showError("Added Successfully", "New Category was added");
+        this.fetchCategories(provider_id, false);
+      })
+      .catch(err => {
+        console.log(err);
+        this.showError("Adding Failed", err.error);
+      });
+  }
+
+  editCategory(value) {
+    const provider_id = this.activeRouter.snapshot.params.id;
+    this.api
+      .editCategory(value.id, value)
+      .then(data => {
+        this.showError("Edited Successfully", "Category was edited");
+        this.fetchCategories(provider_id, false);
+      })
+      .catch(err => {
+        console.log(err);
+        this.showError("Editing Failed", err.error);
+      });
+  }
+
+  deleteCategory(id) {
+    this.showConfirm().subscribe(res => {
+      if (res) {
+        const provider_id = this.activeRouter.snapshot.params.id;
+        this.api
+          .deleteCategory(id)
+          .then(data => {
+            this.showError("Deleted Successfully", "Category was deleted");
+            this.fetchCategories(provider_id, true);
+          })
+          .catch(err => {
+            console.log(err);
+            this.showError("Deleting Failed", err.error);
+          });
+      }
+    });
   }
 }

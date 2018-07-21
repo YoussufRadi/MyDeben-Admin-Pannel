@@ -27,7 +27,7 @@ export class ProvidersComponent implements OnInit {
 
   fetchServices() {
     this.api
-      .getServices()
+      .getService()
       .then((data: any) => {
         console.log(data);
         this.services = data.services;
@@ -39,7 +39,7 @@ export class ProvidersComponent implements OnInit {
 
   fetchProviders(id) {
     this.api
-      .getProviders(id)
+      .getProvider(id)
       .then((data: any) => {
         console.log(data);
         this.providers = data.providers;
