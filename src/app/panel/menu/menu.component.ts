@@ -15,10 +15,11 @@ export class MenuComponent implements OnInit {
   paramId;
   catId;
   selectedService = {
+    id: -1,
     title: "Add a new Item",
     name: "",
     description: "",
-    price: undefined,
+    price: 0,
     picture: " "
   };
 
@@ -85,6 +86,7 @@ export class MenuComponent implements OnInit {
 
   clearSelectedItem() {
     const values = {
+      id: -1,
       title: "Add a new Item",
       name: "",
       description: "",
@@ -96,6 +98,7 @@ export class MenuComponent implements OnInit {
 
   clearSelectedCat() {
     const values = {
+      id: -1,
       title: "Add a new Item",
       name: "",
       description: "",

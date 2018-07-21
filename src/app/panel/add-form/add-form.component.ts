@@ -3,7 +3,8 @@ import {
   FormBuilder,
   FormGroup,
   Validators,
-  AbstractControl
+  AbstractControl,
+  ValidatorFn
 } from "@angular/forms";
 import { ApiManagerService } from "../../core/services/api-manager.service";
 
@@ -26,8 +27,9 @@ export class AddFormComponent implements OnInit {
       this.editForm.setValue({
         name: this.values.name,
         description: this.values.description || "",
-        price: this.values.price || null
+        price: this.values.price || 0
       });
+    // this.editForm.va
   }
 
   ngOnChanges() {
@@ -41,15 +43,18 @@ export class AddFormComponent implements OnInit {
         description: [""],
         price: [""]
       },
-      { validator: this.priceExists }
+      { validator: this.priceExists() }
     );
     this.setForm();
   }
 
-  priceExists(c: AbstractControl): { invalid: boolean } {
-    if (c.get("price").value !== null && c.get("price").value < 1) {
-      return { invalid: true };
-    }
+  priceExists(): ValidatorFn {
+    return (c: AbstractControl): { invalid: boolean } => {
+      if (this.values.price != undefined && c.get("price").value < 1) {
+        return { invalid: true };
+      }
+      return null;
+    };
   }
 
   get name() {
@@ -69,7 +74,11 @@ export class AddFormComponent implements OnInit {
   }
 
   submit() {
-    const data = { ...this.editForm.value, picture: this.values.picture };
+    const data = {
+      ...this.editForm.value,
+      picture: this.values.picture,
+      id: this.values.id
+    };
     console.log(data);
     this.formOutput.emit(data);
   }
