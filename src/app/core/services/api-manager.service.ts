@@ -35,7 +35,7 @@ export class ApiManagerService {
     return this.http.get("/api/store/service").toPromise();
   }
 
-  addAService(data) {
+  addService(data) {
     return this.http.post("/api/store/service", data).toPromise();
   }
 
@@ -49,6 +49,18 @@ export class ApiManagerService {
 
   getProvider(id) {
     return this.http.get("/api/store/provider?serviceId=" + id).toPromise();
+  }
+
+  addProvider(data) {
+    return this.http.post("/api/store/provider", data).toPromise();
+  }
+
+  editProvider(id, data) {
+    return this.http.patch("/api/store/provider/" + id, data).toPromise();
+  }
+
+  deleteProvider(id) {
+    return this.http.delete("/api/store/provider/" + id).toPromise();
   }
 
   getCategory(id) {

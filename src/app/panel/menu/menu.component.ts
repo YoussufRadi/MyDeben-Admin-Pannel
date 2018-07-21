@@ -52,7 +52,7 @@ export class MenuComponent implements OnInit {
   }
 
   fetchCategories(id, f) {
-    this.api
+    return this.api
       .getCategory(id)
       .then((data: any) => {
         this.categories = data.categories;
@@ -99,7 +99,7 @@ export class MenuComponent implements OnInit {
   clearSelectedCat() {
     const values = {
       id: -1,
-      title: "Add a new Item",
+      title: "Add a new Category",
       name: "",
       description: "",
       price: undefined,
@@ -172,7 +172,14 @@ export class MenuComponent implements OnInit {
       .addCategory({ ...value, provider_id })
       .then(data => {
         this.showError("Added Successfully", "New Category was added");
-        this.fetchCategories(provider_id, false);
+        this.fetchCategories(provider_id, false).then(() => {
+          this.catId = Math.max.apply(
+            Math,
+            this.categories.map(function(o) {
+              return o.id;
+            })
+          );
+        });
       })
       .catch(err => {
         console.log(err);

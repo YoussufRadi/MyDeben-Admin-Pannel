@@ -2,7 +2,10 @@ import { Component, OnInit } from "@angular/core";
 import { ApiManagerService } from "../../core/services/api-manager.service";
 import { DialogService } from "ng2-bootstrap-modal";
 import { TextModalComponent } from "../../core/text-modal/text-modal.component";
-import { ActivatedRoute } from "../../../../node_modules/@angular/router";
+import {
+  ActivatedRoute,
+  Router
+} from "../../../../node_modules/@angular/router";
 
 @Component({
   selector: "app-providers",
@@ -12,10 +15,19 @@ import { ActivatedRoute } from "../../../../node_modules/@angular/router";
 export class ProvidersComponent implements OnInit {
   services: any[] = [];
   providers: any[] = [];
+  selectedService = {
+    id: -1,
+    title: "Add a new Item",
+    name: "",
+    description: "",
+    price: 0,
+    picture: " "
+  };
   constructor(
     private api: ApiManagerService,
     private dialogService: DialogService,
-    private activeRouter: ActivatedRoute
+    private activeRouter: ActivatedRoute,
+    private router: Router
   ) {}
 
   showError(title, message) {
@@ -25,8 +37,16 @@ export class ProvidersComponent implements OnInit {
     });
   }
 
-  fetchServices() {
-    this.api
+  showConfirm() {
+    return this.dialogService.addDialog(TextModalComponent, {
+      title: "Are you sure?",
+      message: "Press YES if you want to delete selected",
+      confirm: true
+    });
+  }
+
+  fetchServices(): any {
+    return this.api
       .getService()
       .then((data: any) => {
         console.log(data);
@@ -57,11 +77,145 @@ export class ProvidersComponent implements OnInit {
     });
   }
 
-  edit() {
-    console.log("edit");
+  clearSelectedProvider() {
+    const values = {
+      id: -1,
+      title: "Add a new Provider",
+      name: "",
+      description: undefined,
+      price: undefined,
+      picture: " "
+    };
+    this.selectedService = values;
   }
 
-  delete() {
-    console.log("delete");
+  clearSelectedService() {
+    const values = {
+      id: -1,
+      title: "Add a new Service",
+      name: "",
+      description: undefined,
+      price: undefined,
+      picture: undefined
+    };
+    this.selectedService = values;
+  }
+
+  recieveFormData($event) {
+    if ($event.id == -1) {
+      delete $event.id;
+      if ($event.picture)
+        this.addProvider({ ...$event, service_id: this.paramId });
+      else this.addService($event);
+    } else {
+      if ($event.picture) this.editProvider($event);
+      else this.editService($event);
+    }
+  }
+
+  setValue(value) {
+    this.selectedService = value;
+  }
+
+  addProvider(value) {
+    this.api
+      .addProvider(value)
+      .then(data => {
+        this.showError("Added Successfully", "New Provider was added");
+        this.fetchProviders(this.paramId);
+      })
+      .catch(err => {
+        console.log(err);
+        this.showError("Adding Failed", err.error);
+      });
+  }
+
+  editProvider(value) {
+    this.api
+      .editProvider(value.id, value)
+      .then(data => {
+        this.showError("Edited Successfully", "Provider was edited");
+        this.fetchProviders(this.paramId);
+      })
+      .catch(err => {
+        console.log(err);
+        this.showError("Editing Failed", err.error);
+      });
+  }
+
+  deleteProvider(id) {
+    this.showConfirm().subscribe(res => {
+      if (res) {
+        this.api
+          .deleteProvider(id)
+          .then(data => {
+            this.showError("Deleted Successfully", "Provider was deleted");
+            this.fetchProviders(this.paramId);
+          })
+          .catch(err => {
+            console.log(err);
+            this.showError("Deleting Failed", err.error);
+          });
+      }
+    });
+  }
+
+  addService(value) {
+    const provider_id = this.activeRouter.snapshot.params.id;
+    this.api
+      .addService({ ...value, provider_id })
+      .then(data => {
+        this.showError("Added Successfully", "New Service was added");
+        this.fetchServices().then(() => {
+          this.paramId = Math.max.apply(
+            Math,
+            this.services.map(function(o) {
+              return o.id;
+            })
+          );
+        });
+      })
+      .catch(err => {
+        console.log(err);
+        this.showError("Adding Failed", err.error);
+      });
+  }
+
+  editService(value) {
+    const provider_id = this.activeRouter.snapshot.params.id;
+    this.api
+      .editService(value.id, value)
+      .then(data => {
+        this.showError("Edited Successfully", "Service was edited");
+        this.fetchServices();
+      })
+      .catch(err => {
+        console.log(err);
+        this.showError("Editing Failed", err.error);
+      });
+  }
+
+  deleteService(id) {
+    this.showConfirm().subscribe(res => {
+      if (res) {
+        const provider_id = this.activeRouter.snapshot.params.id;
+        this.api
+          .deleteService(id)
+          .then(data => {
+            this.showError("Deleted Successfully", "Service was deleted");
+            this.fetchServices().then(() => {
+              if (this.services.length > 0) {
+                console.log(this.services[0].id);
+                // this.router.navigate["/pannel/provider/" + this.services[0].id];
+                this.paramId = this.services[0].id;
+              }
+            });
+          })
+          .catch(err => {
+            console.log(err);
+            this.showError("Deleting Failed", err.error);
+          });
+      }
+    });
   }
 }
