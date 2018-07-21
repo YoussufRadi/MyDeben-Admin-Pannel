@@ -1,7 +1,7 @@
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
 
-import { FormsModule } from "@angular/forms";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 
 import { PanelRoutingModule } from "./panel-routing.module";
 import { PanelComponent } from "./panel.component";
@@ -12,7 +12,13 @@ import { ProvidersComponent } from "./providers/providers.component";
 import { MenuComponent } from "./menu/menu.component";
 
 @NgModule({
-  imports: [CommonModule, PanelRoutingModule, SharedModule, FormsModule],
+  imports: [
+    CommonModule,
+    PanelRoutingModule,
+    SharedModule,
+    FormsModule,
+    ReactiveFormsModule
+  ],
   declarations: [
     PanelComponent,
     MenuComponent,

@@ -1,8 +1,8 @@
 <div id="orderHeader" class="row">
   <div class="col">
     <h5>Services</h5>
-    <button class="btn add-service-btn" data-toggle="modal" data-target="#modal">
-      <i class="fas fa-plus" data-toggle="collapse" data-target="#search"></i>
+    <button class="btn add-service-btn" data-toggle="modal" data-target="#modal" (click)="clearSelected()">
+      <i class="fas fa-plus" data-toggle="collapse" data-target="#modal"></i>
       <u> Add Service</u>
     </button>
     <div>
@@ -21,14 +21,16 @@
     <div class="service-btn btn col-lg-12 arrow-toggle" data-toggle="collapse" data-target="#demo" [attr.data-target]="'#serv' + s.id">
       <a>{{ s.name | titlecase}}</a>
       <div class="side-buttons">
-        <div class="btn" data-toggle="modal" data-target="#modal1">
-          <i class="far fa-edit" (click)="editService(s)"></i>
+        <div class="btn" data-toggle="modal" data-target="#modal">
+          <i class="far fa-edit" (click)="setValue(s)"></i>
         </div>
         <div class="btn" data-toggle="modal" data-target="#modal2">
           <i class="far fa-trash-alt" (click)="deleteService(s)" style="color:#c13712"></i>
         </div>
-        <i class="fas fa-angle-up" style="padding-left: 60%;"></i>
-        <i class="fas fa-angle-down" style="padding-left: 60%;"></i>
+        <div class="btn" style="float: right;">
+          <i class="fas fa-angle-up" style="padding-left: 40%;"></i>
+          <i class="fas fa-angle-down" style="padding-left: 40%;"></i>
+        </div>
       </div>
     </div>
     <div id="demo" [attr.id]="'serv' + s.id" class="providers collapse col-lg-12">
@@ -48,43 +50,9 @@
       <div class="service-provider">
         <div style="background-color: rgba(0,0,0,1)"></div>
         <a [routerLink]="['/panel/provider/', s.id]">View All Providers</a>
-        <!-- add the id of the provider in this link to activate a provider in the next page -->
       </div>
     </div>
   </div>
 </div>
 
-<app-add-form modalId="modal" title="Add a Service" (formOutput)="recieveNewServiceName($event)"></app-add-form>
-
-<!-- Calling the modal component to edit -->
-
-<!-- <app-add-form modalId="modal" title="Edit Service" (formOutput)="recieveNewServiceName($event)"></app-add-form> -->
-
-
-<!-- Edit Service Modal Written Here temporarily -->
-
-<!-- <div id="modal2" class="modal fade" role="dialog">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <p>Delete Service</p>
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-      </div>
-      <div class="modal-body">
-
-        <div class="row add-form-modal-row">
-          <div class="col-lg-12 col-sm-12">
-            <p>Are you sure?</p>
-          </div>
-        </div>
-
-        <div class="row add-form-modal-submit">
-          <div class="col-lg-12">
-            <button class="btn" (click)="confirmDeleteService()" style="background-color:#c13712" data-dismiss="modal">Save</button>
-          </div>
-        </div>
-      </div>
-    </div>
-
-  </div>
-</div> -->
+<app-add-form [values]="selectedService" (formOutput)="recieveFormData($event)"></app-add-form>

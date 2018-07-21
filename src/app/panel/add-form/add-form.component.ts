@@ -1,4 +1,11 @@
 import { Component, OnInit, Input, Output, EventEmitter } from "@angular/core";
+import {
+  FormBuilder,
+  FormGroup,
+  Validators,
+  AbstractControl
+} from "@angular/forms";
+
 import { ApiManagerService } from "../../core/services/api-manager.service";
 
 @Component({
@@ -7,29 +14,65 @@ import { ApiManagerService } from "../../core/services/api-manager.service";
   styleUrls: ["./add-form.component.css"]
 })
 export class AddFormComponent implements OnInit {
-  @Input() modalId: string;
-  @Input() title: string;
-  @Input() nameValue: string;
-  @Input() descriptionExists: boolean;
-  @Input() descriptionValue: string;
-  @Input() priceExists: boolean;
-  @Input() priceValue: string;
-  @Input() imageExists: boolean;
+  editForm: FormGroup;
 
+  @Input() values: any;
   @Output() formOutput = new EventEmitter<Object>();
-
-  fieldName = "";
-  fieldDescription = "";
-  fieldPrice = "";
   fieldImageFile: File = null;
-  fieldImageUrl = "";
 
-  constructor(private api: ApiManagerService) {}
+  constructor(private fb: FormBuilder, private api: ApiManagerService) {
+    console.log("constructor");
+  }
+
+  setForm() {
+    if (this.editForm)
+      this.editForm.setValue({
+        name: this.values.name,
+        description: this.values.description || "",
+        price: this.values.price || 0
+      });
+  }
+  ngOnChanges() {
+    this.setForm();
+  }
 
   ngOnInit() {
-    this.fieldName = this.nameValue;
-    this.fieldDescription = this.descriptionValue;
-    this.fieldPrice = this.priceValue;
+    console.log(this.values);
+    this.editForm = this.fb.group(
+      {
+        name: ["", [Validators.required]],
+        description: [""],
+        price: [""]
+      }
+      // { validator: this.priceExists }
+    );
+    this.setForm();
+  }
+
+  priceExists(c: AbstractControl): { invalid: boolean } {
+    if (this.values.price && c.get("price").value) {
+      return { invalid: true };
+    }
+  }
+
+  get name() {
+    return this.editForm.get("name");
+  }
+
+  get title() {
+    return this.editForm.get("title");
+  }
+
+  get description() {
+    return this.editForm.get("description");
+  }
+
+  get price() {
+    return this.editForm.get("price");
+  }
+
+  public onFormSubmit() {
+    this.formOutput.emit(this.values);
   }
 
   onFileSelected($event) {
@@ -39,7 +82,7 @@ export class AddFormComponent implements OnInit {
 
   onUpload() {
     const fd = new FormData();
-    fd.append("image", this.fieldImageFile, this.fieldImageFile.name);
+    fd.append("file", this.fieldImageFile, this.fieldImageFile.name);
     this.api
       .uploadImage(fd)
       .then((data: any) => {
@@ -51,12 +94,6 @@ export class AddFormComponent implements OnInit {
       });
   }
 
-  addField() {
-    this.formOutput.emit({
-      fieldName: this.fieldName,
-      fieldDescription: this.fieldDescription,
-      fieldPrice: this.fieldPrice,
-      fieldImageUrl: this.fieldImageUrl
-    });
-  }
+  // addField() {
+  // }
 }

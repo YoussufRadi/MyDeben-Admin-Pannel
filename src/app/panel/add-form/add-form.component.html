@@ -1,54 +1,51 @@
-<div id="modal" [attr.id]="modalId" class="modal fade" role="dialog">
+<div id="modal" id="modal" class="modal fade" role="dialog">
   <div class="modal-dialog">
     <div class="modal-content">
+
       <div class="modal-header">
-        <p>{{title}}</p>
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <a class="modal-title" style="margin-left: 40%;">{{values.title || 'Confirm'}}</a>
+        <button type="button" class="close chover" data-dismiss="modal">&times;</button>
       </div>
       <div class="modal-body">
-
-        <div class="row add-form-modal-row">
-          <div class="col-lg-4 col-sm-12">
-            <p>Field Name:</p>
-          </div>
-          <div class="col-lg-6 col-sm-12">
-            <input type="text" [(ngModel)]="fieldName" />
-          </div>
-        </div>
-
-        <div class="row add-form-modal-row" *ngIf="priceExists">
-          <div class="col-lg-4 col-sm-12">
-            <p>Field Price:</p>
-          </div>
-          <div class="col-lg-8 col-sm-12">
-            <input type="text" [(ngModel)]="fieldPrice" />
-          </div>
-        </div>
-
-        <div class="row add-form-modal-row" *ngIf="descriptionExists">
-          <div class="col-lg-12">
-            <p>Field Description:</p>
-          </div>
-          <div class="col-lg-12">
-            <textarea type="text" [(ngModel)]="fieldDescription"></textarea>
-          </div>
-        </div>
-
-        <div class="row add-form-modal-row" *ngIf="imageExists">
-          <div class="col-lg-8">
-            <input type="file" (change)="onFileSelected($event)" />
-          </div>
-          <div class="col-lg-4">
-            <button class="btn upload-btn" (click)="onUpload()">Upload</button>
-          </div>
-        </div>
-
-        <div class="row add-form-modal-submit">
-          <div class="col-lg-12">
-            <button class="btn" (click)="addField()" data-dismiss="modal">Save</button>
-          </div>
-        </div>
+        <form class="form-horizontal container" [formGroup]="editForm" (ngSubmit)="onFormSubmit()">
+          <fieldset>
+            <div class="form-group col-lg-8">
+              <label for="inputName" class="control-label">Name</label>
+              <input type="text" class="form-control" id="inputName" formControlName="name">
+            </div>
+            <div class="form-group col-lg-8" *ngIf="values.description">
+              <label for="inputDescription" class="control-label">Description</label>
+              <input type="text" formControlName="description" id="inputDescription" class="form-control">
+            </div>
+            <div class="form-group col-lg-8" *ngIf="values.price">
+              <label for="inputPrice" class="control-label">Price</label>
+              <input type="number" formControlName="price" id="inputPrice" class="form-control">
+            </div>
+            <div class="row add-form-modal-row" *ngIf="values.image">
+              <div class="col-lg-8">
+                <input type="file" (change)="onFileSelected($event)" />
+              </div>
+              <div class="col-lg-4">
+                <button class="btn upload-btn" (click)="onUpload()">Upload</button>
+              </div>
+            </div>
+            <div class="service-provider">
+              <img src="" [attr.src]="p.picture">
+              <div></div>
+              <a>{{ p.name | titlecase }}</a>
+            </div>
+            <div class="form-group col-lg-8 submit-register">
+              <button type="submit" [disabled]="!editForm.valid" class="form-submit-button btn btn-primary confirm">Edit</button>
+            </div>
+          </fieldset>
+        </form>
       </div>
+      <!-- 
+      <div class="row add-form-modal-submit">
+        <div class="col-lg-12">
+          <button class="btn" (click)="addField()" data-dismiss="modal">Save</button>
+        </div>
+      </div> -->
     </div>
 
   </div>

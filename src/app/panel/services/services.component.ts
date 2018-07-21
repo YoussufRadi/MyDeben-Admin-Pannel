@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { ApiManagerService } from "../../core/services/api-manager.service";
 import { DialogService } from "ng2-bootstrap-modal";
 import { TextModalComponent } from "../../core/text-modal/text-modal.component";
+import { log } from "util";
 
 @Component({
   selector: "app-services",
@@ -12,8 +13,10 @@ export class ServicesComponent implements OnInit {
   serviceNames: any[] = [];
   serviceList: any[] = [];
   selectedService = {
-    name: "",
-    id: -1
+    name: "test",
+    title: "test",
+    description: "description",
+    price: 40
   };
 
   constructor(
@@ -61,39 +64,29 @@ export class ServicesComponent implements OnInit {
     this.fetchServices();
   }
 
-  recieveNewServiceName($event) {
-    console.log($event);
-    this.api
-      .addAService({
-        name: $event.fieldName
-      })
-      .then((data: any) => {
-        console.log(data);
-        this.fetchServices();
-      })
-      .catch(err => {
-        this.showError("Adding Service Failed", err.error.detail);
-      });
-  }
-
-  recieveEditedServiceName($event) {
-    console.log($event);
-  }
-
-  editService(service) {
-    this.selectedService = {
-      name: service.name,
-      id: service.id
+  clearSelected() {
+    const values = {
+      name: "test",
+      title: "test",
+      description: "description",
+      price: 40,
+      image: true
     };
+    this.selectedService = values;
   }
 
-  saveEditService() {
-    console.log(this.selectedService.id);
+  recieveFormData($event) {
+    console.log($event);
+  }
 
+  setValue(value) {
+    this.selectedService = value;
+    console.log(this.selectedService);
+  }
+
+  editService(id, value) {
     this.api
-      .editService(this.selectedService.id, {
-        name: this.selectedService.name
-      })
+      .editService(id, value)
       .then(data => {
         console.log(data);
         this.fetchServices();
@@ -103,17 +96,9 @@ export class ServicesComponent implements OnInit {
       });
   }
 
-  deleteService(service) {
-    this.selectedService = {
-      name: service.name,
-      id: service.id
-    };
-    console.log("delete");
-  }
-
-  confirmDeleteService() {
+  deleteService(id) {
     this.api
-      .deleteService(this.selectedService.id)
+      .deleteService(id)
       .then(data => {
         console.log(data);
         this.fetchServices();
