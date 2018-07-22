@@ -89,3 +89,8 @@
 .arrow-toggle .fa-angle-down {
   display: none;
 }
+
+.ahover:hover {
+  text-decoration: underline !important;
+  cursor: pointer;
+}

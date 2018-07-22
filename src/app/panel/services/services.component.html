@@ -41,15 +41,22 @@
         <p>{{ s.name | titlecase }}</p>
       </div>
       <div *ngFor="let p of serviceList[i]; let j = index">
-        <div *ngIf="j < 3" class="service-provider">
+        <div *ngIf="j < 4" class="service-provider">
           <img src="" [attr.src]="p.picture">
           <div></div>
           <a>{{ p.name | titlecase }}</a>
         </div>
       </div>
-      <div class="service-provider">
+      <div class="service-provider" *ngIf="serviceList[i] && serviceList[i].length > 3">
         <div style="background-color: rgba(0,0,0,1)"></div>
         <a [routerLink]="['/panel/provider/', s.id]">View All Providers</a>
+      </div>
+      <div class="service-provider" *ngIf="!serviceList[i] || serviceList[i].length <= 3" data-toggle="modal" data-target="#modal"
+        (click)="clearSelectedProvider(serviceNames[i].id)">
+        <div style="background-color: rgba(0,0,0,1)"></div>
+        <a class="ahover">
+          <i class="fas fa-plus"></i>
+          Add Provider</a>
       </div>
     </div>
   </div>

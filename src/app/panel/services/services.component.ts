@@ -76,7 +76,8 @@ export class ServicesComponent implements OnInit {
     this.auth.setSidebarValue(2);
   }
 
-  clearSelectedProvider() {
+  selectedServiceId;
+  clearSelectedProvider(sid) {
     const values = {
       id: -1,
       title: "Add a new Provider",
@@ -86,6 +87,7 @@ export class ServicesComponent implements OnInit {
       picture: " "
     };
     this.selectedService = values;
+    this.selectedServiceId = sid;
   }
 
   clearSelectedService() {
@@ -103,7 +105,8 @@ export class ServicesComponent implements OnInit {
   recieveFormData($event) {
     if ($event.id == -1) {
       delete $event.id;
-      if ($event.picture) this.addProvider({ ...$event });
+      if ($event.picture)
+        this.addProvider({ ...$event, service_id: this.selectedServiceId });
       else this.addService($event);
     } else this.editService($event);
   }
