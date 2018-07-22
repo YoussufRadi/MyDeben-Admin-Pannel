@@ -15,7 +15,7 @@
       </select>
     </div>
     <div>
-      <input class="collapse search" id="search" type="text" />
+      <input class="collapse search" id="search" type="text" [(ngModel)]="searchText" placeholder="Search" />
     </div>
     <div>
       <a id="hover" data-toggle="collapse" data-target="#search">
@@ -24,7 +24,7 @@
     </div>
   </div>
 </div>
-<div *ngFor="let order of orders">
+<div *ngFor="let order of orders | search : 'user_name':searchText">
   <div id="currentOrderBody" class="row">
     <div class="col-s-2 col-md-2 col-lg-2">
       <a>

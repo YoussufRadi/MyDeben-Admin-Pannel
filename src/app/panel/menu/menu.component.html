@@ -2,7 +2,7 @@
   <div class="col">
     <h5>Menu</h5>
     <div>
-      <input class="collapse search" id="search" type="text" />
+      <input class="collapse search" id="search" type="text" [(ngModel)]="searchText" placeholder="Search" />
     </div>
     <div>
       <a id="hover" data-toggle="collapse" data-target="#search">
@@ -41,7 +41,7 @@
         <i class="fas fa-plus"></i> Add Item</u>
     </a>
   </div>
-  <div id="category" *ngFor="let product of products; let i = index;">
+  <div id="category" *ngFor="let product of products | search : 'name':searchText; let i = index;">
     <div id="category-header">
       <a>Item {{i+1}}</a>
       <div class="side-buttons">

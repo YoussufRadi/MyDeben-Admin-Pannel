@@ -12,7 +12,7 @@
       </select>
     </div>
     <div>
-      <input class="collapse search" id="search" type="text" />
+      <input class="collapse search" id="search" type="text" [(ngModel)]="searchText" placeholder="Search" />
     </div>
     <div>
       <a id="hover" data-toggle="collapse" data-target="#search">
@@ -34,7 +34,7 @@
   </div>
 </div>
 
-<div *ngFor="let user of users">
+<div *ngFor="let user of users | search : 'name':searchText">
   <div id="checkOutBody">
     <div class="right">
       <a>{{user.name | titlecase}}- Ref: {{user.checkin_store_ref | uppercase}}</a>
