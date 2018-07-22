@@ -28,7 +28,7 @@
     </li>
     <li class="nav-item">
       <button class="btn add-service-btn" data-toggle="modal" data-target="#modal" (click)="clearSelectedService()">
-        <i class="fas fa-plus" data-toggle="collapse" data-target="#search"></i>
+        <i class="fas fa-plus"></i>
         <u> Add Category</u>
       </button>
     </li>
@@ -55,7 +55,7 @@
       <a>{{provider.name | titlecase}}</a>
     </div>
     <div id="category-footer">
-      <i class="fas fa-star" *ngIf="!provider.gem"></i>
+      <i class="fas fa-star" *ngIf="provider.gem"></i>
       <a style="align-self: left;" [routerLink]="'/panel/category/'+provider.id">Check Menu</a>
     </div>
   </div>

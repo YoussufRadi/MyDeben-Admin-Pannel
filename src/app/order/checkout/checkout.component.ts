@@ -3,6 +3,7 @@ import { OrderApiService } from "../services/order-api.service";
 import { DialogService } from "ng2-bootstrap-modal";
 
 import { TextModalComponent } from "../../core/text-modal/text-modal.component";
+import { AuthenticationService } from "../../core/services/authentication.service";
 
 @Component({
   selector: "app-checkout",
@@ -19,7 +20,8 @@ export class CheckoutComponent implements OnInit {
 
   constructor(
     private api: OrderApiService,
-    private dialogService: DialogService
+    private dialogService: DialogService,
+    private auth: AuthenticationService
   ) {}
 
   showError(title, message) {
@@ -44,6 +46,7 @@ export class CheckoutComponent implements OnInit {
   };
 
   ngOnInit() {
+    this.auth.setSidebarValue(3);
     this.fetch();
   }
 

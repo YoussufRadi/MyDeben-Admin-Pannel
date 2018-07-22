@@ -6,6 +6,7 @@ import {
   ActivatedRoute,
   Router
 } from "../../../../node_modules/@angular/router";
+import { AuthenticationService } from "../../core/services/authentication.service";
 
 @Component({
   selector: "app-providers",
@@ -19,15 +20,15 @@ export class ProvidersComponent implements OnInit {
     id: -1,
     title: "Add a new Item",
     name: "",
-    description: "",
-    price: 0,
+    description: undefined,
+    price: undefined,
     picture: " "
   };
   constructor(
     private api: ApiManagerService,
     private dialogService: DialogService,
     private activeRouter: ActivatedRoute,
-    private router: Router
+    private auth: AuthenticationService
   ) {}
 
   showError(title, message) {
@@ -70,6 +71,7 @@ export class ProvidersComponent implements OnInit {
   }
   paramId;
   ngOnInit() {
+    this.auth.setSidebarValue(2);
     this.fetchServices();
     this.activeRouter.params.subscribe(id => {
       this.paramId = this.activeRouter.snapshot.params.id;
@@ -118,8 +120,9 @@ export class ProvidersComponent implements OnInit {
   }
 
   addProvider(value) {
+    const provider_id = this.activeRouter.snapshot.params.id;
     this.api
-      .addProvider(value)
+      .addProvider({ ...value, provider_id })
       .then(data => {
         this.showError("Added Successfully", "New Provider was added");
         this.fetchProviders(this.paramId);
@@ -161,9 +164,8 @@ export class ProvidersComponent implements OnInit {
   }
 
   addService(value) {
-    const provider_id = this.activeRouter.snapshot.params.id;
     this.api
-      .addService({ ...value, provider_id })
+      .addService(value)
       .then(data => {
         this.showError("Added Successfully", "New Service was added");
         this.fetchServices().then(() => {
@@ -182,7 +184,6 @@ export class ProvidersComponent implements OnInit {
   }
 
   editService(value) {
-    const provider_id = this.activeRouter.snapshot.params.id;
     this.api
       .editService(value.id, value)
       .then(data => {
@@ -198,15 +199,12 @@ export class ProvidersComponent implements OnInit {
   deleteService(id) {
     this.showConfirm().subscribe(res => {
       if (res) {
-        const provider_id = this.activeRouter.snapshot.params.id;
         this.api
           .deleteService(id)
           .then(data => {
             this.showError("Deleted Successfully", "Service was deleted");
             this.fetchServices().then(() => {
               if (this.services.length > 0) {
-                console.log(this.services[0].id);
-                // this.router.navigate["/pannel/provider/" + this.services[0].id];
                 this.paramId = this.services[0].id;
               }
             });

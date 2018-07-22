@@ -3,6 +3,7 @@ import { ActivatedRoute } from "@angular/router";
 import { ApiManagerService } from "../../core/services/api-manager.service";
 import { DialogService } from "ng2-bootstrap-modal";
 import { TextModalComponent } from "../../core/text-modal/text-modal.component";
+import { AuthenticationService } from "../../core/services/authentication.service";
 
 @Component({
   selector: "app-menu",
@@ -26,7 +27,8 @@ export class MenuComponent implements OnInit {
   constructor(
     private api: ApiManagerService,
     private dialogService: DialogService,
-    private activeRouter: ActivatedRoute
+    private activeRouter: ActivatedRoute,
+    private auth: AuthenticationService
   ) {}
 
   showError(title, message) {
@@ -78,6 +80,7 @@ export class MenuComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.auth.setSidebarValue(2);
     this.activeRouter.params.subscribe(() => {
       this.paramId = this.activeRouter.snapshot.params.id;
       this.fetchCategories(this.paramId, true);

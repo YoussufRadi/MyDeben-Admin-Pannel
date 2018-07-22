@@ -3,6 +3,7 @@ import { OrderApiService } from "../services/order-api.service";
 import { DialogService } from "ng2-bootstrap-modal";
 
 import { TextModalComponent } from "../../core/text-modal/text-modal.component";
+import { AuthenticationService } from "../../core/services/authentication.service";
 @Component({
   selector: "app-order-requests",
   templateUrl: "./order-requests.component.html",
@@ -12,7 +13,8 @@ export class OrderRequestsComponent implements OnInit {
   orders: any[];
   constructor(
     private api: OrderApiService,
-    private dialogService: DialogService
+    private dialogService: DialogService,
+    private auth: AuthenticationService
   ) {}
 
   showError(title, message) {
@@ -60,6 +62,7 @@ export class OrderRequestsComponent implements OnInit {
       });
   };
   ngOnInit() {
+    this.auth.setSidebarValue(1);
     this.fetch();
   }
 }

@@ -5,6 +5,7 @@ import { DialogService } from "ng2-bootstrap-modal";
 import { OrderApiService } from "../services/order-api.service";
 import { TextModalComponent } from "../../core/text-modal/text-modal.component";
 import { CodegenComponentFactoryResolver } from "../../../../node_modules/@angular/core/src/linker/component_factory_resolver";
+import { AuthenticationService } from "../../core/services/authentication.service";
 
 @Component({
   selector: "app-generate",
@@ -19,7 +20,8 @@ export class GenerateComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private dialogService: DialogService,
-    private api: OrderApiService
+    private api: OrderApiService,
+    private auth: AuthenticationService
   ) {}
 
   showError(title, message) {
@@ -30,6 +32,7 @@ export class GenerateComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.auth.setSidebarValue(0);
     this.generateForm = this.fb.group({
       ref: ["", [Validators.required]],
       date: ["", [Validators.required]]

@@ -1,8 +1,8 @@
 <div id="orderHeader" class="row">
   <div class="col">
     <h5>Services</h5>
-    <button class="btn add-service-btn" data-toggle="modal" data-target="#modal" (click)="clearSelected()">
-      <i class="fas fa-plus" data-toggle="collapse" data-target="#modal"></i>
+    <button class="btn add-service-btn" data-toggle="modal" data-target="#modal" (click)="clearSelectedService()">
+      <i class="fas fa-plus"></i>
       <u> Add Service</u>
     </button>
     <div>
@@ -21,11 +21,11 @@
     <div class="service-btn btn col-lg-12 arrow-toggle" data-toggle="collapse" data-target="#demo" [attr.data-target]="'#serv' + s.id">
       <a>{{ s.name | titlecase}}</a>
       <div class="side-buttons">
-        <div class="btn" data-toggle="modal" data-target="#modal">
-          <i class="far fa-edit" (click)="setValue(s)"></i>
+        <div class="btn" data-toggle="modal" data-target="#modal" (click)="setValue(s)">
+          <i class="far fa-edit"></i>
         </div>
-        <div class="btn" data-toggle="modal" data-target="#modal">
-          <i class="far fa-trash-alt" (click)="deleteService(s)" style="color:#c13712"></i>
+        <div class="btn">
+          <i class="far fa-trash-alt" (click)="deleteService(s.id)" style="color:#c13712"></i>
         </div>
         <div class="btn" style="float: right;">
           <i class="fas fa-angle-up" style="padding-left: 40%;"></i>
