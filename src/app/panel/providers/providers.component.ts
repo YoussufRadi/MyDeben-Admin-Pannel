@@ -2,10 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { ApiManagerService } from "../../core/services/api-manager.service";
 import { DialogService } from "ng2-bootstrap-modal";
 import { TextModalComponent } from "../../core/text-modal/text-modal.component";
-import {
-  ActivatedRoute,
-  Router
-} from "../../../../node_modules/@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 import { AuthenticationService } from "../../core/services/authentication.service";
 
 @Component({

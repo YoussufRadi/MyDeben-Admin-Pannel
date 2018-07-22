@@ -6,7 +6,7 @@
       <u> Add Service</u>
     </button>
     <div>
-      <input class="collapse search" id="search" type="text" />
+      <input class="collapse search" id="search" type="text" [(ngModel)]="searchText" placeholder="search text goes here" />
     </div>
     <div>
       <a id="hover" data-toggle="collapse" data-target="#search">
@@ -17,7 +17,7 @@
 </div>
 
 <div class="container">
-  <div class="row" *ngFor="let s of serviceNames; let i = index;">
+  <div class="row" *ngFor="let s of serviceNames | search : 'name':searchText; let i = index;">
     <div class="service-btn btn col-lg-12 arrow-toggle" data-toggle="collapse" data-target="#demo" [attr.data-target]="'#serv' + s.id">
       <a>{{ s.name | titlecase}}</a>
       <div class="side-buttons">

@@ -4,7 +4,7 @@ import { DialogService } from "ng2-bootstrap-modal";
 
 import { OrderApiService } from "../services/order-api.service";
 import { TextModalComponent } from "../../core/text-modal/text-modal.component";
-import { CodegenComponentFactoryResolver } from "../../../../node_modules/@angular/core/src/linker/component_factory_resolver";
+import { CodegenComponentFactoryResolver } from "@angular/core/src/linker/component_factory_resolver";
 import { AuthenticationService } from "../../core/services/authentication.service";
 
 @Component({

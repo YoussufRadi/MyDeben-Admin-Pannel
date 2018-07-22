@@ -8,10 +8,7 @@ import { OrderApiService } from "./services/order-api.service";
 import { CheckoutComponent } from "./checkout/checkout.component";
 import { ReportsComponent } from "./reports/reports.component";
 import { GenerateComponent } from "./generate/generate.component";
-import {
-  FormsModule,
-  ReactiveFormsModule
-} from "../../../node_modules/@angular/forms";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 
 @NgModule({
   imports: [
