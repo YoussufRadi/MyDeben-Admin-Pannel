@@ -83,7 +83,7 @@
                 <p>{{order.name}}</p>
               </div>
               <div class="col-lg-3">
-                <p>{{order.price}}</p>
+                <p>{{order.price | currency:'USD'}}</p>
               </div>
             </div>
 
@@ -93,7 +93,7 @@
                 <p>Orders Total</p>
               </div>
               <div class="col-lg-3">
-                <p>{{selectedUserTotal}}</p>
+                <p>{{selectedUserTotal | currency:'USD'}}</p>
               </div>
             </div>
             <div class="row">
@@ -101,18 +101,16 @@
                 <p>Total Due</p>
               </div>
               <div class="col-lg-3">
-                <p>{{selectedUserTotalDue}}</p>
+                <p>{{selectedUserTotalDue | currency:'USD'}}</p>
               </div>
             </div>
           </div>
         </div>
         <div class="col-lg-12 print-reciept">
-          <button style="margin-bottom: 10px;" type="button" class="btn btn-outline-danger">Checkout</button>
+          <button style="margin-bottom: 10px;" type="button" class="btn btn-outline-danger" data-dismiss="modal" (click)="checkout(selectedUser.id)">Checkout</button>
           <button type="button" class="btn btn-primary">Print Reciept</button>
         </div>
       </div>
-
     </div>
-
   </div>
 </div>

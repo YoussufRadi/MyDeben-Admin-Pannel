@@ -32,6 +32,14 @@ export class CheckoutComponent implements OnInit {
     });
   }
 
+  showConfirm() {
+    return this.dialogService.addDialog(TextModalComponent, {
+      title: "Are you sure?",
+      message: "Press YES if you want to delete selected",
+      confirm: true
+    });
+  }
+
   fetch = () => {
     this.api
       .checkedInUsers()
@@ -59,7 +67,6 @@ export class CheckoutComponent implements OnInit {
 
   selectUser(user) {
     this.selectedUser = user;
-    console.log(this.selectedUser);
     this.api
       .getUserTotalOrders(this.selectedUser.id)
       .then((data: any) => {
@@ -71,5 +78,24 @@ export class CheckoutComponent implements OnInit {
         console.log(err);
         this.showError("Fetching User Details Failed", err);
       });
+  }
+
+  checkout(id) {
+    this.showConfirm().subscribe(res => {
+      if (res)
+        this.api
+          .checkoutUser(id)
+          .then((data: any) => {
+            this.showError(
+              "Checkout Succeded",
+              "User was successfuly checkout"
+            );
+            this.fetch();
+          })
+          .catch(err => {
+            console.log(err);
+            this.showError("Checkout Failed", err);
+          });
+    });
   }
 }

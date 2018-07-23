@@ -11,11 +11,20 @@ export class OrderApiService {
     this.http
       .get("/api/store/generate/" + type + "/" + ref + "/" + date)
       .toPromise();
+
   currentOrders = () => this.http.get("/api/store/order/current").toPromise();
+
   checkedInUsers = () => this.http.get("/api/store/users").toPromise();
+
   allOrders = () => this.http.get("/api/store/order").toPromise();
+
   serve = id => this.http.get("/api/store/order/serve/" + id).toPromise();
+
   cancel = id => this.http.get("/api/store/order/cancel/" + id).toPromise();
+
   getUserTotalOrders = userId =>
     this.http.get("/api/store/users/" + userId).toPromise();
+
+  checkoutUser = userId =>
+    this.http.get("/api/store/checkout?userId=" + userId).toPromise();
 }
