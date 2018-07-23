@@ -42,9 +42,9 @@
     <div class="middle">
       <a>{{user.checkout_date | date:'mediumDate'}}</a>
     </div>
-    <div class="left">
-      <a data-toggle="modal" (click)="selectUser(user)" data-target="#recieptModal">View Receipt</a>
-    </div>
+    <!-- <div class="left"> -->
+    <button class="btn-success left" data-toggle="modal" (click)="selectUser(user)" data-target="#recieptModal">View Receipt</button>
+    <!-- </div> -->
   </div>
 </div>
 
@@ -52,37 +52,34 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <p>Price Breakdown</p>
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <a class="modal-title" style="margin-left: 35%;">Price Breakdown</a>
+        <button type="button" class="close chover" data-dismiss="modal">&times;</button>
       </div>
       <div class="modal-body">
         <div class="row">
-          <div class="col-lg-3">
+          <div class="col-lg-4">
             <p>Name: </p>
           </div>
-          <div class="col-lg-9">
+          <div class="col-lg-8">
             <p>{{selectedUser.name}}</p>
           </div>
         </div>
-
-        <!-- <div class="row">
-          <div class="col-lg-3">
-            <p>Room: </p>
-          </div>
-          <div class="col-lg-9">
-            <p>[Room Number]</p>
-          </div>
-        </div> -->
-
         <div class="row">
-          <div class="col-lg-3">
+          <div class="col-lg-4">
+            <p>Ref: </p>
+          </div>
+          <div class="col-lg-8">
+            <p>{{selectedUser.checkin_store_ref}}</p>
+          </div>
+        </div>
+        <hr>
+        <div class="row">
+          <div class="col-lg-4">
             <p>Price Details: </p>
           </div>
-
-          <div class="col-lg-9">
-
+          <div class="col-lg-8">
             <div class="row" *ngFor="let order of selectedUserOrders">
-              <div class="col-lg-3">
+              <div class="col-lg-6">
                 <p>{{order.name}}</p>
               </div>
               <div class="col-lg-3">
@@ -91,25 +88,28 @@
             </div>
 
             <hr>
-
             <div class="row">
-              <div class="col-lg-3">
-                <p>Total</p>
+              <div class="col-lg-6">
+                <p>Orders Total</p>
               </div>
               <div class="col-lg-3">
                 <p>{{selectedUserTotal}}</p>
               </div>
             </div>
-
+            <div class="row">
+              <div class="col-lg-6">
+                <p>Total Due</p>
+              </div>
+              <div class="col-lg-3">
+                <p>{{selectedUserTotalDue}}</p>
+              </div>
+            </div>
           </div>
         </div>
-
-        <div class="row">
-          <div class="col-lg-12 print-reciept">
-            <button class="btn">Print Reciept</button>
-          </div>
+        <div class="col-lg-12 print-reciept">
+          <button style="margin-bottom: 10px;" type="button" class="btn btn-outline-danger">Checkout</button>
+          <button type="button" class="btn btn-primary">Print Reciept</button>
         </div>
-
       </div>
 
     </div>

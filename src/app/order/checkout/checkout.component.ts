@@ -17,6 +17,7 @@ export class CheckoutComponent implements OnInit {
   };
   selectedUserOrders: any[];
   selectedUserTotal: number = 0;
+  selectedUserTotalDue: number = 0;
 
   constructor(
     private api: OrderApiService,
@@ -52,9 +53,7 @@ export class CheckoutComponent implements OnInit {
 
   getTotal() {
     let total = 0;
-    if (this.selectedUserOrders.length > 0) {
-      this.selectedUserOrders.forEach(x => (total += x.total_price));
-    }
+    this.selectedUserOrders.forEach(x => (total += x.total_price));
     return total;
   }
 
@@ -64,11 +63,13 @@ export class CheckoutComponent implements OnInit {
     this.api
       .getUserTotalOrders(this.selectedUser.id)
       .then((data: any) => {
-        this.selectedUserOrders = data.oredrs; // to be corrected!
+        this.selectedUserOrders = data.orders;
+        this.selectedUserTotalDue = data.total;
         this.selectedUserTotal = this.getTotal();
       })
       .catch(err => {
-        this.showError("error", "error");
+        console.log(err);
+        this.showError("Fetching User Details Failed", err);
       });
   }
 }

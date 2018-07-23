@@ -36,16 +36,11 @@
 .left {
   background-color: #74c11d;
   width: 40%;
-  text-align: center;
+  line-height: 50px;
 }
 
 .leftUp {
   width: 40%;
-}
-
-.left a {
-  line-height: 55px;
-  color: #ffffff;
 }
 
 .leftUp a {
@@ -54,6 +49,7 @@
 
 .left:hover {
   cursor: pointer;
+  background: #6c973b;
 }
 
 .middle {
@@ -82,8 +78,22 @@
 }
 
 .print-reciept .btn {
-  background-color: #085cfc;
-  color: #fff;
   border-radius: 0;
-  width: 80%;
+  width: 100%;
+  margin-bottom: 1%;
+}
+.modal-header {
+  font-family: AvenirNext;
+  font-size: 20px !important;
+  font-weight: bold;
+  color: #fff;
+  background-color: #000000 !important;
+}
+
+.chover {
+  color: white;
+}
+
+.chover:hover {
+  color: red;
 }
