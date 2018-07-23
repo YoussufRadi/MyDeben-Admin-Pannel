@@ -87,6 +87,10 @@ export class RegisterComponent implements OnInit {
           this.authentication.login(data.token);
           this.authentication.setAccountText("Log Out");
           this.authentication.setSidebarValue(0);
+          this.showError(
+            "Sign Up Succeded",
+            "Account now created, please login with your new account"
+          );
         })
         .catch(err => {
           console.log(err);

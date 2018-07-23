@@ -53,7 +53,6 @@ export class GenerateComponent implements OnInit {
       this.api
         .generate("code", value.ref, value.date)
         .then((data: any) => {
-          console.log(data);
           this.image = data.code;
         })
         .catch(err => {
@@ -63,7 +62,6 @@ export class GenerateComponent implements OnInit {
       this.api
         .generate("token", value.ref, value.date)
         .then((data: any) => {
-          console.log(data);
           this.code = data.token;
         })
         .catch(err => {

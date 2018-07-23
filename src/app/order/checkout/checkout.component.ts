@@ -44,8 +44,6 @@ export class CheckoutComponent implements OnInit {
     this.api
       .checkedInUsers()
       .then((data: any) => {
-        console.log(data);
-
         this.users = data.users;
       })
       .catch(err => {

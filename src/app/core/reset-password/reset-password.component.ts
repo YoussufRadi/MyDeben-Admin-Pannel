@@ -72,7 +72,10 @@ export class ResetPasswordComponent implements OnInit {
           password: this.user.password.pwd
         })
         .then((data: any) => {
-          console.log(data);
+          this.showError(
+            "Reset Password Succeded",
+            "Please Login with your new password"
+          );
         })
         .catch(err => {
           console.log(err);
