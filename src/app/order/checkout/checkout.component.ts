@@ -96,4 +96,53 @@ export class CheckoutComponent implements OnInit {
           });
     });
   }
+
+  print(): void {
+    let printContents, popupWin;
+    printContents = document.getElementById("print-section").innerHTML;
+    popupWin = window.open("", "_blank", "top=0,left=0,height=100%,width=auto");
+    popupWin.document.open();
+    popupWin.document.write(`
+      <html>
+        <head>
+          <title>Reciept</title>
+          <style>
+            .modal-title{
+                  display: none;
+            }
+            .print-reciept{
+              display: none
+            }
+            .row {
+                  display: flex;
+                justify-content: space-around;
+            }
+            .col-lg-3 {
+                flex: 0 0 25%;
+                max-width: 25%;
+            }
+            .col-lg-6 {
+                flex: 0 0 50%;
+                max-width: 50%;
+            }
+            .col-lg-4 {
+                flex: 0 0 33.333333%;
+                max-width: 33.333333%;
+            .col-lg-8 {
+                flex: 0 0 66.666667%;
+                max-width: 66.666667%;
+            }
+            .modal-body[_ngcontent-c11] {
+                padding: 20px 50px 20px 50px;
+            }
+            .modal-body {
+                flex: 1 1 auto;
+                padding: 1rem;
+            }
+          </style>
+        </head>
+    <body onload="window.print();window.close()">${printContents}</body>
+      </html>`);
+    popupWin.document.close();
+  }
 }
