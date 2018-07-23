@@ -4,13 +4,13 @@
     <div>
       Sort:
     </div>
-    <div style="width: 14%;">
-      <select class="minimal">
-        <option value="" selected style="display:none" disabled>Sort</option>
-        <option>Date</option>
-        <option>Price</option>
-        <option>Quantity</option>
-        <option>Total Price</option>
+    <div style="width: 21%;font-size: 13px;">
+      <select class="minimal" [(ngModel)]="sort">
+        <option value="sort" selected style="display:none" disabled>Sort</option>
+        <option value="created_at">Date</option>
+        <option value="price">Price</option>
+        <option value="quantity">Quantity</option>
+        <option value="total_price">Total Price</option>
       </select>
     </div>
     <div>
@@ -42,7 +42,7 @@
   </div>
 </div>
 
-<div *ngFor="let order of orders | search : 'name':searchText">
+<div *ngFor="let order of orders | search : 'name':searchText | sort:sort:true">
   <div id="checkOutBody">
     <div class="left" style="width: 17%;">
       <a>{{order.name | titlecase}}</a>
