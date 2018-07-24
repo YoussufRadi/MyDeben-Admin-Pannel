@@ -4,8 +4,9 @@
   background-color: #f2f2f2;
   border-radius: 0;
   text-align: left;
-  padding: 10px 25px 10px 25px;
-  margin: 5px;
+  padding: 10px 25px 0px 20px;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
+  margin-top: 2%;
 }
 
 .add-service-btn {
@@ -18,11 +19,10 @@
 }
 
 .providers {
-  justify-content: flex-start;
-  text-align: center;
-  flex-direction: row;
-  vertical-align: middle;
-  display: flex;
+  background: #fff;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
+  margin: 0;
+  padding-top: 1%;
 }
 
 .service-provider-heading {
@@ -30,6 +30,7 @@
 }
 
 .left {
+  float: left;
   text-align: center;
   margin-top: 3%;
   margin-right: 4%;
@@ -51,6 +52,9 @@
   margin-right: 10px;
   margin-bottom: 1%;
   width: 100px;
+  // display: inline-block;
+  vertical-align: top;
+  float: left;
 }
 
 .service-provider img {
@@ -80,17 +84,25 @@
   width: 30%;
 }
 
-.arrow-toggle .fa-angle-up,
-.arrow-toggle.collapsed .fa-angle-down {
+.arrow-toggle[aria-expanded="true"] .fa-angle-up,
+.arrow-toggle .fa-angle-down {
   display: inline-block;
 }
 
-.arrow-toggle.collapsed .fa-angle-up,
-.arrow-toggle .fa-angle-down {
+.arrow-toggle .fa-angle-up,
+.arrow-toggle[aria-expanded="true"] .fa-angle-down {
   display: none;
 }
 
 .ahover:hover {
   text-decoration: underline !important;
   cursor: pointer;
+}
+
+.fa-edit:hover {
+  color: #74c11d;
+}
+
+.fa-trash-alt:hover {
+  color: #7a1919 !important;
 }

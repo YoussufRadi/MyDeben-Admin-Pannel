@@ -42,25 +42,26 @@ export class ServicesComponent implements OnInit {
     });
   }
 
-  fetchServices() {
-    this.serviceNames = [];
+  fetchServices(f) {
+    if (f) this.serviceNames = [];
     this.serviceList = [];
     this.api
       .getProvidersByService()
       .then((data: any) => {
-        Object.keys(data.providers).forEach((key: string) => {
-          if (data.providers[key].length > 0) {
-            this.serviceNames.push({
-              name: key,
-              id: data.providers[key][0].service_id
-            });
-          } else {
-            this.serviceNames.push({
-              name: key,
-              id: -1
-            });
-          }
-        });
+        if (f)
+          Object.keys(data.providers).forEach((key: string) => {
+            if (data.providers[key].length > 0) {
+              this.serviceNames.push({
+                name: key,
+                id: data.providers[key][0].service_id
+              });
+            } else {
+              this.serviceNames.push({
+                name: key,
+                id: -1
+              });
+            }
+          });
         Object.values(data.providers).forEach((val: any[]) => {
           if (val[0].id != null) this.serviceList.push(val);
         });
@@ -72,7 +73,7 @@ export class ServicesComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.fetchServices();
+    this.fetchServices(true);
     this.auth.setSidebarValue(2);
   }
 
@@ -111,8 +112,10 @@ export class ServicesComponent implements OnInit {
     } else this.editService($event);
   }
 
-  setValue(value) {
+  setValue(event, value) {
     this.selectedService = value;
+    event.stopPropagation();
+    document.getElementById("openModalButton").click();
   }
 
   addProvider(value) {
@@ -120,7 +123,7 @@ export class ServicesComponent implements OnInit {
       .addProvider(value)
       .then(data => {
         this.showError("Added Successfully", "New Provider was added");
-        this.fetchServices();
+        this.fetchServices(false);
       })
       .catch(err => {
         console.log(err);
@@ -133,7 +136,7 @@ export class ServicesComponent implements OnInit {
       .addService(value)
       .then(data => {
         this.showError("Added Successfully", "New Service was added");
-        this.fetchServices();
+        this.fetchServices(true);
       })
       .catch(err => {
         console.log(err);
@@ -146,7 +149,7 @@ export class ServicesComponent implements OnInit {
       .editService(value.id, value)
       .then(data => {
         this.showError("Edited Successfully", "Service was edited");
-        this.fetchServices();
+        this.fetchServices(true);
       })
       .catch(err => {
         console.log(err);
@@ -161,7 +164,7 @@ export class ServicesComponent implements OnInit {
           .deleteService(id)
           .then(data => {
             this.showError("Deleted Successfully", "Service was deleted");
-            this.fetchServices();
+            this.fetchServices(true);
           })
           .catch(err => {
             console.log(err);

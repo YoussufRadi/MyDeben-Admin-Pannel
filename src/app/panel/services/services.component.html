@@ -16,20 +16,21 @@
   </div>
 </div>
 
+<button id="openModalButton" [hidden]="true" data-toggle="modal" data-target="#modal">Open Modal</button>
 <div class="container">
   <div class="row" *ngFor="let s of serviceNames | search : 'name':searchText; let i = index;">
-    <div class="service-btn btn col-lg-12 arrow-toggle" data-toggle="collapse" data-target="#demo" [attr.data-target]="'#serv' + s.id">
+    <div class="service-btn btn col-lg-12 arrow-toggle" data-toggle="collapse" [attr.data-target]="'#serv' + s.id">
       <a>{{ s.name | titlecase}}</a>
       <div class="side-buttons">
-        <div class="btn" data-toggle="modal" data-target="#modal" (click)="setValue(s)">
+        <div class="btn" (click)="setValue($event,s);">
           <i class="far fa-edit"></i>
         </div>
         <div class="btn">
-          <i class="far fa-trash-alt" (click)="deleteService(s.id)" style="color:#c13712"></i>
+          <i class="far fa-trash-alt" (click)="deleteService(s.id); $event.stopPropagation()" style="color:#c13712"></i>
         </div>
         <div class="btn" style="float: right;">
-          <i class="fas fa-angle-up" style="padding-left: 40%;"></i>
           <i class="fas fa-angle-down" style="padding-left: 40%;"></i>
+          <i class="fas fa-angle-up" style="padding-left: 40%;"></i>
         </div>
       </div>
     </div>
@@ -44,17 +45,16 @@
         <div *ngIf="j < 4" class="service-provider">
           <img src="" [attr.src]="p.picture">
           <div></div>
-          <a>{{ p.name | titlecase }}</a>
+          <a [routerLink]="['/panel/category/', p.id]">{{ p.name | titlecase }}</a>
         </div>
       </div>
       <div class="service-provider" *ngIf="serviceList[i] && serviceList[i].length > 3">
         <div style="background-color: rgba(0,0,0,1)"></div>
         <a [routerLink]="['/panel/provider/', s.id]">View All Providers</a>
       </div>
-      <div class="service-provider" *ngIf="!serviceList[i] || serviceList[i].length <= 3" data-toggle="modal" data-target="#modal"
-        (click)="clearSelectedProvider(serviceNames[i].id)">
+      <div class="service-provider" *ngIf="!serviceList[i] || serviceList[i].length <= 3">
         <div style="background-color: rgba(0,0,0,1)"></div>
-        <a class="ahover">
+        <a class="ahover" data-toggle="modal" data-target="#modal" (click)="clearSelectedProvider(serviceNames[i].id)">
           <i class="fas fa-plus"></i>
           Add Provider</a>
       </div>
