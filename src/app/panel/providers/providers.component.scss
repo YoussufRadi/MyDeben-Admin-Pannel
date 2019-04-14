@@ -1,0 +1,107 @@
+@import "../../stylesheets/order.scss";
+
+.add-service-btn {
+  background-color: #74c11d;
+  height: 80%;
+  margin-left: 1%;
+  color: #fff;
+}
+
+#container {
+  background: #f2f2f2;
+  width: 100%;
+  position: absolute;
+  height: auto;
+  min-height: -webkit-fill-available;
+  margin-left: -4%;
+  padding: 3% 1% 1% 2%;
+}
+
+#category {
+  width: 300px;
+  height: 160px;
+  background: white;
+  display: inline-block;
+  vertical-align: top;
+  margin: 1%;
+}
+
+.add {
+  text-align: center;
+  line-height: 160px;
+  font-family: AvenirNext;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.add:hover {
+  cursor: pointer;
+}
+
+#category-header {
+  background: #fbfbfb;
+  padding: 3%;
+}
+
+#category-header i:hover {
+  cursor: pointer;
+  color: #74c11d;
+}
+
+#category-header .side-buttons {
+  float: right;
+  align-items: center;
+  width: 30%;
+}
+
+#category-body {
+  height: 60%;
+  padding: 7% 5% 5% 5%;
+}
+
+#category-body img {
+  width: 25%;
+  height: 90%;
+}
+
+.edit {
+  display: block;
+  font-family: AvenirNext;
+  font-size: 8px;
+  font-weight: bold;
+  padding-left: 0;
+  color: #c13712 !important;
+}
+
+.edit:hover {
+  cursor: pointer;
+}
+
+a {
+  padding-left: 25px;
+  font-family: AvenirNext;
+  font-size: 18px;
+}
+
+#category-footer {
+  width: 100%;
+  margin: -9% 0% 0% -3%;
+  padding: 10px;
+  text-align: right;
+}
+
+#category-footer i {
+  color: goldenrod;
+  float: left;
+  padding-left: 14%;
+}
+
+.service {
+  background-color: #f1f1f1 !important;
+  border-bottom-color: #f1f1f1 !important;
+  text-align: center;
+}
+
+.service:hover {
+  cursor: default;
+}

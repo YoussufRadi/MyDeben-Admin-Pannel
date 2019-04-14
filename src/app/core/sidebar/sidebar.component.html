@@ -1,0 +1,52 @@
+<!-- Sidebar  -->
+<nav id="sidebar" [ngClass]="{'active': switch}">
+    <div class="arrow" (click)="toggle()">
+        <i [hidden]="switch" id="arrow" class="fas fa-angle-left"></i>
+        <i [hidden]="!switch" id="arrow" class="fas fa-angle-right"></i>
+    </div>
+
+    <div class="sidebar-header">
+        <img src="../../../assets/Artboard Copy.png" alt="HTML5 Icon" class="sidebar-header-photo">
+    </div>
+    <ul class="list-unstyled components">
+        <div *ngIf="authentication.isAuthenticated()">
+            <li [ngClass]="{'active': selected === 0}" (click)="setSelected(0)">
+                <a routerLink="/order/generate">
+                    <i class="fas fa-qrcode"></i>
+                    <div [hidden]="switch">Generate</div>
+                </a>
+            </li>
+            <li [ngClass]="{'active': selected === 1}" (click)="setSelected(1)">
+                <a routerLink="/order/requests">
+                    <i class="fas fa-list-ul"></i>
+                    <div [hidden]="switch">Orders</div>
+                </a>
+            </li>
+            <li [ngClass]="{'active': selected === 2}" (click)="setSelected(2)">
+                <a routerLink="/panel/services">
+                    <i class="fas fa-concierge-bell"></i>
+                    <div [hidden]="switch">Services</div>
+                </a>
+            </li>
+            <li [ngClass]="{'active': selected === 3}" (click)="setSelected(3)">
+                <a routerLink="/order/checkout">
+                    <i class="fas fa-shopping-cart"></i>
+                    <div [hidden]="switch">Checkout</div>
+                </a>
+            </li>
+            <li [ngClass]="{'active': selected === 4}" (click)="setSelected(4)">
+                <a routerLink="/order/reports" [disabled]="true">
+                    <i class="fas fa-chart-line"></i>
+                    <div [hidden]="switch">Reports</div>
+                </a>
+            </li>
+        </div>
+        <li [ngClass]="{'active': selected === 5}" (click)="setSelected(5)">
+            <a routerLink="/login" [ngClass]="{'logout': authentication.isAuthenticated()}">
+                <i *ngIf="!authentication.isAuthenticated()" class="fas fa-user"></i>
+                <i *ngIf="authentication.isAuthenticated()" class="fas fa-sign-out-alt"></i>
+                <div [hidden]="switch"> {{account}}</div>
+            </a>
+        </li>
+    </ul>
+</nav>

@@ -1,0 +1,99 @@
+@import "../../stylesheets/order.scss";
+
+#checkOutHead {
+  height: 55px;
+  margin-bottom: 2%;
+  background-color: #f2f2f2;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-left: 5%;
+  flex-direction: row;
+}
+
+#checkOutHead a {
+  font-family: AvenirNext;
+  font-size: 18px;
+}
+
+#checkOutBody {
+  margin-bottom: 2%;
+  background-color: #ffffff;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
+  height: 55px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-left: 5%;
+  flex-direction: row;
+}
+
+#checkOutBody a {
+  font-family: AvenirNext;
+  font-size: 17px;
+}
+
+.left {
+  background-color: #74c11d;
+  width: 40%;
+  line-height: 50px;
+}
+
+.leftUp {
+  width: 40%;
+}
+
+.leftUp a {
+  line-height: 55px;
+}
+
+.left:hover {
+  cursor: pointer;
+  background: #6c973b;
+}
+
+.middle {
+  width: 20%;
+}
+
+.right {
+  width: 40%;
+}
+
+.modal-header {
+  text-align: center;
+  background-color: #f2f2f2;
+}
+
+.modal-header p {
+  color: #74c11d;
+}
+
+.modal-body {
+  padding: 20px 50px 20px 50px;
+}
+
+.print-reciept {
+  text-align: center;
+}
+
+.print-reciept .btn {
+  border-radius: 0;
+  width: 100%;
+  margin-bottom: 1%;
+}
+.modal-header {
+  font-family: AvenirNext;
+  font-size: 20px !important;
+  font-weight: bold;
+  color: #fff;
+  background-color: #000000 !important;
+}
+
+.chover {
+  color: white;
+}
+
+.chover:hover {
+  color: red;
+}

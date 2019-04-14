@@ -1,0 +1,65 @@
+<div id="orderHeader" class="row">
+  <div class="col">
+    <h5>Services</h5>
+    <button class="btn add-service-btn" data-toggle="modal" data-target="#modal" (click)="clearSelectedService()">
+      <i class="fas fa-plus"></i>
+      <u> Add Service</u>
+    </button>
+    <div>
+      <input class="collapse search" id="search" type="text" [(ngModel)]="searchText" placeholder="Search" />
+    </div>
+    <div>
+      <a id="hover" data-toggle="collapse" data-target="#search">
+        <i class="fas fa-search"></i>
+      </a>
+    </div>
+  </div>
+</div>
+
+<button id="openModalButton" [hidden]="true" data-toggle="modal" data-target="#modal">Open Modal</button>
+<div class="container">
+  <div class="row" *ngFor="let s of serviceNames | search : 'name':searchText; let i = index;">
+    <div class="service-btn btn col-lg-12 arrow-toggle" data-toggle="collapse" [attr.data-target]="'#serv' + s.id">
+      <a>{{ s.name | titlecase}}</a>
+      <div class="side-buttons">
+        <div class="btn" (click)="setValue($event,s);">
+          <i class="far fa-edit"></i>
+        </div>
+        <div class="btn">
+          <i class="far fa-trash-alt" (click)="deleteService(s.id); $event.stopPropagation()" style="color:#c13712"></i>
+        </div>
+        <div class="btn" style="float: right;">
+          <i class="fas fa-angle-down" style="padding-left: 40%;"></i>
+          <i class="fas fa-angle-up" style="padding-left: 40%;"></i>
+        </div>
+      </div>
+    </div>
+    <div id="demo" [attr.id]="'serv' + s.id" class="providers collapse col-lg-12">
+      <div class="left">
+        <a>
+          <p>Providers for:</p>
+        </a>
+        <p>{{ s.name | titlecase }}</p>
+      </div>
+      <div *ngFor="let p of serviceList[i]; let j = index">
+        <div *ngIf="j < 4" class="service-provider">
+          <img src="" [attr.src]="p.picture">
+          <div></div>
+          <a [routerLink]="['/panel/category/', p.id]">{{ p.name | titlecase }}</a>
+        </div>
+      </div>
+      <div class="service-provider" *ngIf="serviceList[i] && serviceList[i].length > 3">
+        <div style="background-color: rgba(0,0,0,1)"></div>
+        <a [routerLink]="['/panel/provider/', s.id]">View All Providers</a>
+      </div>
+      <div class="service-provider" *ngIf="!serviceList[i] || serviceList[i].length <= 3">
+        <div style="background-color: rgba(0,0,0,1)"></div>
+        <a class="ahover" data-toggle="modal" data-target="#modal" (click)="clearSelectedProvider(serviceNames[i].id)">
+          <i class="fas fa-plus"></i>
+          Add Provider</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-add-form [values]="selectedService" (formOutput)="recieveFormData($event)"></app-add-form>

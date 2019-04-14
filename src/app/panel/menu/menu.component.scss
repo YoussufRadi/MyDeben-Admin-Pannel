@@ -1,0 +1,117 @@
+@import "../../stylesheets/order.scss";
+
+.add-service-btn {
+  background-color: #74c11d;
+  margin-left: 5%;
+  color: #fff;
+}
+
+#container {
+  background: #f2f2f2;
+  width: 100%;
+  position: absolute;
+  height: auto;
+  min-height: -webkit-fill-available;
+  margin-left: -4%;
+  padding: 3% 1% 1% 2%;
+}
+
+#category {
+  width: 300px;
+  height: 160px;
+  background: white;
+  display: inline-block;
+  vertical-align: top;
+  margin: 1%;
+}
+
+.add {
+  text-align: center;
+  line-height: 160px;
+  font-family: AvenirNext;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.add:hover {
+  cursor: pointer;
+}
+
+#category-header {
+  background: #fbfbfb;
+  padding: 3%;
+}
+
+#category-header i:hover {
+  cursor: pointer;
+  color: #74c11d;
+}
+
+#category-header .side-buttons {
+  float: right;
+  align-items: center;
+  width: 30%;
+}
+
+#category-body {
+  height: 70%;
+  padding: 2% 0% 1% 3%;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.body-text {
+  padding-right: 8%;
+  width: 100%;
+  font-family: AvenirNext;
+  font-size: 18px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.body-description {
+  height: 80%;
+  overflow: scroll;
+}
+
+.body-description p {
+  font-family: AvenirNext;
+  font-size: 15px;
+  color: #95989a;
+  padding: 2% 2% 0% 8%;
+}
+
+#category-body img {
+  width: 25%;
+  margin-top: 3%;
+  height: 70%;
+}
+
+.edit {
+  display: block;
+  font-family: AvenirNext;
+  font-size: 8px;
+  font-weight: bold;
+  padding-left: 0;
+  color: #c13712 !important;
+}
+
+.edit:hover {
+  cursor: pointer;
+}
+
+a {
+  padding-left: 25px;
+  font-family: AvenirNext;
+  font-size: 18px;
+}
+
+.service {
+  background-color: #f1f1f1 !important;
+  border-bottom-color: #f1f1f1 !important;
+  text-align: center;
+}
+
+.service:hover {
+  cursor: default;
+}

@@ -1,0 +1,65 @@
+<div id="orderHeader" class="row">
+  <div class="col">
+    <h5>Service Providers</h5>
+    <div>
+      <input class="collapse search" id="search" type="text" [(ngModel)]="searchText" placeholder="Search" />
+    </div>
+    <div>
+      <a id="hover" data-toggle="collapse" data-target="#search">
+        <i class="fas fa-search"></i>
+      </a>
+    </div>
+  </div>
+</div>
+
+<nav class="nav">
+  <ul class="nav nav-tabs" style="border: 0 !important">
+    <li class="nav-item" *ngFor="let service of services">
+      <a class="nav-link" [routerLink]="'/panel/provider/'+service.id" [ngClass]="{'active': service.id == paramId, 'service': service.id == paramId}"
+        style="height: 100%; padding-bottom: 0; padding-top: 2%;">
+        {{service.name | titlecase}}
+        <a style="margin-bottom: 2px" class="edit" data-toggle="modal" data-target="#modal" *ngIf="service.id == paramId" (click)="setValue(service)">
+          <u>Edit Service</u>
+        </a>
+        <a class="edit" *ngIf="service.id == paramId" (click)="deleteService(service.id)">
+          <u>Delete Service</u>
+        </a>
+      </a>
+    </li>
+    <li class="nav-item">
+      <button class="btn add-service-btn" data-toggle="modal" data-target="#modal" (click)="clearSelectedService()">
+        <i class="fas fa-plus"></i>
+        <u> Add Category</u>
+      </button>
+    </li>
+  </ul>
+</nav>
+
+<div id="container">
+  <div id="category" class="add">
+    <a data-toggle="modal" data-target="#modal" (click)="clearSelectedProvider()">
+      <u>
+        <i class="fas fa-plus"></i> Add Item</u>
+    </a>
+  </div>
+  <div id="category" *ngFor="let provider of providers | search : 'name':searchText; let i = index;">
+    <div id="category-header">
+      <a>Provider {{i+1}}</a>
+      <div class="side-buttons">
+        <i class="far fa-edit" style="margin-right: 40%;" (click)="setValue(provider)" data-toggle="modal" data-target="#modal"></i>
+        <i class="far fa-trash-alt" (click)="deleteProvider(provider.id)" style="color:#c13712"></i>
+      </div>
+    </div>
+    <div id="category-body">
+      <img src="{{provider.picture}}">
+      <a>{{provider.name | titlecase}}</a>
+    </div>
+    <div id="category-footer">
+      <i class="fas fa-star" *ngIf="provider.gem"></i>
+      <a style="align-self: left;" [routerLink]="'/panel/category/'+provider.id">Check Menu</a>
+    </div>
+  </div>
+</div>
+
+
+<app-add-form [values]="selectedService" (formOutput)="recieveFormData($event)"></app-add-form>

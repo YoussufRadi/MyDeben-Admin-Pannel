@@ -1,0 +1,116 @@
+<div id="orderHeader" class="row">
+  <div class="col">
+    <h5>Checkout</h5>
+    <div>
+      Sort:
+    </div>
+    <div style="width: 21%;font-size: 13px;">
+      <select class="minimal" [(ngModel)]="sort">
+        <option value="" selected style="display:none" disabled>Sort</option>
+        <option value="name">Name</option>
+        <option value="checkout_date">Date</option>
+      </select>
+    </div>
+    <div>
+      <input class="collapse search" id="search" type="text" [(ngModel)]="searchText" placeholder="Search" />
+    </div>
+    <div>
+      <a id="hover" data-toggle="collapse" data-target="#search">
+        <i class="fas fa-search"></i>
+      </a>
+    </div>
+  </div>
+</div>
+
+<div id="checkOutHead">
+  <div class="right">
+    <a>Name</a>
+  </div>
+  <div class="middle">
+    <a>Date</a>
+  </div>
+  <div class="leftUp">
+    <a>Response</a>
+  </div>
+</div>
+
+<div *ngFor="let user of users | search : 'name':searchText | sort:sort:true">
+  <div id="checkOutBody">
+    <div class="right">
+      <a>{{user.name | titlecase}}- Ref: {{user.checkin_store_ref | uppercase}}</a>
+    </div>
+    <div class="middle">
+      <a>{{user.checkout_date | date:'mediumDate'}}</a>
+    </div>
+    <!-- <div class="left"> -->
+    <button class="btn-success left" data-toggle="modal" (click)="selectUser(user)" data-target="#recieptModal">View Receipt</button>
+    <!-- </div> -->
+  </div>
+</div>
+
+<div id="recieptModal" class="modal fade" role="dialog">
+  <div class="modal-dialog" id="print-section">
+    <div class="modal-content">
+      <div class="modal-header">
+        <a class="modal-title" style="margin-left: 35%;">Price Breakdown</a>
+        <button type="button" class="close chover" data-dismiss="modal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-lg-4">
+            <p>Name: </p>
+          </div>
+          <div class="col-lg-8">
+            <p>{{selectedUser.name}}</p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-4">
+            <p>Ref: </p>
+          </div>
+          <div class="col-lg-8">
+            <p>{{selectedUser.checkin_store_ref}}</p>
+          </div>
+        </div>
+        <hr>
+        <div class="row">
+          <div class="col-lg-4">
+            <p>Price Details: </p>
+          </div>
+          <div class="col-lg-8">
+            <div class="row" *ngFor="let order of selectedUserOrders">
+              <div class="col-lg-6">
+                <p>{{order.name}}</p>
+              </div>
+              <div class="col-lg-3">
+                <p>{{order.price | currency:'USD'}}</p>
+              </div>
+            </div>
+
+            <hr>
+            <div class="row">
+              <div class="col-lg-6">
+                <p>Orders Total</p>
+              </div>
+              <div class="col-lg-3">
+                <p>{{selectedUserTotal | currency:'USD'}}</p>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-lg-6">
+                <p>Total Due</p>
+              </div>
+              <div class="col-lg-3">
+                <p>{{selectedUserTotalDue | currency:'USD'}}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-12 print-reciept">
+          <button style="margin-bottom: 10px;" type="button" class="btn btn-outline-danger" data-dismiss="modal" (click)="checkout(selectedUser.id)">Checkout</button>
+          <button type="button" class="btn btn-primary" (click)="print()">Print Reciept</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,71 @@
+<div id="orderHeader" class="row">
+  <div class="col">
+    <h5>Requests</h5>
+    <div>
+      Sort:
+    </div>
+    <div style="width: 21%;font-size: 13px;">
+      <select class="minimal" [(ngModel)]="sort">
+        <option value="" selected style="display:none" disabled>Sort</option>
+        <option value="user_name">User</option>
+        <option value="created_at">Date</option>
+        <option value="service_name">Service</option>
+        <option value="provide_name">Service Provider</option>
+        <option value="product_id">Item number</option>
+        <option value="quantity">Quantity</option>
+      </select>
+    </div>
+    <div>
+      <input class="collapse search" id="search" type="text" [(ngModel)]="searchText" placeholder="Search" />
+    </div>
+    <div>
+      <a id="hover" data-toggle="collapse" data-target="#search">
+        <i class="fas fa-search"></i>
+      </a>
+    </div>
+  </div>
+</div>
+<div *ngFor="let order of orders | search : 'user_name':searchText | sort:sort:true">
+  <div id="currentOrderBody" class="row">
+    <div class="col-s-2 col-md-2 col-lg-2">
+      <a>
+        <p>Service</p>
+      </a>
+      <p>{{order.service_name | titlecase}}</p>
+    </div>
+    <div class=" col-md-6 col-lg-6">
+      <div class="upper">
+        <p> {{order.user_name | titlecase}}- Ref: {{order.checkin_store_ref | uppercase}}</p>
+        <a>
+          <p>{{order.created_at | date:'medium'}}</p>
+        </a>
+      </div>
+      <div class="choice">
+        <div class="lowerleft">
+          <a>
+            <p>Service Provider</p>
+          </a>
+          <p>{{order.provide_name | titlecase}}</p>
+        </div>
+        <div class="lowerright">
+          <a>
+            <p>Item number</p>
+          </a>
+          <p>{{order.product_id}}</p>
+        </div>
+        <div class="lowerright">
+          <a>
+            <p>Quantity</p>
+          </a>
+          <p>{{order.quantity}}</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-s-4 col-md-4 col-lg-4">
+      <div class="row choice">
+        <i class="fas fa-check-circle" style="color :#74c11d;" (click)="serve(order.id)"></i>
+        <i class="fas fa-times-circle" style="color :#c13712;" (click)="cancel(order.id)"></i>
+      </div>
+    </div>
+  </div>
+</div>

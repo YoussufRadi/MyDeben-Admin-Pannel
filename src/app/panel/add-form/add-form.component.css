@@ -1,0 +1,97 @@
+.add-form-modal-row {
+  margin-bottom: 50px;
+}
+
+.add-form-modal-row input {
+  width: 100%;
+}
+
+.add-form-modal-submit {
+  padding: 10px;
+  text-align: center;
+}
+
+.add-form-modal-submit button {
+  width: 100%;
+  border-radius: 0;
+  background-color: #74c11d;
+  color: #fff;
+}
+
+.modal-header {
+  font-family: AvenirNext;
+  font-size: 20px !important;
+  font-weight: bold;
+  color: #fff;
+  background-color: #000000;
+}
+
+.chover {
+  color: white;
+}
+
+.chover:hover {
+  color: red;
+}
+
+.confirm {
+  border: solid 1px #74c11d;
+  background: white !important;
+  font-family: AvenirNext;
+  font-size: 14px;
+  color: #74c11d !important;
+  width: 100%;
+}
+
+.confirm:not(:disabled):not(.disabled):hover {
+  border: solid 1px #74c11d;
+  background: #74c11d !important;
+  color: #fff !important;
+}
+
+.confirm:disabled {
+  color: #d7f9b0 !important;
+  border: solid 1px #d7f9b0;
+}
+
+.upload-btn {
+  width: 30%;
+  background-color: #74c11d;
+  color: #fff;
+  position: absolute;
+  top: 5%;
+  left: 5%;
+}
+
+.service-provider {
+  position: relative;
+  padding: 0px;
+  margin-bottom: 3%;
+  margin-left: 3%;
+  margin-right: 3%;
+}
+
+.service-provider img {
+  width: 160px;
+  height: 160px;
+}
+.service-provider div {
+  background-color: rgba(0, 0, 0, 0.5);
+  color: #fff;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 160px;
+  height: 160px;
+  text-align: center;
+  vertical-align: middle;
+  line-height: 180px;
+  font-size: 20px;
+}
+
+.choose-file {
+  position: absolute;
+  top: 37%;
+  left: 45%;
+  font-size: 11px;
+}
